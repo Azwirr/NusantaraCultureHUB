@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-highest": "#e4e2e1", "background": "#fcf9f8", "on-secondary": "#ffffff", "secondary-fixed-dim": "#f8ba82", "secondary-container": "#febf87", "surface-container-high": "#eae7e7", "surface-container-lowest": "#ffffff", "on-background": "#1b1c1c", "tertiary-fixed-dim": "#ecc246", "surface-container-low": "#f6f3f2", "on-secondary-container": "#794c1e", "primary-container": "#1f3a5f", "surface-tint": "#465f86", "outline": "#74777f", "on-secondary-fixed": "#2d1600", "on-surface-variant": "#43474e", "on-tertiary-container": "#4f3d00", "error": "#ba1a1a", "primary-fixed": "#d5e3ff", "surface": "#fcf9f8", "surface-variant": "#e4e2e1", "on-tertiary": "#ffffff", "on-primary-container": "#8ba4cf", "on-primary-fixed": "#001c3b", "tertiary-fixed": "#ffe08e", "surface-bright": "#fcf9f8", "primary": "#032448", "secondary-fixed": "#ffdcc0", "on-primary-fixed-variant": "#2d476d", "on-error": "#ffffff", "surface-dim": "#dcd9d9", "on-primary": "#ffffff", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#673d10", "tertiary": "#755b00", "on-tertiary-fixed": "#241a00", "on-tertiary-fixed-variant": "#584400", "inverse-surface": "#303030", "inverse-on-surface": "#f3f0f0", "error-container": "#ffdad6", "secondary": "#835425", "inverse-primary": "#aec8f4", "surface-container": "#f0eded", "on-surface": "#1b1c1c", "primary-fixed-dim": "#aec8f4", "outline-variant": "#c4c6cf", "tertiary-container": "#cea72c" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "margin-tablet": "2rem", "margin": "1rem", "gutter": "1rem", "space-xl": "2rem", "space-2xl": "3rem", "gutter-desktop": "2rem", "margin-desktop": "3rem", "gutter-tablet": "1.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "body-md": ["Plus Jakarta Sans"], "headline-xl": ["Merriweather"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Merriweather"], "headline-lg-mobile": ["Merriweather"], "story-body": ["Merriweather"], "headline-xl-mobile": ["Merriweather"], "body-lg": ["Plus Jakarta Sans"], "headline-md": ["Merriweather"] }, "fontSize": { "body-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "400" }], "headline-xl": ["2.5rem", { "lineHeight": "3.125rem", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" }], "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["2rem", { "lineHeight": "2.625rem", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "0", "fontWeight": "700" }], "story-body": ["1.125rem", { "lineHeight": "1.9125rem", "fontWeight": "300" }], "headline-xl-mobile": ["1.875rem", { "lineHeight": "2.375rem", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }], "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "fontWeight": "700" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-sm flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 flex items-center justify-center text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-primary tracking-tight truncate max-w-[170px]">Detail Resep</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Bilingual Language Switcher" class="flex items-center h-8 px-space-xs rounded-lg bg-surface-container-low text-primary hover:bg-surface-container transition-colors"><span class="font-label-sm text-label-sm px-1 py-0.5 rounded bg-primary text-on-primary font-bold">ID</span><span class="font-label-sm text-label-sm px-1 py-0.5 text-on-surface-variant font-medium">EN</span></button><button aria-label="Simpan Resep" class="w-11 h-11 flex items-center justify-center text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-[22px]">bookmark_border</span></button><button aria-label="Bagikan Resep" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full text-on-surface">
+<div class="px-margin pt-space-md flex flex-col gap-space-md">
+<!-- Category, Origin Chips & UNESCO Badge -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary/10 text-secondary font-label-sm text-label-sm font-semibold tracking-wide shadow-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+        Sumatera Barat • Minangkabau
+      </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-tertiary-container/30 text-on-tertiary-container font-label-sm text-label-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+        UNESCO Intangible Heritage
+      </span>
+</div>
+<!-- Bilingual Title Section -->
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-primary tracking-tight leading-snug">
+        Rendang Daging Pusaka Minang
+      </h2>
+<p class="font-story-body text-body-sm italic text-secondary font-light">
+        Authentic Heirloom Minangkabau Caramelized Beef
+      </p>
+</div>
+<!-- Dietary & Characteristic Badges -->
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Bebas Gluten / Gluten-Free</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Halal 100%</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Kaya Rempah Nusantara</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Tanpa Pengawet Sintetis</span>
+</div>
+<!-- Hand-Drawn Sketch Illustration & Plate -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<div class="relative w-full rounded-lg overflow-hidden bg-surface-container shadow-md">
+<div class="relative w-full aspect-[4/3]">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="Intricate botanical naturalist sketchbook etching of traditional beef rendang simmered in a seasoned cast-iron wok kuali over glowing wood embers. Surrounding botanical pen-and-ink illustrations feature peeled coconut halves, aromatic turmeric leaves, knotted lemongrass stalks, and dried asam kandis pods. Antique sepia parchment background with warm saga brown linework and deep indigo ink shading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFKmfYq7vGkwZ9mZXUTGMd8Wu_HQ71Stq3T-kA3puyeepmnlAeswYjYHyJZ5gaNis7iGOKGJGqc3lb3lxg0vKiRJVrBwB7X_IR3Iw0UHYpJb7rvLOPeYf-n87mdzOpF7mGXIcquUSgHuGCRv1Q6de9wrSWjrJyNR2XmVotQ5ugaV-cNduoqXRbqocA_eBVmYwCN6zf38gOcWcExs7v_ehxhzbqP3_TJ-4poWT46zv79mso2WZE3xY"/>
+<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-surface/90 backdrop-blur-sm text-primary font-label-sm text-label-sm font-semibold shadow-sm">
+            Naskah Lapangan 1889
+          </div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant px-1">
+<p class="font-label-sm text-label-sm italic text-outline">
+          Catatan lapangan dapur tradisional Luhak Agam, Sumatera Barat • Lithograph No. 04
+        </p>
+<span class="material-symbols-outlined text-[16px] text-tertiary">draw</span>
+</div>
+</div>
+<!-- Recipe Metric Overview Cards -->
+<div class="grid grid-cols-3 gap-space-xs mt-space-xs">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low shadow-sm text-center">
+<span class="material-symbols-outlined text-secondary text-[22px] mb-1">timer</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Durasi</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary mt-0.5">4–6 Jam</span>
+<span class="text-[10px] text-on-surface-variant leading-none mt-0.5">Slow Simmer</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low shadow-sm text-center">
+<span class="material-symbols-outlined text-secondary text-[22px] mb-1">local_fire_department</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Tingkat</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary mt-0.5">Terampil</span>
+<span class="text-[10px] text-on-surface-variant leading-none mt-0.5">Artisan</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low shadow-sm text-center">
+<span class="material-symbols-outlined text-secondary text-[22px] mb-1">inventory_2</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Ketahanan</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary mt-0.5">4 Minggu</span>
+<span class="text-[10px] text-on-surface-variant leading-none mt-0.5">Awet Alami</span>
+</div>
+</div>
+<!-- Interactive Servings Counter / Pengatur Porsi -->
+<div class="p-4 rounded-lg bg-surface-container shadow-sm flex flex-col gap-space-sm mt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">Takaran Saji</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sesuaikan jumlah porsi hidangan</span>
+</div>
+<!-- Servings Stepper -->
+<div class="flex items-center bg-surface-container-lowest rounded-lg p-1 shadow-sm">
+<button aria-label="Kurangi porsi" class="w-11 h-11 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95" id="btn-decrease" type="button">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<div class="px-3 min-w-[56px] text-center">
+<span class="font-headline-md text-headline-md text-primary font-bold" id="servings-display">4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block -mt-1">Porsi</span>
+</div>
+<button aria-label="Tambah porsi" class="w-11 h-11 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95" id="btn-increase" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2 text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">scale</span>
+<span id="servings-note">Bahan otomatis disesuaikan secara proporsional untuk 4 porsi saji.</span>
+</div>
+</div>
+<!-- Decorative Cultural Vignette Separator -->
+<div class="flex items-center justify-center gap-3 my-1">
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[14px]">local_florist</span>
+<span class="font-label-sm text-label-sm tracking-widest uppercase font-semibold text-secondary">Daftar Rempah Pusaka</span>
+<span class="material-symbols-outlined text-[14px]">local_florist</span>
+</div>
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+</div>
+<!-- Ingredient Groups with Interactive Checkboxes -->
+<div class="flex flex-col gap-space-md">
+<!-- Section A: Bahan Utama & Santan -->
+<div class="rounded-lg bg-surface-container-low p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Bahan Utama &amp; Santan
+          </h3>
+<span class="font-label-sm text-label-sm text-outline">Kelapa Murni</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="1000" data-unit="g">1.000 g</span> Daging Sapi Gandik / Sandung Lamur
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Potong dadu searah serat agar daging tetap kokoh dan lembut.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="1500" data-unit="ml">1.500 ml</span> Santan Kental
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Dari 3 butir kelapa tua parut tanpa air tambahan.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="500" data-unit="ml">500 ml</span> Santan Encer
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Perasan kedua kelapa parut untuk proses penguraian kalio awal.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Section B: Bumbu Halus Leluhur -->
+<div class="rounded-lg bg-surface-container-low p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Bumbu Halus Leluhur
+          </h3>
+<span class="font-label-sm text-label-sm text-outline">Ulekan Batu</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="120" data-unit="g">120 g</span> Cabai Merah Keriting Bukittinggi
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Memberikan spektrum pedas khas yang tajam serta warna merah tua alami.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="100" data-unit="g">100 g</span> Bawang Merah Solok &amp; <span class="font-semibold text-primary ingredient-amount" data-base="50" data-unit="g">50 g</span> Bawang Putih Kating
+              </span>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="4" data-unit="cm">4 cm</span> Lengkuas Tua, <span class="font-semibold text-primary ingredient-amount" data-base="3" data-unit="cm">3 cm</span> Jahe Merah, <span class="font-semibold text-primary ingredient-amount" data-base="2" data-unit="cm">2 cm</span> Kunyit Bakar
+              </span>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="2" data-unit="sdm">2 sdm</span> Ketumbar Sangrai &amp; <span class="font-semibold text-primary ingredient-amount" data-base="0.5" data-unit="sdt">1/2 sdt</span> Pala Bubuk
+              </span>
+</div>
+</label>
+</div>
+</div>
+<!-- Section C: Daun Aromatik & Asam Khas -->
+<div class="rounded-lg bg-surface-container-low p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Aromatik &amp; Daun Segar
+          </h3>
+<span class="font-label-sm text-label-sm text-outline">Penyegar Alami</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="2" data-unit="lembar">2 lembar</span> Daun Kunyit
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Ikat simpul kencang untuk mengunci aroma tanah segar.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="4" data-unit="batang">4 batang</span> Serai Wangi (memarkan)
+              </span>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="5" data-unit="lembar">5 lembar</span> Daun Jeruk Purut Purba
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">Buang tulang daun agar aroma sitrus keluar tanpa getir.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded mt-0.5 accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+<span class="font-semibold text-primary ingredient-amount" data-base="2" data-unit="buah">2 buah</span> Asam Kandis Kering Minang
+              </span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Ancestral Secret Wisdom Card (Rahasia Dapur Leluhur) -->
+<div class="p-4 rounded-lg bg-secondary-container/20 text-on-secondary-container shadow-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0 mt-0.5">menu_book</span>
+<div class="flex flex-col gap-1">
+<span class="font-headline-md text-body-md font-bold text-on-secondary-container">Petuah &amp; Rahasia Dapur Leluhur</span>
+<p class="font-story-body text-body-sm leading-relaxed">
+          Pantang memakai kecap, gula merah, atau penyedap instan. Gurih karamel dan kehitaman rendang sejati murni terlahir dari perpaduan santan kelapa tua yang tereduksi lambat bersama minyak asiri rempah.
+        </p>
+</div>
+</div>
+<!-- Cooking Stages (Tahapan Memasak Berurutan) -->
+<div class="flex flex-col gap-space-md mt-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">3 Tahapan Evolusi Rendang</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Dari kuah santan cair hingga pekat legam karamel</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">Tungku Kayu</span>
+</div>
+<!-- Step 1: Tahap Gulai -->
+<div class="rounded-lg bg-surface-container p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center font-headline-md text-body-md">1</span>
+<div>
+<h4 class="font-headline-md text-body-lg text-primary">Tahap Gulai</h4>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Menyatukan Santan &amp; Bumbu Aromatik</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm">± 1 Jam</span>
+</div>
+<p class="font-story-body text-body-md text-on-surface font-light leading-relaxed">
+          Tuangkan santan kental dan encer ke kuali besi. Masukkan seluruh bumbu halus, daun kunyit, serai, dan daun jeruk. Nyalakan api sedang. Aduk santan secara ritmis perlahan dengan gerakan menimba (diangkat-jatuhkan dari kuali) tanpa jeda agar santan tidak pecah hingga mendidih dan aroma wangi rempah merebak ke seluruh ruangan.
+        </p>
+<div class="p-2.5 rounded bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lightbulb</span>
+<span><strong>Tips Maestro:</strong> Gerakan menimba memastikan minyak kelapa keluar merata dan bumbu tidak mengerak di dasar kuali.</span>
+</div>
+</div>
+<!-- Step 2: Tahap Kalio -->
+<div class="rounded-lg bg-surface-container p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-secondary text-on-secondary font-bold flex items-center justify-center font-headline-md text-body-md">2</span>
+<div>
+<h4 class="font-headline-md text-body-lg text-primary">Tahap Kalio</h4>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Peleburan Daging &amp; Minyak Kelapa</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm">± 2 Jam</span>
+</div>
+<p class="font-story-body text-body-md text-on-surface font-light leading-relaxed">
+          Saat kuah santan mulai berminyak kekuningan, masukkan potongan daging sapi. Kecilkan api ke tingkat sedang-rendah. Aduk secara berkala. Kuah perlahan mengental, berubah menjadi cokelat kemerahan pekat, dan minyak kelapa bening harum mulai terpisah dari ampas rempah. Pada tahap ini, masakan dinamakan <em>Kalio</em>.
+        </p>
+<div class="p-2.5 rounded bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lightbulb</span>
+<span><strong>Tips Maestro:</strong> Jangan gunakan api besar; biarkan serat daging meregang santai dan menyerap santan perlahan.</span>
+</div>
+</div>
+<!-- Step 3: Tahap Rendang Sejati -->
+<div class="rounded-lg bg-surface-container p-4 shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary font-bold flex items-center justify-center font-headline-md text-body-md">3</span>
+<div>
+<h4 class="font-headline-md text-body-lg text-primary">Tahap Rendang (Karamelisasi)</h4>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Pematangan Kering Legam Kehitaman</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm">± 2-3 Jam</span>
+</div>
+<p class="font-story-body text-body-md text-on-surface font-light leading-relaxed">
+          Masukkan asam kandis kering. Kecilkan api hingga seminimal mungkin (hanya bara kayu hangat). Gunakan sudip kayu untuk membalik rendang perlahan dan terus-menerus. Minyak kelapa akan menggoreng perlahan serat daging serta bumbunya hingga remah dedak rendang berubah menjadi cokelat gelap legam kehitaman, kering berminyak, dan beraroma karamel gurih mendalam.
+        </p>
+<div class="p-2.5 rounded bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">check_circle</span>
+<span><strong>Tanda Sempurna:</strong> Rendang matang saat ampas bumbu telah menjadi butiran pasir halus berwarna gelap tanpa aroma gosong.</span>
+</div>
+</div>
+</div>
+<!-- Ethnographic & Historical Archive Footer -->
+<div class="p-4 rounded-lg bg-surface-container-highest/60 text-on-surface-variant flex flex-col gap-2 shadow-sm my-space-xs">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span>Arsip Etnografi Kuliner Nusantara</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Disarikan dari manuskrip <em>Kitab Resep Dapur Gadang Istano Pagaruyung</em> &amp; catatan warisan juru masak Rumah Gadang Minangkabau. Nomor Registrasi Koleksi Budaya: <strong>KUL-SM-014</strong>.
+      </p>
+</div>
+<!-- Action Bar / Buttons (WCAG AA Compliant, >= 48px touch targets) -->
+<div class="flex flex-col gap-space-xs pb-space-lg pt-space-xs">
+<button class="w-full h-12 px-4 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold tracking-wide flex items-center justify-center gap-2 shadow-md hover:bg-primary/90 active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+<span>Mulai Panduan Masak (Mode Dapur)</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<button class="flex-1 h-12 px-4 rounded-lg bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 shadow-sm hover:bg-surface-container-high transition-colors active:scale-95" id="btn-save-recipe" type="button">
+<span class="material-symbols-outlined text-[20px]" id="save-icon">bookmark_border</span>
+<span id="save-text">Simpan ke Koleksi</span>
+</button>
+<button aria-label="Bagikan naskah resep" class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center shadow-sm hover:bg-surface-container-high transition-colors active:scale-95 shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    let currentServings = 4;
+    const baseServings = 4;
+    const minServings = 2;
+    const maxServings = 12;
+
+    const display = document.getElementById('servings-display');
+    const note = document.getElementById('servings-note');
+    const btnInc = document.getElementById('btn-increase');
+    const btnDec = document.getElementById('btn-decrease');
+    const amounts = document.querySelectorAll('.ingredient-amount');
+
+    function updateIngredients() {
+      const ratio = currentServings / baseServings;
+      display.textContent = currentServings;
+      note.textContent = 'Bahan otomatis disesuaikan secara proporsional untuk ' + currentServings + ' porsi saji.';
+
+      amounts.forEach(el => {
+        const base = parseFloat(el.getAttribute('data-base'));
+        const unit = el.getAttribute('data-unit');
+        const calculated = base * ratio;
+
+        let formatted = '';
+        if (calculated >= 100) {
+          formatted = Math.round(calculated).toLocaleString('id-ID');
+        } else if (calculated % 1 === 0) {
+          formatted = calculated.toString();
+        } else {
+          formatted = calculated.toFixed(1).replace('.', ',');
+        }
+        el.textContent = formatted + ' ' + unit;
+      });
+    }
+
+    if (btnInc) {
+      btnInc.addEventListener('click', function() {
+        if (currentServings < maxServings) {
+          currentServings += 2;
+          updateIngredients();
+        }
+      });
+    }
+
+    if (btnDec) {
+      btnDec.addEventListener('click', function() {
+        if (currentServings > minServings) {
+          currentServings -= 2;
+          updateIngredients();
+        }
+      });
+    }
+
+    // Bookmark Interactive Toggle
+    const btnSave = document.getElementById('btn-save-recipe');
+    const saveIcon = document.getElementById('save-icon');
+    const saveText = document.getElementById('save-text');
+    let isSaved = false;
+
+    if (btnSave) {
+      btnSave.addEventListener('click', function() {
+        isSaved = !isSaved;
+        if (isSaved) {
+          saveIcon.textContent = 'bookmark';
+          saveIcon.style.fontVariationSettings = "'FILL' 1";
+          saveText.textContent = 'Tersimpan di Koleksi';
+          btnSave.classList.add('bg-secondary/15', 'text-secondary');
+        } else {
+          saveIcon.textContent = 'bookmark_border';
+          saveIcon.style.fontVariationSettings = "'FILL' 0";
+          saveText.textContent = 'Simpan ke Koleksi';
+          btnSave.classList.remove('bg-secondary/15', 'text-secondary');
+        }
+      });
+    }
+  })();
+</script></main></body></html>

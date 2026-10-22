@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+/* The Stitch exports are reference material, not source: keep their classes out. */
+@source not "../../design";
+@source not "../../docs";
+
+/*
+ * Nusantara design tokens (see design/design-map.md).
+ * Light tokens live on :root. Dark tokens apply when the visitor picked dark
+ * (data-theme="dark", set before paint by ThemeScript) or, with no saved
+ * choice, when the OS prefers dark. Components only use the Tailwind names
+ * mapped in @theme below, so a theme switch never needs dark: variants.
+ */
+
+:root {
+  color-scheme: light;
+
+  --background: #f7f1e3;
+  --on-background: #2b2b2b;
+  --surface: #f7f1e3;
+  --surface-bright: #faf6ec;
+  --surface-dim: #e3d9c4;
+  --surface-container-lowest: #fffbf2;
+  --surface-container-low: #f2eada;
+  --surface-container: #ede4d1;
+  --surface-container-high: #e7dcc6;
+  --surface-container-highest: #e0d4bc;
+  --surface-variant: #e0d4bc;
+  --on-surface: #2b2b2b;
+  --on-surface-variant: #5a5348;
+  /* Form controls and other UI boundaries: 4.8:1 on paper (WCAG 1.4.11). */
+  --outline: #6f6a60;
+  /* Decorative lines only. */
+  --outline-variant: #c9bfae;
+  --border-ink: rgba(43, 43, 43, 0.2);
+
+  --primary: #1f3a5f;
+  --primary-strong: #032448;
+  --on-primary: #ffffff;
+  --primary-container: #d9e2ee;
+  --on-primary-container: #12263f;
+  --secondary: #8a5a2b;
+  --on-secondary: #ffffff;
+  --secondary-container: #f3e0cb;
+  --on-secondary-container: #4a2d10;
+  --tertiary: #755b00;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #f5e7b5;
+  --on-tertiary-container: #3d2f00;
+  /* Gold fails text contrast on paper: linework and small fills only. */
+  --accent-gold: #c9a227;
+  --on-accent-gold: #2b2b2b;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --inverse-surface: #2f2e2b;
+  --inverse-on-surface: #f3ede0;
+  --focus-ring: #1f3a5f;
+  --scrim: rgba(24, 25, 28, 0.5);
+
+  /* Hard offset shadows, never blurred (DESIGN.md, Elevation). */
+  --elevation-1: 1px 2px 0 rgba(43, 43, 43, 0.08);
+  --elevation-2: 3px 4px 0 rgba(43, 43, 43, 0.15);
+
+  /* Review statuses: draft, approved, rejected, unpublished. Staff UI only. */
+  --status-draft-bg: #e7dcc6;
+  --status-draft-fg: #5a5348;
+  --status-approved-bg: #d9e2ee;
+  --status-approved-fg: #12263f;
+  --status-rejected-bg: #ffdad6;
+  --status-rejected-fg: #93000a;
+  --status-unpublished-bg: #f3e0cb;
+  --status-unpublished-fg: #4a2d10;
+
+  /* Layout rhythm: 4 / 8 / 12 columns, max content width 1200px. */
+  --page-margin: 1rem;
+  --gutter: 1rem;
+}
+
+@media (width >= 48rem) {
+  :root {
+    --page-margin: 2rem;
+    --gutter: 1.5rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --page-margin: 3rem;
+    --gutter: 2rem;
+  }
+}
+
+/* Dark tokens, block 1 of 2: the visitor chose dark. Keep in sync with block 2. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #18191c;
+  --on-background: #ede6d8;
+  --surface: #18191c;
+  --surface-bright: #2f333a;
+  --surface-dim: #141518;
+  --surface-container-lowest: #1c1e22;
+  --surface-container-low: #202328;
+  --surface-container: #23272e;
+  --surface-container-high: #282a2e;
+  --surface-container-highest: #2f333a;
+  --surface-variant: #2f333a;
+  --on-surface: #ede6d8;
+  --on-surface-variant: #a39e93;
+  --outline: #8a857b;
+  --outline-variant: #3e4249;
+  --border-ink: #3e4249;
+
+  --primary: #aec8f4;
+  --primary-strong: #c9daf8;
+  --on-primary: #0e1f36;
+  --primary-container: #2d476d;
+  --on-primary-container: #d5e3ff;
+  --secondary: #e3b48a;
+  --on-secondary: #3a2207;
+  --secondary-container: #5a3a1a;
+  --on-secondary-container: #ffdcc0;
+  --tertiary: #c9a227;
+  --on-tertiary: #241a00;
+  --tertiary-container: #4a3a06;
+  --on-tertiary-container: #ffe08e;
+  --accent-gold: #c9a227;
+  --on-accent-gold: #18191c;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+  --inverse-surface: #ede6d8;
+  --inverse-on-surface: #2b2b2b;
+  --focus-ring: #aec8f4;
+  --scrim: rgba(0, 0, 0, 0.6);
+
+  --elevation-1: 1px 2px 0 rgba(0, 0, 0, 0.45);
+  --elevation-2: 3px 4px 0 rgba(0, 0, 0, 0.55);
+
+  --status-draft-bg: #2f333a;
+  --status-draft-fg: #a39e93;
+  --status-approved-bg: #2d476d;
+  --status-approved-fg: #d5e3ff;
+  --status-rejected-bg: #93000a;
+  --status-rejected-fg: #ffdad6;
+  --status-unpublished-bg: #5a3a1a;
+  --status-unpublished-fg: #ffdcc0;
+}
+
+/* Dark tokens, block 2 of 2: no saved choice and the OS prefers dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --background: #18191c;
+    --on-background: #ede6d8;
+    --surface: #18191c;
+    --surface-bright: #2f333a;
+    --surface-dim: #141518;
+    --surface-container-lowest: #1c1e22;
+    --surface-container-low: #202328;
+    --surface-container: #23272e;
+    --surface-container-high: #282a2e;
+    --surface-container-highest: #2f333a;
+    --surface-variant: #2f333a;
+    --on-surface: #ede6d8;
+    --on-surface-variant: #a39e93;
+    --outline: #8a857b;
+    --outline-variant: #3e4249;
+    --border-ink: #3e4249;
+
+    --primary: #aec8f4;
+    --primary-strong: #c9daf8;
+    --on-primary: #0e1f36;
+    --primary-container: #2d476d;
+    --on-primary-container: #d5e3ff;
+    --secondary: #e3b48a;
+    --on-secondary: #3a2207;
+    --secondary-container: #5a3a1a;
+    --on-secondary-container: #ffdcc0;
+    --tertiary: #c9a227;
+    --on-tertiary: #241a00;
+    --tertiary-container: #4a3a06;
+    --on-tertiary-container: #ffe08e;
+    --accent-gold: #c9a227;
+    --on-accent-gold: #18191c;
+    --error: #ffb4ab;
+    --on-error: #690005;
+    --error-container: #93000a;
+    --on-error-container: #ffdad6;
+    --inverse-surface: #ede6d8;
+    --inverse-on-surface: #2b2b2b;
+    --focus-ring: #aec8f4;
+    --scrim: rgba(0, 0, 0, 0.6);
+
+    --elevation-1: 1px 2px 0 rgba(0, 0, 0, 0.45);
+    --elevation-2: 3px 4px 0 rgba(0, 0, 0, 0.55);
+
+    --status-draft-bg: #2f333a;
+    --status-draft-fg: #a39e93;
+    --status-approved-bg: #2d476d;
+    --status-approved-fg: #d5e3ff;
+    --status-rejected-bg: #93000a;
+    --status-rejected-fg: #ffdad6;
+    --status-unpublished-bg: #5a3a1a;
+    --status-unpublished-fg: #ffdcc0;
+  }
+}
+
+/* Only project tokens: drop Tailwind's default palette, blur shadows and type sizes. */
+@theme {
+  --color-*: initial;
+  --shadow-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+
+  /* Radii: cards, buttons, inputs use rounded (8px); chips and badges rounded-sm (4px). */
+  --radius: 0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Type scale from DESIGN.md. headline-* and story-body pair with font-serif. */
+  --text-headline-xl: 2.5rem;
+  --text-headline-xl--line-height: 3.125rem;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 700;
+  --text-headline-xl-mobile: 1.875rem;
+  --text-headline-xl-mobile--line-height: 2.375rem;
+  --text-headline-xl-mobile--letter-spacing: -0.01em;
+  --text-headline-xl-mobile--font-weight: 700;
+  --text-headline-lg: 2rem;
+  --text-headline-lg--line-height: 2.625rem;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-lg-mobile: 1.5rem;
+  --text-headline-lg-mobile--line-height: 2rem;
+  --text-headline-lg-mobile--letter-spacing: 0;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-headline-md: 1.375rem;
+  --text-headline-md--line-height: 1.875rem;
+  --text-headline-md--font-weight: 700;
+  --text-story-body: 1.125rem;
+  --text-story-body--line-height: 1.9125rem;
+  --text-story-body--font-weight: 300;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-md--font-weight: 400;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-body-sm--font-weight: 400;
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-md--letter-spacing: 0.02em;
+  --text-label-md--font-weight: 600;
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1rem;
+  --text-label-sm--letter-spacing: 0.04em;
+  --text-label-sm--font-weight: 600;
+  /* Brand wordmark only. */
+  --text-wordmark: 1.125rem;
+  --text-wordmark--line-height: 1.375rem;
+  --text-wordmark--font-weight: 700;
+}
+
+@theme inline {
+  --font-serif: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  --font-sans:
+    var(--font-jakarta), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-1: var(--elevation-1);
+  --shadow-2: var(--elevation-2);
+
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+  --color-surface: var(--surface);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-ink: var(--border-ink);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-accent-gold: var(--accent-gold);
+  --color-on-accent-gold: var(--on-accent-gold);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-focus-ring: var(--focus-ring);
+  --color-scrim: var(--scrim);
+  --color-status-draft-bg: var(--status-draft-bg);
+  --color-status-draft-fg: var(--status-draft-fg);
+  --color-status-approved-bg: var(--status-approved-bg);
+  --color-status-approved-fg: var(--status-approved-fg);
+  --color-status-rejected-bg: var(--status-rejected-bg);
+  --color-status-rejected-fg: var(--status-rejected-fg);
+  --color-status-unpublished-bg: var(--status-unpublished-bg);
+  --color-status-unpublished-fg: var(--status-unpublished-fg);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--on-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  /* One visible focus ring for every interactive element. */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+  }
+}
+
+/* Centered content column: 1200px of content plus the responsive margin. */
+@utility page-container {
+  width: 100%;
+  max-width: calc(75rem + 2 * var(--page-margin));
+  margin-inline: auto;
+  padding-left: max(var(--page-margin), env(safe-area-inset-left));
+  padding-right: max(var(--page-margin), env(safe-area-inset-right));
+}
+
+/* 4 columns under 768px, 8 up to 1024px, 12 above. */
+@utility page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gutter);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* Physical "stamp" press: shift down-right and drop the hard shadow. */
+@utility press {
+  transition-property: transform, box-shadow, background-color, color;
+  transition-duration: 120ms;
+  transition-timing-function: ease-out;
+
+  &:active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+}
+
+@utility skip-link {
+  position: absolute;
+  left: max(var(--page-margin), env(safe-area-inset-left));
+  top: 0.5rem;
+  z-index: 60;
+  transform: translateY(-200%);
+  border-radius: var(--radius);
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--on-primary);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+
+  &:focus {
+    transform: none;
+  }
+}
+
+/* Project line art keeps a pen-width stroke at any size. */
+.line-art * {
+  vector-effect: non-scaling-stroke;
+}
+
+/* ThemeToggle shows the icon for the active theme without waiting for hydration. */
+.theme-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
