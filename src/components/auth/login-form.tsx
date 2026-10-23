@@ -6,26 +6,21 @@ import { Suspense, useActionState, useId, useState } from "react";
 
 import { Button } from "@/components/button";
 import { type AuthField, type AuthFormState, signIn } from "@/lib/auth-actions";
+import { callbackErrorFromParam } from "@/lib/auth-callback";
 import type { Dictionary } from "@/lib/i18n/dictionaries/id";
-import { safeNextPath } from "@/lib/safe-redirect";
 
 import { FormField } from "./form-field";
 import { FormMessage } from "./form-message";
+import { NextPathField } from "./next-path-input";
 
 export type LoginCopy = Pick<Dictionary["auth"], "login" | "fields" | "errors">;
 
 const initialState: AuthFormState = { status: "idle" };
 
-/** Shown when /auth/callback could not use a confirmation link (?error=link). */
-function LinkErrorNotice({ message }: { message: string }) {
-  const searchParams = useSearchParams();
-  return searchParams.get("error") === "link" ? <FormMessage tone="error">{message}</FormMessage> : null;
-}
-
-/** Carries ?next= through sign-in. signIn() re-checks it with safeNextPath. */
-function NextPathInput() {
-  const searchParams = useSearchParams();
-  return <input type="hidden" name="next" value={safeNextPath(searchParams.get("next"))} />;
+/** Explains why /auth/callback sent the visitor back here (?error=...). */
+function CallbackErrorNotice({ errors }: { errors: LoginCopy["errors"] }) {
+  const code = callbackErrorFromParam(useSearchParams().get("error"));
+  return code ? <FormMessage tone="error">{errors[code]}</FormMessage> : null;
 }
 
 export function LoginForm({ copy }: { copy: LoginCopy }) {
@@ -44,13 +39,11 @@ export function LoginForm({ copy }: { copy: LoginCopy }) {
         </FormMessage>
       ) : (
         <Suspense fallback={null}>
-          <LinkErrorNotice message={copy.errors.link_invalid} />
+          <CallbackErrorNotice errors={copy.errors} />
         </Suspense>
       )}
 
-      <Suspense fallback={<input type="hidden" name="next" value="/me" />}>
-        <NextPathInput />
-      </Suspense>
+      <NextPathField />
 
       <FormField
         id={`${baseId}-email`}

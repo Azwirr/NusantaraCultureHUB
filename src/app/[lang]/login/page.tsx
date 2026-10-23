@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { GoogleSignIn } from "@/components/auth/google-sign-in";
 import { LoginForm } from "@/components/auth/login-form";
 import { Card } from "@/components/card";
 import { PageHeader } from "@/components/page-header";
@@ -16,7 +17,8 @@ export default async function LoginPage() {
     <div className="page-container py-8 md:py-12">
       <div className="mx-auto w-full max-w-md">
         <PageHeader kicker={auth.login.kicker} title={auth.login.title} lead={auth.login.lead} />
-        <Card className="p-5 md:p-6">
+        <Card className="flex flex-col gap-5 p-5 md:p-6">
+          <GoogleSignIn copy={auth.google} carryNext />
           <LoginForm copy={{ login: auth.login, fields: auth.fields, errors: auth.errors }} />
         </Card>
       </div>

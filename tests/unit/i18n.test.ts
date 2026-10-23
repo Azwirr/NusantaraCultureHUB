@@ -47,6 +47,9 @@ describe("dictionaries", () => {
       "weak_password",
       "email_taken",
       "link_invalid",
+      "oauth_failed",
+      "oauth_cancelled",
+      "nickname_taken",
       "rate_limited",
       "unknown",
     ];

@@ -137,6 +137,14 @@ export const id = {
     memberRole: "Anggota",
     reviewLink: "Buka antrean peninjau",
     signOut: "Keluar",
+    nickname: {
+      title: "Pilih nama panggilan",
+      body: "Nama panggilan inilah yang terlihat di Nusantara. Kami tidak menampilkan nama asli atau foto dari akun Google Anda.",
+      editTitle: "Ubah nama panggilan",
+      submit: "Simpan nama panggilan",
+      pending: "Menyimpan…",
+      saved: "Nama panggilan disimpan.",
+    },
   },
   roles: {
     reviewer: "Peninjau",
@@ -194,9 +202,18 @@ export const id = {
       weak_password: "Kata sandi terlalu lemah. Gunakan kata sandi yang lebih panjang.",
       email_taken: "Email ini sudah terdaftar. Silakan masuk.",
       link_invalid: "Tautan konfirmasi tidak berlaku atau sudah kedaluwarsa. Silakan masuk, atau daftar lagi.",
+      oauth_failed: "Masuk dengan Google gagal. Silakan coba lagi.",
+      oauth_cancelled: "Masuk dengan Google dibatalkan.",
+      nickname_taken: "Nama panggilan ini sudah dipakai. Coba yang lain.",
       rate_limited: "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi.",
       unknown: "Terjadi kesalahan. Silakan coba lagi.",
     } satisfies Record<AuthErrorCode, string>,
+    google: {
+      continue: "Lanjutkan dengan Google",
+      pending: "Mengalihkan ke Google…",
+      privacyNote: "Kami hanya memakai akun Google untuk masuk. Nama dan foto Google tidak ditampilkan.",
+      divider: "atau",
+    },
     checkEmailTitle: "Cek email Anda",
     checkEmailBody:
       "Kami telah mengirim tautan konfirmasi. Buka tautan itu untuk mengaktifkan akun Anda.",

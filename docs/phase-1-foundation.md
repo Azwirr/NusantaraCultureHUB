@@ -98,6 +98,31 @@ The staging project is `nusantara-culture-hub-staging` (ref `mjhgzyecleviqoogqej
   - sign-out clears the session.
 - **Found only against a real session:** the session read in `src/lib/auth.ts` now calls `connection()`. Without it, Next.js logged errors on `/me` and `/review`, because the Supabase client reads the clock during a prerender step.
 
+## Google sign-in (added 2026-10-23)
+
+- **Buttons:** `/login` and `/signup` show "Lanjutkan dengan Google / Continue with Google" above the email form.
+- **Flow:** the server action `signInWithGoogle` starts a PKCE flow at Supabase and keeps the verifier in an HttpOnly cookie. `/auth/callback` finishes the sign-in and keeps `?next=`.
+- **Failures:** a cancelled or failed Google sign-in returns to `/login?error=oauth_cancelled` or `oauth_failed`, with a bilingual message. Email links that fail still show `link_invalid`.
+- **Nickname step:** Google sends no nickname. Migration part 6 (`20261023000600_profile_nickname_set.sql`) adds `profiles.nickname_set`.
+  - It is false for Google members, and for email sign-ups whose nickname was taken and got a suffix.
+  - Those members land on `/me`, which asks them to choose a nickname. Every member can change their nickname there.
+  - Members cannot write the flag. A trigger sets it when they save a nickname.
+- **Privacy:** the Google name and photo stay in `auth.users` only. They are never copied into `profiles` or shown.
+- **Tests:** `06-nickname.test.sql` (11 assertions), `tests/unit/auth-callback.test.ts`, `tests/e2e/google.spec.ts`, plus the nickname test in `signed-in.spec.ts`.
+  - The Google test stops at Supabase's authorize step and checks the PKCE parameters, the `redirect_to` and the verifier cookie. It never contacts Google.
+  - The required-nickname view was checked once on staging by resetting the test member's flag.
+
+Setup (dashboard, done by the team):
+
+1. Google Cloud → OAuth client (Web):
+   - **Authorized JavaScript origins:** `http://localhost:3000` and the Vercel domain.
+   - **Authorized redirect URI:** `https://mjhgzyecleviqoogqejc.supabase.co/auth/v1/callback`.
+2. Supabase → Authentication → Sign In / Providers → Google: enable it and paste the client ID and secret.
+3. Supabase → Authentication → URL Configuration:
+   - Set the Site URL to the Vercel domain.
+   - Add Redirect URLs **with a trailing `/**`**: `http://localhost:3000/**`, `https://<vercel-domain>/**`, and `https://*-<vercel-team>.vercel.app/**` for previews.
+   - The callback URLs carry `?next=` and `?via=`, so an exact `/auth/callback` entry would not match.
+
 ## How the database tests run without Docker
 
 Docker Desktop cannot start on the development machine until WSL is installed. `npm run test:db` therefore runs the same pgTAP files on PGlite, which is real Postgres compiled to WebAssembly. A small stand-in (`scripts/pglite/supabase-shim.sql`) provides the Supabase roles, `auth.users` and `auth.uid()`.
@@ -115,7 +140,7 @@ The real stack remains the reference. With Docker running: `npx supabase db rese
 ## Open items for the team
 
 - **Local Supabase (optional now)**: on this PC, Windows reports that hardware virtualization is turned off. Enable Intel VT-x or AMD SVM in the BIOS, then run `wsl --install` as administrator and reboot. Staging covers the checks until then.
-- **Staging auth URLs (dashboard)**: in Authentication → URL Configuration, add `http://localhost:3000/auth/callback`, and later the Vercel preview's `/auth/callback`, to Redirect URLs. Confirmation emails then land on the callback and sign the user in.
+- **Staging auth URLs (dashboard)**: see "Google sign-in" above. Use `/**` patterns, not exact `/auth/callback` entries.
 - **Vercel project**: authorize the Vercel connector (`/mcp`) or install the Vercel CLI. Then create the project and set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `SITE_URL`.
 - **First owner**: sign up in the app with your own email and confirm it. Then run `supabase/scripts/bootstrap-owner.sql` with that email.
 - **Email sign-up end to end**: not covered by automated tests on staging, because the built-in mailer only sends to team members. Check it by hand while creating the first owner.

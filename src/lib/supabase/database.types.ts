@@ -229,16 +229,19 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          nickname_set: boolean
           username: string
         }
         Insert: {
           created_at?: string
           id: string
+          nickname_set?: boolean
           username: string
         }
         Update: {
           created_at?: string
           id?: string
+          nickname_set?: boolean
           username?: string
         }
         Relationships: []

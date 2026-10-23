@@ -22,7 +22,8 @@ async function signIn(page: Page, credentials: { email: string; password: string
   await page.goto("/login");
   await page.locator('input[name="email"]').fill(credentials.email);
   await page.locator('input[name="password"]').fill(credentials.password);
-  await page.locator('form button[type="submit"]').click();
+  // The email form's button; the Google button is a separate form.
+  await page.getByRole("button", { name: /^(Sign in|Masuk)$/ }).click();
   await page.waitForURL("**/me");
 }
 
@@ -91,6 +92,27 @@ test.describe("signed-in member", () => {
     });
     expect(response.status()).toBe(403);
     expect((await restSelect(page, "user_roles?select=role")).rows).toEqual([]);
+  });
+
+  test("the nickname can be changed, and taken or invalid ones are refused", async ({ page, context, baseURL }) => {
+    await context.addCookies([{ name: "nch_locale", value: "en", url: baseURL! }]);
+    await page.goto("/me");
+    const field = page.getByLabel("Nickname", { exact: true });
+    const save = page.getByRole("button", { name: "Save nickname" });
+    await expect(field).toHaveValue("e2e_member");
+
+    await field.fill("e2e_reviewer");
+    await save.click();
+    await expect(page.locator("main").getByRole("alert")).toHaveText("That nickname is already taken. Please try another.");
+
+    await field.fill("Not Valid!");
+    await save.click();
+    await expect(page.locator("main").getByRole("alert")).toHaveText("Please check the highlighted fields.");
+
+    // Saving the current nickname leaves the account unchanged.
+    await field.fill("e2e_member");
+    await save.click();
+    await expect(page.locator("main").getByRole("status").filter({ hasText: "Nickname saved." })).toBeVisible();
   });
 
   test("signing out clears the session", async ({ page, context }) => {

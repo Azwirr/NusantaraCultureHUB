@@ -18,6 +18,7 @@ Both fonts are downloaded at build time by `next/font/google` and served from ou
 | Asset | Where it is used | Licence | Credit |
 | --- | --- | --- | --- |
 | lucide-react | Interface icons across the app | ISC License | Lucide Contributors; portions derived from Feather by Cole Bemis (MIT) |
+| Google "G" mark | "Continue with Google" button (`src/components/auth/google-sign-in.tsx`) | Google trademark, used as the Google Sign-In branding guidelines allow | Google LLC |
 
 ## Project-owned artwork
 

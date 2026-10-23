@@ -2,6 +2,7 @@ import { ClipboardList, LogOut, UserRound } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { NicknameForm } from "@/components/auth/nickname-form";
 import { Button, ButtonLink } from "@/components/button";
 import { Card } from "@/components/card";
 import { Chip } from "@/components/chip";
@@ -45,6 +46,21 @@ async function MemberPanel({ dict }: { dict: Dictionary }) {
   const initials = getInitials(user.username);
   const roleLabels = user.roles.length > 0 ? user.roles.map((role) => dict.roles[role]) : [dict.me.memberRole];
 
+  // One fixed place in the tree, so the form keeps its "saved" message when
+  // saving flips needsNickname and the page refreshes.
+  const nicknameForm = (
+    <NicknameForm
+      copy={{
+        ...dict.me.nickname,
+        label: dict.auth.fields.username,
+        hint: dict.auth.fields.usernameHint,
+        errors: dict.auth.errors,
+      }}
+      current={user.username ?? ""}
+      required={user.needsNickname}
+    />
+  );
+
   return (
     <Card className="flex max-w-xl flex-col gap-6 p-6">
       <div className="flex items-center gap-4">
@@ -76,6 +92,8 @@ async function MemberPanel({ dict }: { dict: Dictionary }) {
           </div>
         </dl>
       </div>
+
+      {nicknameForm}
 
       <div className="flex flex-wrap gap-3">
         {isStaff(user) ? (

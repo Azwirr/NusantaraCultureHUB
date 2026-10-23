@@ -1,5 +1,6 @@
 "use server";
 
+import { refresh } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -15,6 +16,9 @@ export type AuthErrorCode =
   | "weak_password"
   | "email_taken"
   | "link_invalid"
+  | "oauth_failed"
+  | "oauth_cancelled"
+  | "nickname_taken"
   | "rate_limited"
   | "unknown";
 
@@ -24,6 +28,11 @@ export type AuthFormState =
   | { status: "idle" }
   | { status: "error"; code: AuthErrorCode; fields?: AuthField[] }
   | { status: "check_email" };
+
+export type NicknameFormState =
+  | { status: "idle" }
+  | { status: "saved" }
+  | { status: "error"; code: AuthErrorCode };
 
 const email = z.string().trim().toLowerCase().email().max(254);
 const password = z.string().min(8).max(72);
@@ -106,6 +115,54 @@ export async function signUp(_prev: AuthFormState, formData: FormData): Promise<
   // With email confirmation on, there is no session until the link is used.
   if (!data.session) return { status: "check_email" };
   redirect("/me");
+}
+
+/**
+ * Starts Google sign-in: Supabase returns Google's consent URL and stores the
+ * PKCE verifier in a cookie. /auth/callback finishes the sign-in.
+ */
+export async function signInWithGoogle(formData: FormData): Promise<void> {
+  const callback = new URL("/auth/callback", await siteOrigin());
+  callback.searchParams.set("next", safeNextPath(formData.get("next")));
+  callback.searchParams.set("via", "google");
+
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: callback.toString(),
+      // Let people pick which Google account to use on shared devices.
+      queryParams: { prompt: "select_account" },
+    },
+  });
+  if (error || !data.url) redirect("/login?error=oauth_failed");
+  redirect(data.url);
+}
+
+/** Saves the member's nickname. The database refuses taken or invalid ones. */
+export async function setNickname(_prev: NicknameFormState, formData: FormData): Promise<NicknameFormState> {
+  const parsed = usernameSchema.safeParse(formData.get("username"));
+  if (!parsed.success) return { status: "error", code: "invalid_input" };
+
+  const supabase = await createClient();
+  const { data: claims } = await supabase.auth.getClaims();
+  const userId = claims?.claims?.sub;
+  if (!userId) redirect("/login?next=%2Fme");
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({ username: parsed.data })
+    .eq("id", userId)
+    .select("id");
+  if (error) {
+    if (error.code === "23505") return { status: "error", code: "nickname_taken" };
+    if (error.code === "23514") return { status: "error", code: "invalid_input" };
+    return { status: "error", code: "unknown" };
+  }
+  if (!data?.length) return { status: "error", code: "unknown" };
+
+  refresh();
+  return { status: "saved" };
 }
 
 export async function signOut(): Promise<void> {

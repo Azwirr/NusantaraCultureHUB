@@ -16,6 +16,8 @@ export type SessionUser = {
   username: string | null;
   /** Read from user_roles on the server. Never taken from the client. */
   roles: AppRole[];
+  /** True until the member chooses a nickname (Google sign-in, or a taken one). */
+  needsNickname: boolean;
 };
 
 function isAppRole(value: unknown): value is AppRole {
@@ -41,14 +43,15 @@ export const getSessionUser = cache(async (): Promise<SessionUser | null> => {
   if (error || !userId) return null;
 
   const [profile, roleRows] = await Promise.all([
-    supabase.from("profiles").select("username").eq("id", userId).maybeSingle(),
+    supabase.from("profiles").select("username, nickname_set").eq("id", userId).maybeSingle(),
     supabase.from("user_roles").select("role").eq("user_id", userId),
   ]);
 
   return {
     id: userId,
-    username: (profile.data?.username as string | undefined) ?? null,
+    username: profile.data?.username ?? null,
     roles: (roleRows.data ?? []).map((row) => row.role).filter(isAppRole),
+    needsNickname: profile.data ? !profile.data.nickname_set : false,
   };
 });
 
