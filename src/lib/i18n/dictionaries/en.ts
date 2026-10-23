@@ -120,6 +120,21 @@ export const en = {
         body: "Writers and editors cannot approve their own work. The database refuses it.",
       },
     },
+    valuePropsHeading: "Our Standards & Commitments",
+    valuePropsLead: "Engineered for accessibility, uncompromising on privacy, and strictly grounded in verified facts.",
+    valueProps: {
+      accessibilityTitle: "Accessible to Blind Listeners",
+      accessibilityBody: "WCAG 2.1 AA compliant with rich audio descriptions and complete screen reader keyboard controls.",
+      privacyTitle: "100% On-Device Photo Privacy",
+      privacyBody: "Costume pose detection runs locally in your browser; your personal photos never touch a cloud server.",
+      curatedTitle: "100% Sourced & Verified",
+      curatedBody: "Free from AI hallucinations: every recipe, legend, and garment cites verifiable public references.",
+    },
+    pillarBadges: {
+      costume: "On-Device Only",
+      recipe: "Source Verified",
+      story: "Audio & Text",
+    },
   },
   library: {
     kicker: "Library",
@@ -610,6 +625,21 @@ export const en = {
       contains_dairy: "Contains dairy",
       contains_gluten: "Contains gluten",
     },
+  },
+  footer: {
+    tagline: "Indonesian Cultural Heritage",
+    description:
+      "A bilingual cultural archive documenting traditional attire, heritage recipes, and folklore with rigorous human curation and full accessibility.",
+    pillarsHeading: "Three Pillars",
+    navHeading: "Explore",
+    privacyHeading: "Privacy Commitment",
+    privacyText:
+      "Costume try-on photos are processed 100% on your local device and never uploaded. Story audio is crafted for screen-reader and blind accessibility.",
+    curationHeading: "Trusted Curation",
+    curationText:
+      "Every item is verified against authentic sources and approved through a two-person review gate.",
+    festivalCredit: "Built for IT Festival 2026.",
+    copyright: "© 2026 Nusantara Culture Hub. All rights reserved.",
   },
   notFound: {
     title: "Page not found",

@@ -1,11 +1,23 @@
-import { ArrowRight, BookAudio, CookingPot, Languages, type LucideIcon, ShieldCheck, Shirt, UsersRound } from "lucide-react";
+import {
+  ArrowRight,
+  BookAudio,
+  CheckCircle2,
+  CookingPot,
+  Languages,
+  type LucideIcon,
+  ShieldCheck,
+  Shirt,
+  UsersRound,
+  Volume2,
+} from "lucide-react";
 import Link from "next/link";
 import type { ComponentType, CSSProperties } from "react";
 
 import { ButtonLink } from "@/components/button";
 import { Card } from "@/components/card";
-import { BatikArt, CostumeArt, RecipeArt, RumahGadangArt, StoryArt, WayangArt } from "@/components/line-art";
+import { BatikArt, CostumeArt, RecipeArt, StoryArt, WayangArt, RumahGadangArt } from "@/components/line-art";
 import { MotifDivider } from "@/components/motif-divider";
+import { RegionMap } from "@/components/region-map";
 import { SectionHeading } from "@/components/section-heading";
 import { getLibrary, getRegions, type PublicType } from "@/lib/content";
 import { contentHref } from "@/lib/format";
@@ -150,7 +162,12 @@ export default async function HomePage() {
                         <Icon size={24} strokeWidth={1.75} />
                       </span>
                       <div className="flex min-w-0 flex-col gap-0.5">
-                        <p className="text-label-sm uppercase text-secondary">{copy.kicker}</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="text-label-sm uppercase text-secondary">{copy.kicker}</p>
+                          <span className="inline-flex items-center rounded-sm border border-ink/30 bg-surface-container-low px-1.5 py-0.5 text-[11px] font-medium text-secondary">
+                            {home.pillarBadges[pillar.key]}
+                          </span>
+                        </div>
                         <h3 className="font-serif text-headline-md text-on-surface">{copy.title}</h3>
                         <p className="font-serif text-body-sm font-light italic text-on-surface-variant">{copy.subtitle}</p>
                       </div>
@@ -170,16 +187,16 @@ export default async function HomePage() {
           </ul>
         </section>
 
-        <section aria-labelledby="regions-title" className="page-grid items-center gap-y-6">
-          <div className="col-span-4 md:col-span-8 lg:col-span-6">
+        <section aria-labelledby="regions-title" className="page-grid items-start gap-y-8">
+          <div className="col-span-4 flex flex-col gap-4 md:col-span-8 lg:col-span-5">
             <SectionHeading id="regions-title" kicker={home.regionsKicker} title={home.regionsTitle} lead={home.regionsBody} />
             {regions.length ? (
-              <ul className="mb-6 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2">
                 {regions.map((region) => (
                   <li key={region.slug}>
                     <Link
                       href={`/regions/${region.slug}`}
-                      className="inline-flex min-h-12 items-center rounded-sm border border-ink bg-surface-container-lowest px-4 text-label-md text-on-surface hover:bg-surface-container"
+                      className="inline-flex min-h-12 items-center rounded-sm border border-ink bg-surface-container-lowest px-4 text-label-md text-on-surface shadow-1 hover:bg-surface-container"
                     >
                       {region.name}
                     </Link>
@@ -187,13 +204,44 @@ export default async function HomePage() {
                 ))}
               </ul>
             ) : null}
-            <ButtonLink href="/regions" variant="secondary">
-              {home.regionsCta}
-              <ArrowRight aria-hidden="true" size={18} strokeWidth={1.75} />
-            </ButtonLink>
+            <div className="pt-2">
+              <ButtonLink href="/regions" variant="secondary">
+                {home.regionsCta}
+                <ArrowRight aria-hidden="true" size={18} strokeWidth={1.75} />
+              </ButtonLink>
+            </div>
           </div>
-          <div aria-hidden="true" className="col-span-4 rounded border border-ink bg-surface-container-low p-6 text-secondary md:col-span-8 lg:col-span-6">
-            <RumahGadangArt className="h-auto w-full" />
+          <div className="col-span-4 md:col-span-8 lg:col-span-7">
+            <RegionMap regions={regions} locale={locale} copy={dict.map} />
+          </div>
+        </section>
+
+        <section aria-labelledby="value-props-title" className="flex flex-col gap-6">
+          <SectionHeading id="value-props-title" kicker={home.kicker} title={home.valuePropsHeading} lead={home.valuePropsLead} />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <Card as="article" className="flex flex-col gap-3 p-6 shadow-1">
+              <span aria-hidden="true" className="flex size-11 items-center justify-center rounded border border-ink bg-primary-container text-on-primary-container">
+                <Volume2 size={22} strokeWidth={1.75} />
+              </span>
+              <h3 className="font-serif text-headline-md text-on-surface">{home.valueProps.accessibilityTitle}</h3>
+              <p className="text-body-md text-on-surface-variant leading-relaxed">{home.valueProps.accessibilityBody}</p>
+            </Card>
+
+            <Card as="article" className="flex flex-col gap-3 p-6 shadow-1">
+              <span aria-hidden="true" className="flex size-11 items-center justify-center rounded border border-ink bg-secondary-container text-on-secondary-container">
+                <ShieldCheck size={22} strokeWidth={1.75} />
+              </span>
+              <h3 className="font-serif text-headline-md text-on-surface">{home.valueProps.privacyTitle}</h3>
+              <p className="text-body-md text-on-surface-variant leading-relaxed">{home.valueProps.privacyBody}</p>
+            </Card>
+
+            <Card as="article" className="flex flex-col gap-3 p-6 shadow-1">
+              <span aria-hidden="true" className="flex size-11 items-center justify-center rounded border border-ink bg-tertiary-container text-on-tertiary-container">
+                <CheckCircle2 size={22} strokeWidth={1.75} />
+              </span>
+              <h3 className="font-serif text-headline-md text-on-surface">{home.valueProps.curatedTitle}</h3>
+              <p className="text-body-md text-on-surface-variant leading-relaxed">{home.valueProps.curatedBody}</p>
+            </Card>
           </div>
         </section>
 

@@ -5,6 +5,7 @@ import { Merriweather, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+import { AppFooter } from "@/components/app-footer";
 import { AppHeader } from "@/components/app-header";
 import { BottomNav, BottomNavLinks } from "@/components/bottom-nav";
 import { ClientCopyProvider } from "@/components/client-copy";
@@ -75,13 +76,10 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           {dict.a11y.skipToContent}
         </a>
         <AppHeader dict={dict} locale={lang} />
-        <main
-          id="main"
-          tabIndex={-1}
-          className="relative z-10 flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] outline-none md:pb-16"
-        >
+        <main id="main" tabIndex={-1} className="relative z-10 flex-1 outline-none">
           <ClientCopyProvider copy={{ errorPage: dict.errorPage }}>{children}</ClientCopyProvider>
         </main>
+        <AppFooter dict={dict} />
         <Suspense fallback={<BottomNavLinks labels={dict.nav} label={dict.a11y.mainNav} pathname={null} />}>
           <BottomNav labels={dict.nav} label={dict.a11y.mainNav} />
         </Suspense>

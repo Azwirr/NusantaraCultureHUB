@@ -129,6 +129,21 @@ export const id = {
         body: "Penulis atau penyunting tidak dapat menyetujui karyanya sendiri. Basis data menolaknya.",
       },
     },
+    valuePropsHeading: "Standar & Komitmen Kami",
+    valuePropsLead: "Dirancang ramah aksesibilitas, menjunjung privasi penuh, dan bebas dari halusinasi data.",
+    valueProps: {
+      accessibilityTitle: "Aksesibilitas Tunanetra",
+      accessibilityBody: "Memenuhi standar WCAG 2.1 AA dengan deskripsi audio lengkap dan navigasi ramah pembaca layar.",
+      privacyTitle: "Privasi 100% Tanpa Unggah Foto",
+      privacyBody: "Teknologi deteksi pose busana berjalan di peramban perangkat Anda; foto tidak pernah dikirim ke server.",
+      curatedTitle: "100% Terverifikasi Sumber",
+      curatedBody: "Bebas dari halusinasi AI: setiap resep, cerita, dan busana wajib mengutip rujukan yang dapat diakses publik.",
+    },
+    pillarBadges: {
+      costume: "Privasi Lokal",
+      recipe: "Sumber Otentik",
+      story: "Audio & Teks",
+    },
   },
   library: {
     kicker: "Perpustakaan",
@@ -625,6 +640,21 @@ export const id = {
       contains_dairy: "Mengandung susu",
       contains_gluten: "Mengandung gluten",
     } satisfies Record<(typeof DIETARY_TAGS)[number], string>,
+  },
+  footer: {
+    tagline: "Pusaka Budaya Nusantara",
+    description:
+      "Arsip budaya dwibahasa yang mendokumentasikan busana adat, resep warisan, dan dongeng rakyat dengan kurasi ketat dan aksesibilitas penuh.",
+    pillarsHeading: "Tiga Pilar",
+    navHeading: "Jelajah",
+    privacyHeading: "Komitmen Privasi",
+    privacyText:
+      "Foto coba busana diproses 100% di perangkat lokal tanpa pernah diunggah. Audio cerita dirancang ramah bagi penyandang tunanetra.",
+    curationHeading: "Kurasi Terpercaya",
+    curationText:
+      "Setiap item diverifikasi terhadap sumber otentik dan disetujui melalui gerbang peninjauan dua pasang mata.",
+    festivalCredit: "Dikembangkan untuk IT Festival 2026.",
+    copyright: "© 2026 Nusantara Culture Hub. Seluruh hak cipta dilindungi.",
   },
   notFound: {
     title: "Halaman tidak ditemukan",

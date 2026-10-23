@@ -27,13 +27,23 @@ export function KawungNode({ cx, cy, size = 10 }: { cx: number; cy: number; size
   );
 }
 
-/** Square brand tile with a kawung node, used beside the "Nusantara" wordmark. */
+/** Square brand tile with a gunungan kayon portal, used beside the "Nusantara" wordmark. */
 export function BrandMark({ className }: ArtProps) {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false" className={className}>
       <rect width="40" height="40" rx="8" className="fill-primary" />
-      <g {...lineProps} className="text-on-primary" strokeWidth={1.75}>
-        <KawungNode cx={20} cy={20} size={11} />
+      <g {...lineProps} className="text-on-primary" strokeWidth={1.5}>
+        {/* Siluet Gunungan Kayon */}
+        <path d="M20 7 C23 11 28 16 29.5 22.5 C30.5 25.5 29.5 28.5 27.5 30 C26 31 24 31 23 31 L17 31 C16 31 14 31 12.5 30 C10.5 28.5 9.5 25.5 10.5 22.5 C12 16 17 11 20 7 Z" />
+        {/* Gerbang Candi Paduraksa (Cultural Portal) */}
+        <path d="M17 31 V24.5 C17 22 23 22 23 24.5 V31" />
+        {/* Garis Dasar Gerbang */}
+        <path d="M15 33 H25" />
+        {/* Sumbu Kalpataru & Cabang Pohon Hayat */}
+        <line x1="20" y1="11.5" x2="20" y2="20" />
+        <path d="M20 14.5 C22 13.5 24 14.5 25 16" />
+        <path d="M20 14.5 C18 13.5 16 14.5 15 16" />
+        <circle cx="20" cy="15.5" r="1.2" fill="currentColor" />
       </g>
     </svg>
   );
