@@ -68,6 +68,7 @@ export const id = {
     sourcesNote:
       "Konten ini sudah diperiksa terhadap sumber berikut sebelum ditayangkan. Setiap konten mengutip sedikitnya dua situs berbeda atau disetujui peninjau.",
     opensNewTab: "(membuka tab baru)",
+    pictureCredit: "Foto: {credit}. Lisensi: {licence}.",
     readMore: "Buka",
     previewBanner: "Pratinjau draf. Hanya peninjau yang dapat melihat halaman ini, dan isinya belum tayang.",
     previewLink: "Pratinjau",
@@ -228,6 +229,15 @@ export const id = {
     statusBody:
       "Studio coba busana sedang disiapkan. Sementara itu, lihat busana adat di perpustakaan.",
     cta: "Lihat busana adat",
+    startCamera: "Mulai kamera",
+    stopCamera: "Hentikan kamera",
+    chooseDress: "Pilih busana",
+    overlay: "Transparansi gambar busana",
+    mirror: "Cerminkan gambar",
+    cameraDenied: "Kamera diblokir. Izinkan akses kamera untuk situs ini di peramban Anda, lalu coba lagi.",
+    noCamera: "Perangkat ini tidak punya kamera.",
+    noDresses: "Belum ada busana dengan gambar yang tayang.",
+    liveNote: "Tidak ada yang direkam atau diunggah. Gambar busana ditumpangkan di atas tampilan kamera agar Anda bisa menyesuaikannya.",
   },
   me: {
     kicker: "Anggota",

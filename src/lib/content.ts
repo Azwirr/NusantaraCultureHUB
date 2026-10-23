@@ -159,6 +159,7 @@ export type StoryDetail = {
     audioDescription: string;
     imageAlt: string;
     imageUrl: string | null;
+    imageCredit: { credit: string; licence: string } | null;
   }>;
   sources: SourceItem[];
 };
@@ -189,6 +190,19 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
     sourcesFor(supabase, "story", story.id),
   ]);
   if (chapters.error) fail("chapters", chapters.error);
+  // Chapter illustrations (or pictures) from content_media, else the chapter image field.
+  const chapterIds = chapters.data.map((row) => row.id);
+  const media = chapterIds.length
+    ? await supabase
+        .from("content_media")
+        .select("content_id, url, credit, licence, sort_order")
+        .eq("content_type", "story_chapter")
+        .in("content_id", chapterIds)
+        .order("sort_order")
+    : { data: [], error: null };
+  if (media.error) fail("chapter media", media.error);
+  const mediaByChapter = new Map<string, { url: string; credit: string; licence: string }>();
+  for (const row of media.data) if (!mediaByChapter.has(row.content_id)) mediaByChapter.set(row.content_id, row);
   return {
     id: story.id,
     slug: story.slug,
@@ -201,10 +215,31 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
       text: pick(locale, { id: row.text_id, en: row.text_en }),
       audioDescription: pick(locale, { id: row.audio_description_id, en: row.audio_description_en }),
       imageAlt: pick(locale, { id: row.image_alt_id, en: row.image_alt_en }),
-      imageUrl: row.image_url,
+      imageUrl: mediaByChapter.get(row.id)?.url ?? row.image_url,
+      imageCredit: mediaByChapter.get(row.id)
+        ? { credit: mediaByChapter.get(row.id)!.credit, licence: mediaByChapter.get(row.id)!.licence }
+        : null,
     })),
     sources,
   };
+}
+
+/** A picture or illustration for an item, with the credit and licence it must show. */
+export type MediaItem = { url: string; alt: string; credit: string; licence: string; kind: "picture" | "illustration" };
+
+/** The first picture of each item (see supabase/migrations/20261024001600_content_media.sql). */
+async function firstMedia(supabase: ContentClient, type: "recipe" | "costume" | "story_chapter", id: string, locale: Locale): Promise<MediaItem | null> {
+  const { data, error } = await supabase
+    .from("content_media")
+    .select("url, alt_id, alt_en, credit, licence, kind")
+    .eq("content_type", type)
+    .eq("content_id", id)
+    .order("sort_order")
+    .limit(1);
+  if (error) fail("media", error);
+  const row = data[0];
+  if (!row) return null;
+  return { url: row.url, alt: pick(locale, { id: row.alt_id, en: row.alt_en }), credit: row.credit, licence: row.licence, kind: row.kind === "illustration" ? "illustration" : "picture" };
 }
 
 export type RecipeDetail = {
@@ -222,6 +257,7 @@ export type RecipeDetail = {
   ingredients: Array<{ id: string; name: string; amount: number | null; unit: string | null }>;
   steps: Array<{ id: string; number: number; text: string; timerSeconds: number | null }>;
   sources: SourceItem[];
+  picture: MediaItem | null;
 };
 
 export async function getRecipe(slug: string, locale: Locale): Promise<RecipeDetail | null> {
@@ -238,7 +274,7 @@ export async function loadRecipe(supabase: ContentClient, key: Key, locale: Loca
   const { data: recipe, error } = await ("slug" in key ? query.eq("slug", key.slug) : query.eq("id", key.id)).maybeSingle();
   if (error) fail("recipe", error);
   if (!recipe) return null;
-  const [ingredients, steps, sources] = await Promise.all([
+  const [ingredients, steps, sources, picture] = await Promise.all([
     supabase
       .from("recipe_ingredients")
       .select("id, name_id, name_en, amount, unit")
@@ -250,6 +286,7 @@ export async function loadRecipe(supabase: ContentClient, key: Key, locale: Loca
       .eq("recipe_id", recipe.id)
       .order("step_no"),
     sourcesFor(supabase, "recipe", recipe.id),
+    firstMedia(supabase, "recipe", recipe.id, locale),
   ]);
   if (ingredients.error) fail("ingredients", ingredients.error);
   if (steps.error) fail("steps", steps.error);
@@ -277,6 +314,7 @@ export async function loadRecipe(supabase: ContentClient, key: Key, locale: Loca
       timerSeconds: row.timer_seconds,
     })),
     sources,
+    picture,
   };
 }
 
@@ -287,6 +325,7 @@ export type CostumeDetail = {
   altTitle: string;
   info: string;
   imageUrl: string | null;
+  picture: MediaItem | null;
   region: { slug: string; name: string } | null;
   sources: SourceItem[];
 };
@@ -306,13 +345,15 @@ export async function loadCostume(supabase: ContentClient, key: Key, locale: Loc
   if (error) fail("costume", error);
   if (!costume) return null;
   const names = { id: costume.name_id, en: costume.name_en };
+  const picture = await firstMedia(supabase, "costume", costume.id, locale);
   return {
     id: costume.id,
     slug: costume.slug,
     title: pick(locale, names),
     altTitle: pick(locale === "en" ? "id" : "en", names),
     info: pick(locale, { id: costume.info_id, en: costume.info_en }),
-    imageUrl: costume.reference_image_url,
+    imageUrl: picture?.url ?? costume.reference_image_url,
+    picture,
     region: regionRef(locale, costume.regions),
     sources: await sourcesFor(supabase, "costume", costume.id),
   };
@@ -327,4 +368,18 @@ export async function getPublicSlugs(type: PublicType): Promise<string[]> {
   const { data, error } = await createPublicClient().from(table).select("slug");
   if (error) fail(`${type} slugs`, error);
   return data.map((row) => row.slug);
+}
+
+/** Approved dress with a picture, for the try-on studio. Cached like the library. */
+export type TryOnDress = { slug: string; title: string; imageUrl: string; credit: string; licence: string };
+
+export async function getTryOnDresses(locale: Locale): Promise<TryOnDress[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  const slugs = await getPublicSlugs("costume");
+  const details = await Promise.all(slugs.map((slug) => getCostume(slug, locale)));
+  return details.flatMap((dress) =>
+    dress?.picture ? [{ slug: dress.slug, title: dress.title, imageUrl: dress.picture.url, credit: dress.picture.credit, licence: dress.picture.licence }] : [],
+  );
 }

@@ -1,31 +1,25 @@
-import { ArrowRight, Clock, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 
-import { ButtonLink } from "@/components/button";
 import { Card } from "@/components/card";
-import { Chip } from "@/components/chip";
-import { CostumeArt } from "@/components/line-art";
 import { PageHeader } from "@/components/page-header";
-import { getDictionary } from "@/lib/i18n/dictionaries";
+import { TryOnCamera } from "@/components/try-on-camera";
+import { getTryOnDresses } from "@/lib/content";
+import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { tryOn } = await getDictionary();
   return { title: tryOn.title, description: tryOn.lead };
 }
 
-// Phase 1 placeholder: no camera, pose detection or image code. PRD privacy
-// rule: try-on photos are processed in the browser and never uploaded.
+// PRD privacy rule: try-on photos are processed in the browser and never
+// uploaded. The camera runs in the browser (TryOnCamera); no pose detection.
 export default async function TryOnPage() {
-  const { tryOn, common } = await getDictionary();
+  const [{ tryOn, common }, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const dresses = await getTryOnDresses(locale);
   return (
     <div className="page-container py-8 md:py-12">
-      <PageHeader kicker={tryOn.kicker} title={tryOn.title} lead={tryOn.lead}>
-        <div>
-          <Chip tone="neutral" icon={<Clock size={14} strokeWidth={1.75} />}>
-            {common.comingSoon}
-          </Chip>
-        </div>
-      </PageHeader>
+      <PageHeader kicker={tryOn.kicker} title={tryOn.title} lead={tryOn.lead} />
 
       <div className="page-grid">
         <Card
@@ -48,17 +42,8 @@ export default async function TryOnPage() {
           </div>
         </Card>
 
-        <Card className="col-span-4 flex flex-col gap-4 p-5 md:col-span-8 lg:col-span-7">
-          <div className="rounded border border-ink bg-surface-container-low px-4 py-3 text-secondary">
-            <CostumeArt className="mx-auto h-32 w-full max-w-72" />
-          </div>
-          <p className="text-body-lg text-on-surface">{tryOn.statusBody}</p>
-          <div>
-            <ButtonLink href="/library?type=costume">
-              {tryOn.cta}
-              <ArrowRight aria-hidden="true" size={18} strokeWidth={1.75} />
-            </ButtonLink>
-          </div>
+        <Card as="section" aria-label={tryOn.title} className="col-span-4 flex flex-col gap-4 p-5 md:col-span-8 lg:col-span-7">
+          <TryOnCamera dresses={dresses} copy={{ ...tryOn, ...common }} />
         </Card>
       </div>
     </div>

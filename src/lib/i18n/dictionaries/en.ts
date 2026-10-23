@@ -59,6 +59,7 @@ export const en = {
     sourcesNote:
       "This item was checked against the sources below before it was published. Each item cites at least two different websites or was approved by a reviewer.",
     opensNewTab: "(opens in a new tab)",
+    pictureCredit: "Picture: {credit}. Licence: {licence}.",
     readMore: "Open",
     previewBanner: "Draft preview. Only reviewers can see this page, and it is not public yet.",
     previewLink: "Preview",
@@ -218,6 +219,15 @@ export const en = {
     statusBody:
       "The try-on studio is being prepared. In the meantime, browse traditional dress in the library.",
     cta: "Browse traditional dress",
+    startCamera: "Start camera",
+    stopCamera: "Stop camera",
+    chooseDress: "Choose a dress",
+    overlay: "Dress overlay opacity",
+    mirror: "Mirror the picture",
+    cameraDenied: "The camera is blocked. Allow camera access for this site in your browser, then try again.",
+    noCamera: "This device has no camera.",
+    noDresses: "No dress with a picture is published yet.",
+    liveNote: "Nothing is recorded or uploaded. The dress picture is laid over your camera view so you can line it up.",
   },
   me: {
     kicker: "Member",

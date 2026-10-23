@@ -34,6 +34,11 @@ export function CostumeView({ costume, dict, actions }: { costume: CostumeDetail
           ) : (
             <CostumeArt className="mx-auto h-48 w-full text-secondary" />
           )}
+          {costume.picture ? (
+            <figcaption className="mt-2 text-center text-body-sm text-on-surface-variant">
+              {fill(dict.common.pictureCredit, { credit: costume.picture.credit, licence: costume.picture.licence })}
+            </figcaption>
+          ) : null}
         </figure>
         <div className="flex min-w-0 flex-col gap-10">
           <section aria-labelledby="info-heading" className="rule-lead flex flex-col gap-4">

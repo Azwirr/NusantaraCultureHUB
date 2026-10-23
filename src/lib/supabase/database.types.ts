@@ -179,6 +179,51 @@ export type Database = {
         }
         Relationships: []
       }
+      content_media: {
+        Row: {
+          alt_en: string
+          alt_id: string
+          content_id: string
+          content_type: string
+          created_at: string
+          created_by: string | null
+          credit: string
+          id: string
+          kind: string
+          licence: string
+          sort_order: number
+          url: string
+        }
+        Insert: {
+          alt_en: string
+          alt_id: string
+          content_id: string
+          content_type: string
+          created_at?: string
+          created_by?: string | null
+          credit: string
+          id?: string
+          kind?: string
+          licence: string
+          sort_order?: number
+          url: string
+        }
+        Update: {
+          alt_en?: string
+          alt_id?: string
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          created_by?: string | null
+          credit?: string
+          id?: string
+          kind?: string
+          licence?: string
+          sort_order?: number
+          url?: string
+        }
+        Relationships: []
+      }
       content_sources: {
         Row: {
           content_id: string

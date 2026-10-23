@@ -81,6 +81,11 @@ export function StoryView({ story, dict, actions }: { story: StoryDetail; dict: 
                     </p>
                   </div>
                 )}
+                {chapter.imageUrl && chapter.imageCredit ? (
+                  <figcaption className="px-3 py-2 text-body-sm text-on-surface-variant">
+                    {fill(dict.common.pictureCredit, { credit: chapter.imageCredit.credit, licence: chapter.imageCredit.licence })}
+                  </figcaption>
+                ) : null}
               </figure>
               <div className="measure font-serif text-story-body whitespace-pre-line text-on-surface">{chapter.text}</div>
             </section>

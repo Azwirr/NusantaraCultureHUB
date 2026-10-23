@@ -13,7 +13,9 @@ select tables_are(
     -- Phase 2: saves (FR-02, Member role) and the assistant quota (FR-15).
     'bookmarks', 'assistant_usage',
     -- Phase 2b: story requests from members.
-    'story_requests'
+    'story_requests',
+    -- Phase 2d: pictures and illustrations for approved content.
+    'content_media'
   ],
   'public schema has exactly the 16 PRD tables plus the Phase 2 member tables'
 );
