@@ -3,6 +3,7 @@ import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 
 import { CONTENT_TAG } from "./content-tags";
+import { localCover, type Cover } from "./media/covers";
 import type { Locale } from "./i18n/config";
 import { createPublicClient } from "./supabase/public";
 
@@ -27,7 +28,7 @@ export type ContentCard = {
   region: { slug: string; name: string } | null;
   minutes: number | null;
   /** The item's first picture, if one is published with it. */
-  picture: { url: string; alt: string } | null;
+  picture: Cover | null;
 };
 
 export type RegionSummary = {
@@ -71,15 +72,18 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
     supabase.from("costumes").select(`id, slug, name_id, name_en, info_id, info_en, updated_at, ${region}`),
     supabase
       .from("content_media")
-      .select("content_type, content_id, url, alt_id, alt_en, sort_order")
+      .select("content_type, content_id, url, alt_id, alt_en, sort_order, credit, licence, kind")
       .in("content_type", ["story", "recipe", "costume"])
       .order("sort_order"),
   ]);
   if (pictures.error) fail("media", pictures.error);
-  const firstPicture = new Map<string, { url: string; alt: string }>();
+  const firstPicture = new Map<string, Cover>();
   for (const row of pictures.data) {
     const key = `${row.content_type}:${row.content_id}`;
-    if (!firstPicture.has(key)) firstPicture.set(key, { url: row.url, alt: pick(locale, { id: row.alt_id, en: row.alt_en }) });
+    if (!firstPicture.has(key)) firstPicture.set(key, {
+      url: row.url, alt: pick(locale, { id: row.alt_id, en: row.alt_en }), credit: row.credit,
+      licence: row.licence, kind: row.kind === "illustration" ? "illustration" : "picture",
+    });
   }
   if (stories.error) fail("stories", stories.error);
   if (recipes.error) fail("recipes", recipes.error);
@@ -110,7 +114,7 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
     .map((card) => ({
       type: card.type, id: card.id, slug: card.slug, title: card.title,
       summary: card.summary, region: card.region, minutes: card.minutes,
-      picture: firstPicture.get(`${card.type}:${card.id}`) ?? null,
+      picture: localCover(card.type, card.slug, locale) ?? firstPicture.get(`${card.type}:${card.id}`) ?? null,
     }));
 }
 
@@ -165,6 +169,7 @@ export type StoryDetail = {
   slug: string;
   title: string;
   summary: string;
+  picture: Cover | null;
   region: { slug: string; name: string } | null;
   chapters: Array<{
     id: string;
@@ -222,6 +227,7 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
     slug: story.slug,
     title: pick(locale, { id: story.title_id, en: story.title_en }),
     summary: pick(locale, { id: story.summary_id, en: story.summary_en }),
+    picture: localCover("story", story.slug, locale),
     region: regionRef(locale, story.regions),
     chapters: chapters.data.map((row) => ({
       id: row.id,
@@ -239,7 +245,7 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
 }
 
 /** A picture or illustration for an item, with the credit and licence it must show. */
-export type MediaItem = { url: string; alt: string; credit: string; licence: string; kind: "picture" | "illustration" };
+export type MediaItem = Cover;
 
 /** The first picture of each item (see supabase/migrations/20261024001600_content_media.sql). */
 async function firstMedia(supabase: ContentClient, type: "recipe" | "costume" | "story_chapter", id: string, locale: Locale): Promise<MediaItem | null> {
@@ -328,7 +334,7 @@ export async function loadRecipe(supabase: ContentClient, key: Key, locale: Loca
       timerSeconds: row.timer_seconds,
     })),
     sources,
-    picture,
+    picture: localCover("recipe", recipe.slug, locale) ?? picture,
   };
 }
 
@@ -359,7 +365,7 @@ export async function loadCostume(supabase: ContentClient, key: Key, locale: Loc
   if (error) fail("costume", error);
   if (!costume) return null;
   const names = { id: costume.name_id, en: costume.name_en };
-  const picture = await firstMedia(supabase, "costume", costume.id, locale);
+  const picture = localCover("costume", costume.slug, locale) ?? await firstMedia(supabase, "costume", costume.id, locale);
   return {
     id: costume.id,
     slug: costume.slug,

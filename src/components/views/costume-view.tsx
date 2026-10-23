@@ -2,12 +2,13 @@ import { Shirt } from "lucide-react";
 import type { ReactNode } from "react";
 
 import type { CostumeDetail } from "@/lib/content";
-import { fill } from "@/lib/format";
+import { fill, sizedImage } from "@/lib/format";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 import { CostumeArt } from "../line-art";
 import { SourceList } from "../source-list";
 import { DetailHeader } from "./detail-header";
+import { CoverArt } from "../cover-art";
 
 /** Traditional dress info card with its reference image. Try-on arrives in Phase 4. */
 export function CostumeView({ costume, dict, actions }: { costume: CostumeDetail; dict: Dictionary; actions?: ReactNode }) {
@@ -22,24 +23,21 @@ export function CostumeView({ costume, dict, actions }: { costume: CostumeDetail
         actions={actions}
       />
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        {costume.picture ? <CoverArt cover={costume.picture} portrait /> : (
         <figure className="overflow-hidden rounded border border-ink bg-surface-container-lowest p-3 shadow-2">
           {costume.imageUrl ? (
             // Reviewed reference image; plain img keeps remote hosts out of next/image config.
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={costume.imageUrl}
+              src={sizedImage(costume.imageUrl, 900)}
               alt={fill(copy.imageAlt, { name: costume.title })}
               className="mx-auto h-auto w-full max-w-sm"
             />
           ) : (
             <CostumeArt className="mx-auto h-48 w-full text-secondary" />
           )}
-          {costume.picture ? (
-            <figcaption className="mt-2 text-center text-body-sm text-on-surface-variant">
-              {fill(dict.common.pictureCredit, { credit: costume.picture.credit, licence: costume.picture.licence })}
-            </figcaption>
-          ) : null}
         </figure>
+        )}
         <div className="flex min-w-0 flex-col gap-10">
           <section aria-labelledby="info-heading" className="rule-lead flex flex-col gap-4">
             <h2 id="info-heading" className="font-serif text-headline-lg-mobile text-on-surface">

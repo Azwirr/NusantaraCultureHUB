@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ComponentType } from "react";
 
 import type { SavedItem } from "@/lib/bookmarks";
@@ -32,7 +33,9 @@ export function SavedList({ items, dict, locale }: { items: SavedItem[]; dict: D
           <li key={`${card.type}-${card.id}`}>
             <article className="relative flex items-center gap-4 rounded border border-ink bg-surface-container-lowest p-3 shadow-1">
               <div aria-hidden="true" className={`hidden size-20 shrink-0 items-center justify-center rounded border border-ink sm:flex ${TINT[card.type]}`}>
-                <Art className="h-14 w-16" />
+                {card.picture?.url.startsWith("/covers/") ? (
+                  <Image src={card.picture.url} alt="" width={80} height={80} className="size-20 rounded object-cover" style={{ objectPosition: card.picture.objectPosition }} />
+                ) : <Art className="h-14 w-16" />}
               </div>
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <p className="text-label-sm uppercase text-secondary">
@@ -48,6 +51,13 @@ export function SavedList({ items, dict, locale }: { items: SavedItem[]; dict: D
                 <p className="text-body-sm text-on-surface-variant">
                   <time dateTime={savedAt}>{fill(dict.me.savedAt, { date: date.format(new Date(savedAt)) })}</time>
                 </p>
+                {card.picture ? (
+                  <p className="text-body-sm text-on-surface-variant">
+                    {card.picture.sourceUrl ? <a href={card.picture.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{card.picture.credit}</a> : card.picture.credit}
+                    {" · "}
+                    {card.picture.licenceUrl ? <a href={card.picture.licenceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{card.picture.licence}</a> : card.picture.licence}
+                  </p>
+                ) : null}
               </div>
               <SaveButton type={card.type} id={card.id} title={card.title} initialSaved copy={dict.save} />
             </article>

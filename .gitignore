@@ -51,3 +51,6 @@ supabase/.temp
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Cover download metadata, generation job paths and visual verification output
+/tmp/covers/

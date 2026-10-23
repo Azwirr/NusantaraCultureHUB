@@ -6,6 +6,7 @@ import type { ContentCard as Card } from "@/lib/content";
 import { contentHref, fill } from "@/lib/format";
 
 import { CostumeArt, RecipeArt, StoryArt } from "./line-art";
+import { CoverArt } from "./cover-art";
 
 const ART: Record<Card["type"], ComponentType<{ className?: string }>> = {
   story: StoryArt,
@@ -42,9 +43,7 @@ export function ContentCard({
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded border border-ink bg-surface-container-lowest shadow-1 transition-shadow hover:shadow-2">
       {card.picture ? (
-        // Reviewed, licensed picture; plain img keeps remote hosts out of next/image config.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={card.picture.url} alt={card.picture.alt} loading="lazy" className="h-44 w-full border-b border-ink object-cover" />
+        <CoverArt cover={card.picture} compact />
       ) : (
         <div className={`border-b border-ink px-6 py-4 ${TINT[card.type]}`}>
           <Art className="mx-auto h-24 w-full max-w-56" />

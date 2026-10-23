@@ -13,6 +13,7 @@ import { HalalBadge } from "../halal-badge";
 import { SourceList } from "../source-list";
 import { DetailHeader } from "./detail-header";
 import { ServingsScaler } from "./servings-scaler";
+import { CoverArt } from "../cover-art";
 
 /** Recipe page body (FR-07). The halal label only ever comes from HalalBadge. */
 export function RecipeView({
@@ -77,14 +78,7 @@ export function RecipeView({
       </DetailHeader>
 
       {recipe.picture ? (
-        <figure className="flex flex-col gap-2">
-          {/* Reviewed, licensed picture; plain img keeps remote hosts out of next/image config. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={recipe.picture.url} alt={recipe.picture.alt} className="mx-auto h-auto w-full max-w-2xl rounded border border-ink" />
-          <figcaption className="text-body-sm text-on-surface-variant">
-            {fill(dict.common.pictureCredit, { credit: recipe.picture.credit, licence: recipe.picture.licence })}
-          </figcaption>
-        </figure>
+        <CoverArt cover={recipe.picture} />
       ) : null}
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <section aria-labelledby="ingredients-heading" className="rule-lead flex flex-col gap-4 lg:sticky lg:top-6 lg:self-start">

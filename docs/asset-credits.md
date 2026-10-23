@@ -48,3 +48,7 @@ Drawn for this project as inline SVG in `src/components/line-art.tsx` and `src/c
 The Stitch exports in `design/stitch/` are design references only. Their hot-linked images and icon font are not used anywhere in the app.
 
 No sounds or photographs ship in Phase 1.
+
+## Library covers (24 October 2026)
+
+33 item-specific WebP covers are bundled in public/covers/: 19 licensed photographs and 14 AI illustrations. Every asset, creator, source and licence is recorded in [library-cover-credits.md](library-cover-credits.md) and src/lib/media/covers.json. Generated artwork is explicitly labelled in the interface. See [library-covers.md](library-covers.md) for visual direction and [cover-prompts.json](cover-prompts.json) for the exact prompts.

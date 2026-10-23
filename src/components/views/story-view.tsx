@@ -2,11 +2,12 @@ import { AudioLines, ImageIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 import type { StoryDetail } from "@/lib/content";
-import { fill } from "@/lib/format";
+import { fill, sizedImage } from "@/lib/format";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 import { SourceList } from "../source-list";
 import { DetailHeader } from "./detail-header";
+import { CoverArt } from "../cover-art";
 
 /**
  * The text reader for a story (FR-04, text part). Each chapter gives its
@@ -25,6 +26,8 @@ export function StoryView({ story, dict, actions }: { story: StoryDetail; dict: 
         lead={story.summary}
         actions={actions}
       />
+
+      {story.picture ? <CoverArt cover={story.picture} /> : null}
 
       <div className="grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)]">
         <div className="flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start">
@@ -72,7 +75,7 @@ export function StoryView({ story, dict, actions }: { story: StoryDetail; dict: 
                 {chapter.imageUrl ? (
                   // Reviewed illustration; a plain img keeps remote hosts out of next/image config.
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={chapter.imageUrl} alt={chapter.imageAlt} className="h-auto w-full" loading="lazy" />
+                  <img src={sizedImage(chapter.imageUrl, 1200)} alt={chapter.imageAlt} className="h-auto w-full" loading="lazy" />
                 ) : (
                   <div className="flex items-start gap-3 p-5 text-body-sm text-on-surface-variant">
                     <ImageIcon aria-hidden="true" size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-secondary" />
