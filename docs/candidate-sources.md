@@ -45,3 +45,47 @@ Fix the draft or choose another source before approving.
 | Pengantin Jawa | [Mengenal Beskap dan Asal-usulnya](https://www.goodnewsfromindonesia.id/infographic/mengenal-beskap-dan-asal-usulnya) | GNFI, 2025 |
 
 Not reachable from here: the Kemendikbud intangible-heritage register (`warisanbudaya.kemdikbud.go.id`, DNS failure) and the Museum Adityawarman catalogue (blocked). Both are better sources for heritage status and costumes; check them from a browser.
+
+## Batch 2 (Phase 2c, 2026-10-23)
+
+One new region per island, loaded as drafts by `supabase/content/2026-10-24-batch-2.sql`. Each item follows the page below. Notes for the reviewer:
+
+| Item | Note |
+| --- | --- |
+| Asal Usul Danau Toba | Follows version 1 on the detik page. The page says there are other versions. |
+| Sangkuriang | The detik page is the source; the old woman in the forest is his grandmother in that version, which the draft leaves unnamed. |
+| Manik Angkeran | GNFI cites *108 Cerita Rakyat Terbaik Asli Nusantara* (Visimedia, 2010). Sidi Mantra uses a staff, not a bell. |
+| Putri Junjung Buih | detik cites *Cerita Rakyat Asli Indonesia: Chapter 3* (Monika Cri Maharani). Other versions set it in Amuntai. |
+| Batu Berdaun | GNFI cites *Rangkuman 100 Cerita Rakyat Indonesia* (Irwan Rouf, Shenia Ananda). The page does not name the island. |
+| Kasuari dan Dara Makota | A short fable in a detik list of 34 tales. |
+| Arsik ikan mas | Fimela lists long beans but its steps do not say when to add them; the draft lists them only as an ingredient. |
+| Nasi timbel | Liputan6 gives no servings or time, so the recipe page shows amounts without the servings stepper. |
+| Ayam betutu | Orami's home version (steam, then bake). The draft leaves out instant stock powder. indonesia.travel covers the traditional styles. |
+| Soto Banjar | Orami's recipe; the draft leaves out bouillon powder. "Pekak" is translated as star anise: please check. |
+| Ikan kuah kuning | Kompas TV gives no servings, time or sago amounts. |
+| Papeda | Merah Putih gives no servings. |
+| Payas agung | The GNFI page is short: gold colour, tall crown, make-up, weddings and religious rites. It does not describe the groom. |
+| Bagajah Gamuling Baular Lulut | The detik page covers the bride only (udat, karang jagung). The UNESA journal study (Zada and Maspiyah, 2020) is a better source if someone can open the PDF. |
+| Baju cele, Rok rumbai, Ulos, Kebaya Sunda | Each follows one page; all four have no image yet. |
+
+| Item | Page | Publisher |
+| --- | --- | --- |
+| Asal Usul Danau Toba | [2 Versi Cerita Asal Usul Danau Toba](https://www.detik.com/sumut/wisata/d-6761917/2-versi-cerita-asal-usul-danau-toba) | detikSumut, 2023 |
+| Sangkuriang | [Legenda Sangkuriang, Cara Leluhur Rekam Letusan Gunung Sunda](https://www.detik.com/jabar/budaya/d-7347460/legenda-sangkuriang-cara-leluhur-rekam-letusan-gunung-sunda) | detikJabar, 2024 |
+| Manik Angkeran | [Legenda Manik Angkeran](https://www.goodnewsfromindonesia.id/indonesiana/legenda/legenda-manik-angkeran-kisah-yang-dipercaya-menjadi-asal-usul-selat-bali) | GNFI, 2024 |
+| Putri Junjung Buih | [Cerita Rakyat Putri Junjung Buih](https://www.detik.com/kalimantan/budaya/d-7974187/cerita-rakyat-putri-junjung-buih-dari-kalimantan-selatan) | detikKalimantan, 2025 |
+| Batu Berdaun | [Legenda Batu Berdaun dari Maluku](https://www.goodnewsfromindonesia.id/2025/05/01/legenda-batu-berdaun-dari-maluku-kisah-seorang-nenek-yang-kecewa-dengan-cucunya) | GNFI, 2025 |
+| Kasuari dan Dara Makota | [34 Cerita Rakyat Pendek](https://www.detik.com/jogja/budaya/d-7810100/34-cerita-rakyat-pendek-lengkap-dari-seluruh-daerah-indonesia) | detikJogja, 2025 |
+| Arsik ikan mas | [Resep Arsik Ikan Mas khas Sumatra Utara](https://www.fimela.com/lifestyle/read/4345129/resep-arsik-ikan-mas-khas-sumatra-utara) | Fimela, 2022 |
+| Nasi timbel | [4 Resep Nasi Timbel](https://www.liputan6.com/hot/read/5711835/4-resep-nasi-timbel-yang-enak-dan-gurih-kuliner-jadul-khas-sunda) | Liputan6, 2024 |
+| Ayam betutu | [10 Resep Ayam Betutu Khas Bali](https://www.orami.co.id/magazine/resep-ayam-betutu) | Orami, 2024 |
+| Ayam betutu | [Ayam Betutu: Kuliner Wajib di Bali](https://www.indonesia.travel/id-id/travel-ideas/gastronomy/ayam-betutuu/) | Kementerian Pariwisata |
+| Soto Banjar | [6 Resep Soto Banjar](https://www.orami.co.id/magazine/resep-soto-banjar) | Orami, 2023 |
+| Ikan kuah kuning | [Resep Papeda, Menu Legendaris dari Maluku](https://www.kompas.tv/entertainment/76860/resep-papeda-menu-legendaris-dari-maluku-tempat-glenn-fredly-berasal) | Kompas TV, 2020 |
+| Papeda | [Papeda dan Kuah Kuning](https://merahputih.com/post/read/papeda-dan-kuah-kuning-menu-legendaris-masyarakat-papua) | Merah Putih, 2018 |
+| Ulos | [Kain Ulos: Makna, Asal Usul, dan Ragam](https://www.indonesia.travel/id/id/travel-ideas/culture/kain-tenun-ulos-khas-batak) | Kementerian Pariwisata |
+| Kebaya Sunda | [7 Baju Adat Sunda](https://www.detik.com/jabar/budaya/d-6889232/7-baju-adat-sunda-mulai-dari-kebaya-hingga-menak) | detikJabar, 2023 |
+| Payas agung | [Mengenal Baju Adat Bali](https://www.goodnewsfromindonesia.id/2024/10/03/mengenal-baju-adat-bali-cerminan-budaya-yang-tak-lekang-oleh-waktu) | GNFI, 2024 |
+| Bagajah Gamuling Baular Lulut | [4 Baju Adat Kalimantan Selatan](https://www.detik.com/kalimantan/budaya/d-8172884/4-baju-adat-kalimantan-selatan-warisan-budaya-banjar-yang-tetap-lestari) | detikKalimantan, 2025 |
+| Baju cele | [Ragam rupa pakaian adat Maluku](https://www.antaranews.com/berita/4292483/ragam-rupa-pakaian-adat-maluku) | ANTARA, 2024 |
+| Rok rumbai | [Mengenal Baju Adat Papua](https://www.goodnewsfromindonesia.id/2024/11/12/mengenal-baju-adat-papua-simbol-keindahan-dan-kearifan-lokal) | GNFI, 2024 |

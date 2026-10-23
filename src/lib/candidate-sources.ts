@@ -195,6 +195,205 @@ export const CANDIDATE_SOURCES: Record<string, CandidateSource[]> = {
       },
     },
   ],
+  // Batch 2 (Phase 2c): already cited on the drafts; these notes say what each page covers.
+  "story:danau-toba": [
+    {
+      title: "2 Versi Cerita Asal Usul Danau Toba",
+      url: "https://www.detik.com/sumut/wisata/d-6761917/2-versi-cerita-asal-usul-danau-toba",
+      credit: "detikSumut, 9 June 2023",
+      covers: {
+        id: "Versi 1 yang diikuti draf: Toba, ikan mas yang menjadi perempuan, janji rahasia, Samosir memakan bekal, hujan yang membentuk Danau Toba dan Pulau Samosir. Halaman ini juga memuat versi kedua.",
+        en: "Version 1, which the draft follows: Toba, the golden fish that becomes a woman, the secret promise, Samosir eating the lunch, and the rain that forms Lake Toba and Samosir Island. The page also has a second version.",
+      },
+    },
+  ],
+  "story:sangkuriang": [
+    {
+      title: "Legenda Sangkuriang, Cara Leluhur Rekam Letusan Gunung Sunda",
+      url: "https://www.detik.com/jabar/budaya/d-7347460/legenda-sangkuriang-cara-leluhur-rekam-letusan-gunung-sunda",
+      credit: "detikJabar, 20 May 2024",
+      covers: {
+        id: "Seluruh alur: torak yang jatuh, Si Tumang, centong nasi, tugas semalam membendung Ci Tarum dan membuat perahu, selendang putih, dan Gunung Tangkuban Parahu. Nenek di hutan adalah Wayungyang, nenek Sangkuriang.",
+        en: "The whole plot: the fallen spool, Si Tumang, the rice scoop, the one-night task to dam the Ci Tarum and build a boat, the white scarf, and Mount Tangkuban Parahu. The old woman in the forest is Wayungyang, his grandmother.",
+      },
+    },
+  ],
+  "story:manik-angkeran": [
+    {
+      title: "Legenda Manik Angkeran, Kisah yang Dipercaya Menjadi Asal Usul Selat Bali",
+      url: "https://www.goodnewsfromindonesia.id/indonesiana/legenda/legenda-manik-angkeran-kisah-yang-dipercaya-menjadi-asal-usul-selat-bali",
+      credit: "Good News From Indonesia, 25 November 2024",
+      covers: {
+        id: "Seluruh alur, dari buku 108 Cerita Rakyat Terbaik Asli Nusantara (2010). Sidi Mantra memakai tongkat, bukan lonceng; versi lain berbeda.",
+        en: "The whole plot, from the book 108 Cerita Rakyat Terbaik Asli Nusantara (2010). Sidi Mantra uses a staff, not a bell; other versions differ.",
+      },
+    },
+  ],
+  "story:putri-junjung-buih": [
+    {
+      title: "Cerita Rakyat Putri Junjung Buih dari Kalimantan Selatan",
+      url: "https://www.detik.com/kalimantan/budaya/d-7974187/cerita-rakyat-putri-junjung-buih-dari-kalimantan-selatan",
+      credit: "detikKalimantan, 21 June 2025",
+      covers: {
+        id: "Versi Negara Dipa: Lambung Mangkurat, bayi dari buih Sungai Tabalong, kain langgundi, putra kembar, dan Raden Suryatana dari Majapahit. Versi lain berlatar Amuntai.",
+        en: "The Negara Dipa version: Lambung Mangkurat, the baby from the foam of the Tabalong River, the langgundi cloth, the twins, and Raden Suryatana of Majapahit. Other versions are set in Amuntai.",
+      },
+    },
+  ],
+  "story:batu-berdaun": [
+    {
+      title: "Legenda Batu Berdaun dari Maluku, Kisah Seorang Nenek yang Kecewa dengan Cucunya",
+      url: "https://www.goodnewsfromindonesia.id/2025/05/01/legenda-batu-berdaun-dari-maluku-kisah-seorang-nenek-yang-kecewa-dengan-cucunya",
+      credit: "Good News From Indonesia, 1 May 2025",
+      covers: {
+        id: "Seluruh alur: nenek dan dua cucu, kepiting dan capitnya, batu berbentuk daun yang menelan sang nenek. Halaman ini tidak menyebut nama pulaunya.",
+        en: "The whole plot: the grandmother and two grandchildren, the crab and its claw, and the leaf-shaped stone that swallows her. The page does not name the island.",
+      },
+    },
+  ],
+  "story:kasuari-dan-dara-makota": [
+    {
+      title: "34 Cerita Rakyat Pendek Lengkap dari Seluruh Daerah Indonesia",
+      url: "https://www.detik.com/jogja/budaya/d-7810100/34-cerita-rakyat-pendek-lengkap-dari-seluruh-daerah-indonesia",
+      credit: "detikJogja, 6 March 2025",
+      covers: {
+        id: "Dongeng pendek dari Papua dalam daftar 34 cerita: kasuari yang serakah, lomba terbang, dan sayap yang patah.",
+        en: "A short fable from Papua in a list of 34 tales: the greedy cassowary, the flying race and the broken wings.",
+      },
+    },
+  ],
+  "recipe:arsik-ikan-mas": [
+    {
+      title: "Resep Arsik Ikan Mas khas Sumatra Utara",
+      url: "https://www.fimela.com/lifestyle/read/4345129/resep-arsik-ikan-mas-khas-sumatra-utara",
+      credit: "Fimela, 13 June 2022",
+      covers: {
+        id: "Bahan dengan takaran dan langkahnya (3 porsi, 90 menit). Kacang panjang tercantum di bahan, tetapi langkahnya tidak menyebut kapan dimasukkan.",
+        en: "Ingredients with amounts and the steps (3 servings, 90 minutes). Long beans are listed, but the steps do not say when to add them.",
+      },
+    },
+  ],
+  "recipe:nasi-timbel": [
+    {
+      title: "4 Resep Nasi Timbel yang Enak dan Gurih, Kuliner Jadul khas Sunda",
+      url: "https://www.liputan6.com/hot/read/5711835/4-resep-nasi-timbel-yang-enak-dan-gurih-kuliner-jadul-khas-sunda",
+      credit: "Liputan6, 27 September 2024",
+      covers: {
+        id: "Resep pertama (nasi timbel gurih isi ayam): bahan dan langkah. Tidak menyebut jumlah porsi atau waktu.",
+        en: "The first recipe (savoury nasi timbel with chicken): ingredients and steps. It gives no servings or time.",
+      },
+    },
+  ],
+  "recipe:ayam-betutu": [
+    {
+      title: "10 Resep Ayam Betutu Khas Bali, Rempah dan Aromanya Kuat!",
+      url: "https://www.orami.co.id/magazine/resep-ayam-betutu",
+      credit: "Orami, 15 May 2024",
+      covers: {
+        id: "Resep pertama: 5 porsi, sekitar 3 jam, dikukus lalu dipanggang. Draf tidak memakai kaldu bubuk. Gaya tradisional ada di halaman indonesia.travel.",
+        en: "The first recipe: 5 servings, about 3 hours, steamed then baked. The draft leaves out stock powder. The traditional styles are on the indonesia.travel page.",
+      },
+    },
+  ],
+  "recipe:soto-banjar": [
+    {
+      title: "6 Resep Soto Banjar Khas Kalimantan Selatan, Yuk Coba!",
+      url: "https://www.orami.co.id/magazine/resep-soto-banjar",
+      credit: "Orami, 16 July 2023",
+      covers: {
+        id: "Resep pertama: 5 porsi, sekitar 1 jam, dengan pekak, cengkih, kapulaga, dan kayu manis. Draf tidak memakai kaldu bubuk. Periksa terjemahan pekak sebagai bunga lawang.",
+        en: "The first recipe: 5 servings, about 1 hour, with pekak, cloves, cardamom and cinnamon. The draft leaves out bouillon powder. Check that pekak means star anise.",
+      },
+    },
+  ],
+  "recipe:ikan-kuah-kuning": [
+    {
+      title: "Resep Papeda, Menu Legendaris dari Maluku Tempat Glenn Fredly Berasal",
+      url: "https://www.kompas.tv/entertainment/76860/resep-papeda-menu-legendaris-dari-maluku-tempat-glenn-fredly-berasal",
+      credit: "Kompas TV, 19 April 2020",
+      covers: {
+        id: "Kakap kuah kuning khas Maluku: bahan dan langkah. Tidak menyebut porsi, waktu, atau takaran sagu.",
+        en: "Maluku snapper in yellow broth: ingredients and steps. It gives no servings, time or sago amount.",
+      },
+    },
+  ],
+  "recipe:papeda": [
+    {
+      title: "Papeda dan Kuah Kuning, Menu Legendaris Masyarakat Papua",
+      url: "https://merahputih.com/post/read/papeda-dan-kuah-kuning-menu-legendaris-masyarakat-papua",
+      credit: "Merah Putih, 19 April 2018",
+      covers: {
+        id: "Papeda: 100 gram sagu, 1000 cc air, garam, gula, dan langkahnya. Tidak menyebut jumlah porsi.",
+        en: "Papeda: 100 g sago, 1000 cc water, salt and sugar, with the steps. It gives no servings.",
+      },
+    },
+  ],
+  "costume:ulos": [
+    {
+      title: "Kain Ulos: Makna, Asal Usul, dan Ragam Kain Ulos",
+      url: "https://www.indonesia.travel/id/id/travel-ideas/culture/kain-tenun-ulos-khas-batak",
+      credit: KEMENPAR,
+      covers: {
+        id: "Cara menenun, pewarna alami, upacara mangulosi, dan jenis Sibolang, Ragi Hotang, serta Ragidup.",
+        en: "How it is woven, the natural dyes, the mangulosi ceremony, and the Sibolang, Ragi Hotang and Ragidup types.",
+      },
+    },
+  ],
+  "costume:kebaya-sunda": [
+    {
+      title: "7 Baju Adat Sunda, Mulai dari Kebaya Hingga Menak",
+      url: "https://www.detik.com/jabar/budaya/d-6889232/7-baju-adat-sunda-mulai-dari-kebaya-hingga-menak",
+      credit: "detikJabar, 22 August 2023",
+      covers: {
+        id: "Kerah berbentuk U, potongan panjang, warna cerah, jarik bermotif Jawa Barat, dan perhiasan. Tidak menyebut kapan dipakai.",
+        en: "The U-shaped neckline, long cut, bright colours, West Java jarik and jewellery. It does not say when it is worn.",
+      },
+    },
+  ],
+  "costume:payas-agung": [
+    {
+      title: "Mengenal Baju Adat Bali, Cerminan Budaya yang Tak Lekang oleh Waktu",
+      url: "https://www.goodnewsfromindonesia.id/2024/10/03/mengenal-baju-adat-bali-cerminan-budaya-yang-tak-lekang-oleh-waktu",
+      credit: "Good News From Indonesia, 3 October 2024",
+      covers: {
+        id: "Hanya ringkas: warna emas, mahkota tinggi, riasan, pernikahan dan upacara keagamaan, dahulu untuk bangsawan. Tidak membedakan busana pengantin pria dan wanita.",
+        en: "Brief only: gold colour, tall crown, make-up, weddings and religious rites, once for the nobility. It does not describe the groom and bride separately.",
+      },
+    },
+  ],
+  "costume:bagajah-gamuling-baular-lulut": [
+    {
+      title: "4 Baju Adat Kalimantan Selatan, Warisan Budaya Banjar yang Tetap Lestari",
+      url: "https://www.detik.com/kalimantan/budaya/d-8172884/4-baju-adat-kalimantan-selatan-warisan-budaya-banjar-yang-tetap-lestari",
+      credit: "detikKalimantan, 24 October 2025",
+      covers: {
+        id: "Busana pengantin perempuan (udat dan karang jagung) dan pengaruh Hindu. Tidak membahas busana pengantin pria.",
+        en: "The bride's dress (udat and karang jagung) and the Hindu influence. It does not cover the groom.",
+      },
+    },
+  ],
+  "costume:baju-cele": [
+    {
+      title: "Ragam rupa pakaian adat Maluku",
+      url: "https://www.antaranews.com/berita/4292483/ragam-rupa-pakaian-adat-maluku",
+      credit: "ANTARA News, 28 August 2024",
+      covers: {
+        id: "Motif dan warna, cara pakai untuk laki-laki dan perempuan, kain salele, lenso, dan upacara tempat dipakai.",
+        en: "The pattern and colours, how men and women wear it, the salele cloth, the lenso and the ceremonies it is worn at.",
+      },
+    },
+  ],
+  "costume:rok-rumbai": [
+    {
+      title: "Mengenal Baju Adat Papua, Simbol Keindahan dan Kearifan Lokal",
+      url: "https://www.goodnewsfromindonesia.id/2024/11/12/mengenal-baju-adat-papua-simbol-keindahan-dan-kearifan-lokal",
+      credit: "Good News From Indonesia, 12 November 2024",
+      covers: {
+        id: "Bahan rok rumbai (daun sagu atau serat pandan), kalung manik-manik, hiasan kepala bulu burung, dan kapan busana adat Papua dipakai.",
+        en: "What the rok rumbai is made of (sago leaves or pandan fibre), bead necklaces, feather headpieces, and when Papuan dress is worn.",
+      },
+    },
+  ],
 };
 
 export function candidateSourcesFor(type: ReviewEntityType, slug: unknown): CandidateSource[] {

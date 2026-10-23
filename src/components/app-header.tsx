@@ -12,14 +12,15 @@ import { LanguageSwitcher } from "./language-switcher";
 import { ThemeToggle } from "./theme-toggle";
 
 /**
- * Site header. Phones: brand, search, language and theme (the bottom tab bar
- * carries navigation and the account tab). md: a second row with the links
+ * Site header. Phones: brand, search, language, theme and the account menu
+ * (the bottom tab bar carries navigation). md: a second row with the links
  * and the account button. lg: one row, and search becomes a field (Ctrl+K).
  */
 export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const navLabels = dict.nav;
+  // z-30: above main (z-10, over the live background), so the account menu is not covered.
   return (
-    <header className="relative z-10 border-b border-ink bg-surface">
+    <header className="relative z-30 border-b border-ink bg-surface">
       <div className="page-container flex flex-wrap items-center gap-x-2 py-2 lg:flex-nowrap lg:gap-x-6">
         <Link href="/" className="mr-auto flex min-h-12 shrink-0 items-center gap-2.5 rounded pr-1 lg:mr-0">
           {/* The Nusantara logo. Decorative here: the wordmark beside it names the site. */}
@@ -54,7 +55,8 @@ export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }
             codes={{ id: dict.language.idCode, en: dict.language.enCode }}
           />
           <ThemeToggle label={dict.theme.toggle} />
-          <div className="hidden md:flex">
+          {/* The account menu shows on every screen size: Settings and Sign out live there. */}
+          <div className="flex">
             <Suspense fallback={<AccountButtonFallback copy={dict.account} />}>
               <AccountButton copy={dict.account} />
             </Suspense>

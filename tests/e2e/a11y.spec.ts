@@ -55,7 +55,7 @@ test.describe("axe, signed-in templates", () => {
       const [row] = (await restSelect(page, `${table}?select=id&slug=eq.${slug}`)).rows as { id: string }[];
       ids.push(`/review/preview/${type}/${row.id}`);
     }
-    for (const path of [...ids, "/review", "/me", "/me/saved", "/review/audit"]) {
+    for (const path of [...ids, "/review", "/me", "/me?type=recipe", "/review/audit"]) {
       await page.goto(path);
       await page.waitForLoadState("networkidle");
       await expectNoViolations(page, path);

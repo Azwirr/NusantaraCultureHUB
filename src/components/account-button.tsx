@@ -4,9 +4,11 @@ import { LogIn, UserRound } from "lucide-react";
 import Link from "next/link";
 import { unstable_rethrow } from "next/navigation";
 
-import { getSessionUser, type SessionUser } from "@/lib/auth";
+import { getSessionUser, isStaff, type SessionUser } from "@/lib/auth";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 import { getInitials } from "@/lib/initials";
+
+import { AccountMenu } from "./account-menu";
 
 type AccountCopy = Dictionary["account"];
 
@@ -24,7 +26,7 @@ export function AccountButtonFallback({ copy }: { copy: AccountCopy }) {
 
 /**
  * Reads the session, so it must render inside <Suspense>. Signed in: the
- * nickname's initials linking to /me. Guest: a "Sign in" link to /login.
+ * nickname's initials opening the account menu. Guest: a "Sign in" link.
  */
 export async function AccountButton({ copy }: { copy: AccountCopy }) {
   let user: SessionUser | null = null;
@@ -49,20 +51,5 @@ export async function AccountButton({ copy }: { copy: AccountCopy }) {
     );
   }
 
-  const initials = getInitials(user.username);
-  return (
-    <Link href="/me" className={circleLink}>
-      <span
-        aria-hidden="true"
-        className="flex size-10 items-center justify-center rounded-full border border-ink bg-primary-container text-label-md text-on-primary-container"
-      >
-        {initials ?? <UserRound size={20} strokeWidth={1.75} />}
-      </span>
-      {/* The nickname is user-entered text: rendered as a plain text node only. */}
-      <span className="sr-only">
-        {copy.myAccount}
-        {user.username ? `: ${user.username}` : ""}
-      </span>
-    </Link>
-  );
+  return <AccountMenu initials={getInitials(user.username)} username={user.username} staff={isStaff(user)} copy={copy} />;
 }

@@ -35,11 +35,24 @@ test.describe("member", () => {
     await signIn(page, member!);
   });
 
-  test("the member page links to settings and has no nickname form", async ({ page }) => {
+  test("the account menu opens settings, and My collection has no nickname form", async ({ page }) => {
     const main = page.locator("main");
-    await expect(main.getByRole("heading", { name: "My collection" })).toBeVisible();
+    await expect(main.getByRole("heading", { level: 1, name: "My collection" })).toBeVisible();
     await expect(main.getByLabel("Nickname", { exact: true })).toHaveCount(0);
-    await main.getByRole("link", { name: "Settings" }).click();
+    // Settings and Sign out moved off the profile card into the avatar menu.
+    await expect(main.getByRole("link", { name: "Settings" })).toHaveCount(0);
+    await expect(main.getByRole("button", { name: "Sign out" })).toHaveCount(0);
+    const header = page.locator("header");
+    const menuButton = header.getByRole("button", { name: "Account menu" });
+    await menuButton.click();
+    await expect(menuButton).toHaveAttribute("aria-expanded", "true");
+    await expect(header.getByRole("button", { name: "Sign out" })).toBeVisible();
+    // Escape closes the menu and returns focus to the avatar.
+    await page.keyboard.press("Escape");
+    await expect(menuButton).toHaveAttribute("aria-expanded", "false");
+    await expect(menuButton).toBeFocused();
+    await menuButton.click();
+    await header.getByRole("link", { name: "Settings" }).click();
     await page.waitForURL("**/me/settings");
     await expect(main.getByLabel("Nickname", { exact: true })).toHaveValue("e2e_member");
     await expect(main.getByRole("group", { name: "Language" })).toBeVisible();

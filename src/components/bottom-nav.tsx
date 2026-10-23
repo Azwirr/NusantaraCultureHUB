@@ -1,6 +1,6 @@
 "use client";
 
-import { Bookmark, BookOpen, House, LayoutList, type LucideIcon, UserRound } from "lucide-react";
+import { Bookmark, BookOpen, House, LayoutList, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,13 +10,13 @@ export type NavLabels = {
   home: string;
   library: string;
   regions: string;
-  saved: string;
   me: string;
-  /** The tab bar has five tabs at 360px, so it uses a shorter library label. */
+  /** The tab bar is narrow at 360px, so it uses shorter labels. */
   libraryShort: string;
+  meShort: string;
 };
 
-type NavKey = "home" | "library" | "regions" | "saved" | "me";
+type NavKey = "home" | "library" | "regions" | "me";
 
 type NavItem = {
   key: NavKey;
@@ -24,8 +24,6 @@ type NavItem = {
   icon: LucideIcon;
   /** Unprefixed path roots that belong to this tab. */
   sections: string[];
-  /** Only the exact path counts (Saya must not light up on /me/saved). */
-  exact?: boolean;
 };
 
 // Wilayah keeps a neutral list icon: the region map is for navigation, and
@@ -34,15 +32,15 @@ const NAV_ITEMS: NavItem[] = [
   { key: "home", href: "/", icon: House, sections: [] },
   { key: "library", href: "/library", icon: BookOpen, sections: ["/stories", "/recipes", "/costumes", "/try-on", "/search"] },
   { key: "regions", href: "/regions", icon: LayoutList, sections: [] },
-  { key: "saved", href: "/me/saved", icon: Bookmark, sections: [] },
-  { key: "me", href: "/me", icon: UserRound, sections: [], exact: true },
+  // My collection: the member's saves. Settings sit under it too.
+  { key: "me", href: "/me", icon: Bookmark, sections: [] },
 ];
 
 function currentState(item: NavItem, pathname: string | null): "page" | "true" | undefined {
   if (pathname === null) return undefined;
   const path = stripLocalePrefix(pathname);
   if (path === item.href) return "page";
-  if (item.href === "/" || item.exact) return undefined;
+  if (item.href === "/") return undefined;
   const inSection = [item.href, ...item.sections].some(
     (root) => path === root || path.startsWith(`${root}/`),
   );
@@ -61,7 +59,7 @@ export function BottomNavLinks({ labels, label, pathname }: NavProps & { pathnam
       aria-label={label}
       className="fixed inset-x-0 bottom-0 z-40 border-t border-ink bg-surface pb-[env(safe-area-inset-bottom)] md:hidden"
     >
-      <ul className="mx-auto grid max-w-lg grid-cols-5">
+      <ul className="mx-auto grid max-w-lg grid-cols-4">
         {NAV_ITEMS.map((item) => {
           const current = currentState(item, pathname);
           const Icon = item.icon;
@@ -79,7 +77,7 @@ export function BottomNavLinks({ labels, label, pathname }: NavProps & { pathnam
                 ].join(" ")}
               >
                 <Icon aria-hidden="true" size={24} strokeWidth={1.75} />
-                <span>{item.key === "library" ? labels.libraryShort : labels[item.key]}</span>
+                <span>{item.key === "library" ? labels.libraryShort : item.key === "me" ? labels.meShort : labels[item.key]}</span>
               </Link>
             </li>
           );
@@ -95,7 +93,7 @@ export function BottomNav(props: NavProps) {
   return <BottomNavLinks {...props} pathname={pathname} />;
 }
 
-/** The same four links rendered inside the header from md up. */
+/** The same links rendered inside the header from md up. */
 export function HeaderNavLinks({ labels, label, pathname }: NavProps & { pathname: string | null }) {
   return (
     <nav aria-label={label} className="hidden md:block">

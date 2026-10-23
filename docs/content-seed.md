@@ -200,6 +200,21 @@ Each card needs a reference image and a check against a museum or regional sourc
 | Baju Bundo Kanduang | Minangkabau | Women's dress with songket cloth and a suntiang headdress for brides. | A traditional dress from West Sumatra, worn at ceremonies. |
 | Baju Bodo | Bugis (Sulawesi Selatan) | Square-cut blouse worn with a silk sarong (lipa sabbe). | A traditional dress from South Sulawesi, known for its simple shape. |
 
+## Batch 2: one region per island (Phase 2c)
+
+Drafted by Claude from checked sources on 2026-10-23 and loaded as drafts by `supabase/content/2026-10-24-batch-2.sql`. The full text (both languages, audio descriptions and alt text) lives in that file; sources and reviewer notes are in docs/candidate-sources.md.
+
+| Island | Region | Story (4 chapters) | Recipe | Dress |
+| --- | --- | --- | --- | --- |
+| Sumatera | Batak (Sumatera Utara) | Asal Usul Danau Toba | Arsik ikan mas | Ulos |
+| Jawa | Sunda (Jawa Barat) | Sangkuriang | Nasi timbel isi ayam | Kebaya Sunda |
+| Bali & Nusa Tenggara | Bali | Manik Angkeran dan Selat Bali | Ayam betutu | Payas agung |
+| Kalimantan | Banjar (Kalimantan Selatan) | Putri Junjung Buih | Soto Banjar | Bagajah Gamuling Baular Lulut |
+| Maluku | Maluku | Batu Berdaun | Ikan kakap kuah kuning | Baju cele |
+| Papua | Papua | Kasuari dan Dara Makota | Papeda | Rok rumbai |
+
+Sulawesi already has Bugis-Makassar. No recipe is marked halal, and the dress items have no image yet.
+
 ## Audio and visuals
 
 This doc gives you the text, audio descriptions, alt text, and image prompts. It does not contain audio files or final illustrations. Generating those needs an image tool and a voice service, and it is best done after the text is approved.

@@ -28,6 +28,10 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    // The saves moved to /me (My collection) in Phase 2c. The query (?type=) is kept.
+    return [{ source: "/:lang(id|en)?/me/saved", destination: "/me", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

@@ -18,10 +18,16 @@ async function insertBookmark(page: Page, type: string, id: string) {
   });
 }
 
-test("guests are asked to sign in before seeing saves", async ({ request }) => {
-  const response = await request.get("/me/saved", { maxRedirects: 0 });
+test("guests are asked to sign in before seeing their collection", async ({ request }) => {
+  const response = await request.get("/me", { maxRedirects: 0 });
   expect(response.status()).toBe(307);
-  expect(response.headers().location).toBe("/login?next=%2Fme%2Fsaved");
+  expect(response.headers().location).toBe("/login?next=%2Fme");
+});
+
+test("the old saves page redirects to My collection and keeps the filter", async ({ request }) => {
+  const response = await request.get("/me/saved?type=recipe", { maxRedirects: 0 });
+  expect(response.status()).toBe(308);
+  expect(response.headers().location).toBe("/me?type=recipe");
 });
 
 test.describe("member", () => {
@@ -42,19 +48,20 @@ test.describe("member", () => {
     await page.close();
   });
 
-  test("the member page shows the collection and its counts", async ({ page, context, baseURL }) => {
+  test("My collection shows the saves and their counts, with no separate Saved tab", async ({ page, context, baseURL }) => {
     await context.addCookies([{ name: "nch_locale", value: "en", url: baseURL! }]);
     await signIn(page, member!);
     const main = page.locator("main");
-    await expect(main.getByRole("heading", { name: "My collection" })).toBeVisible();
-    await expect(main.getByRole("region", { name: "Your saves at a glance" })).toContainText("Saved items");
-    await page.goto("/me/saved");
-    await expect(main.getByRole("heading", { level: 1, name: "My Saves" })).toBeVisible();
-    // The tab bar marks Saved, not Me, on /me/saved.
+    await expect(main.getByRole("heading", { level: 1, name: "My collection" })).toBeVisible();
+    await expect(main.getByRole("region", { name: "Your collection at a glance" })).toContainText("All items");
+    const nav = page.getByRole("navigation", { name: "Main navigation" }).first();
+    await expect(nav.getByRole("link", { name: "My collection", exact: true })).toHaveAttribute("aria-current", "page");
+    await expect(nav.getByRole("link", { name: "Saved", exact: true })).toHaveCount(0);
+    // The phone tab bar has four tabs and marks Collection.
     await page.setViewportSize({ width: 360, height: 780 });
     const tabs = page.getByRole("navigation", { name: "Main navigation" }).last();
-    await expect(tabs.getByRole("link", { name: "Saved", exact: true })).toHaveAttribute("aria-current", "page");
-    await expect(tabs.getByRole("link", { name: "Me", exact: true })).not.toHaveAttribute("aria-current", /.+/);
+    await expect(tabs.getByRole("link")).toHaveCount(4);
+    await expect(tabs.getByRole("link", { name: "Collection", exact: true })).toHaveAttribute("aria-current", "page");
   });
 
   test("save, list and unsave a public item", async ({ page, request, context, baseURL }) => {
@@ -82,7 +89,7 @@ test.describe("member", () => {
     await save.click();
     await expect(save).toHaveAttribute("aria-pressed", "true");
 
-    await page.goto("/me/saved");
+    await page.goto("/me");
     await expect(main.getByRole("listitem").filter({ has: page.getByRole("link", { name: /.+/ }) }).first()).toBeVisible();
     const unsave = main.getByRole("button", { name: /^Saved:/ }).first();
     await unsave.click();

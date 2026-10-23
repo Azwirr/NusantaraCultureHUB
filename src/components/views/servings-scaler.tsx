@@ -9,7 +9,8 @@ type Ingredient = { id: string; name: string; amount: number | null; unit: strin
 
 /**
  * Ingredient list with a servings stepper. Amounts scale in the browser;
- * the change is announced politely for screen-reader users.
+ * the change is announced politely for screen-reader users. Without base
+ * servings (the source does not say) the amounts are shown as written.
  */
 export function ServingsScaler({
   baseServings,
@@ -18,13 +19,13 @@ export function ServingsScaler({
   locale,
   copy,
 }: {
-  baseServings: number;
+  baseServings: number | null;
   ingredients: Ingredient[];
   units: Record<string, string>;
   locale: string;
   copy: { servings: string; servingsValue: string; fewer: string; more: string; servingsChanged: string };
 }) {
-  const [servings, setServings] = useState(baseServings);
+  const [servings, setServings] = useState(baseServings ?? 1);
   const [announce, setAnnounce] = useState("");
   const labelId = useId();
   const number = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 });
@@ -40,7 +41,8 @@ export function ServingsScaler({
 
   return (
     <div className="flex flex-col gap-4">
-      <div role="group" aria-labelledby={labelId} className="flex items-center gap-3">
+      {baseServings ? (
+        <div role="group" aria-labelledby={labelId} className="flex items-center gap-3">
         <span id={labelId} className="text-label-md text-on-surface">
           {copy.servings}
         </span>
@@ -53,13 +55,15 @@ export function ServingsScaler({
         <button type="button" className={stepper} onClick={() => change(servings + 1)} disabled={servings >= 100} aria-label={copy.more}>
           <Plus aria-hidden="true" size={18} strokeWidth={1.75} />
         </button>
-      </div>
+        </div>
+      ) : null}
       <p role="status" className="sr-only">
         {announce}
       </p>
       <ul className="flex flex-col divide-y divide-ink border-y border-ink">
         {ingredients.map((ingredient) => {
-          const amount = ingredient.amount === null ? null : (ingredient.amount * servings) / baseServings;
+          const amount =
+            ingredient.amount === null ? null : baseServings ? (ingredient.amount * servings) / baseServings : ingredient.amount;
           const unit = ingredient.unit ? units[ingredient.unit] ?? ingredient.unit : "";
           const quantity =
             ingredient.unit === "to_taste" ? unit : amount === null ? "" : `${number.format(amount)} ${unit}`.trim();

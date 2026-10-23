@@ -73,6 +73,8 @@ test.describe("signed-in member", () => {
   });
 
   test("signing out clears the session", async ({ page, context }) => {
+    // Sign out lives in the account menu on the avatar.
+    await page.getByRole("button", { name: /^(Account menu|Menu akun)$/ }).click();
     await page.getByRole("button", { name: /^(Sign out|Keluar)$/ }).click();
     await page.waitForURL((url) => url.pathname === "/");
     expect(await sessionCookies(context)).toEqual([]);

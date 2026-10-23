@@ -47,13 +47,15 @@ export function RecipeView({
               <dd>{fill(dict.common.minutes, { n: recipe.minutes })}</dd>
             </div>
           ) : null}
-          <div className="flex items-center gap-2">
-            <dt>
-              <Users aria-hidden="true" size={18} strokeWidth={1.75} className="text-secondary" />
-              <span className="sr-only">{copy.servings}</span>
-            </dt>
-            <dd>{fill(copy.servingsValue, { n: recipe.servings })}</dd>
-          </div>
+          {recipe.servings ? (
+            <div className="flex items-center gap-2">
+              <dt>
+                <Users aria-hidden="true" size={18} strokeWidth={1.75} className="text-secondary" />
+                <span className="sr-only">{copy.servings}</span>
+              </dt>
+              <dd>{fill(copy.servingsValue, { n: recipe.servings })}</dd>
+            </div>
+          ) : null}
         </dl>
         {recipe.dietaryTags.length || canShowHalalBadge(recipe.halalStatus) ? (
           <div className="flex flex-col gap-2">

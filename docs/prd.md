@@ -59,7 +59,7 @@ Seventeen requirements make up the MVP: ten are must-haves and seven are should-
 | FR-13 | Audit log | Record every approval, rejection, unpublish, and role change with the actor, time, and reason. | Must |
 | FR-14 | Search | Search approved stories, recipes, costumes, and regions from the header (Ctrl+K) and from `/search?q=`. Results are grouped by type, in the visitor's language, and tolerate typos. Drafts are never returned, to anyone. The search term is shown as plain text. | Must |
 | FR-15 | Grounded assistant "Tanya Nusantara" | Members ask a question about Indonesian culture. The answer is built only from approved, sourced content found by FR-14, cites each item it used with a link and its sources, and politely declines anything outside the archive. A daily limit per member keeps costs safe. No question text is stored. This is not free-form chat. | Should |
-| FR-16 | Region map | `/regions` shows a keyboard-accessible province map (Natural Earth, public domain) that opens each region page, with a list fallback below. It is for navigation only, with no game mechanics. | Should |
+| FR-16 | Region map | `/regions` shows a keyboard-accessible map (Natural Earth, public domain) grouped into seven labelled islands. Each island opens `/regions/island/[island]` with its approved regions and their stories, recipes and dress, and the region list stays below as the fallback. It is for navigation only, with no game mechanics. | Should |
 | FR-17 | Story requests | Members ask for a new story, recipe or dress on `/requests` (title and short note, 5 a day). Everyone sees visible requests with the nickname only; staff plan, close or hide them. Requests never become content by themselves. | Should |
 
 ## Content pipeline

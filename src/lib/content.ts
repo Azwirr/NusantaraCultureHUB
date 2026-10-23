@@ -214,7 +214,8 @@ export type RecipeDetail = {
   /** The name in the other language (FR-07: bilingual names). */
   altTitle: string;
   region: { slug: string; name: string } | null;
-  servings: number;
+  /** Null when the source does not say: amounts are shown as written, without scaling. */
+  servings: number | null;
   minutes: number | null;
   dietaryTags: string[];
   halalStatus: string;
@@ -259,7 +260,7 @@ export async function loadRecipe(supabase: ContentClient, key: Key, locale: Loca
     title: pick(locale, names),
     altTitle: pick(locale === "en" ? "id" : "en", names),
     region: regionRef(locale, recipe.regions),
-    servings: recipe.servings ?? 1,
+    servings: recipe.servings,
     minutes: recipe.minutes,
     dietaryTags: recipe.dietary_tags,
     halalStatus: recipe.halal_status,
