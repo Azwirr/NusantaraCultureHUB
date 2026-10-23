@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import { AppHeader } from "@/components/app-header";
 import { BottomNav, BottomNavLinks } from "@/components/bottom-nav";
 import { ClientCopyProvider } from "@/components/client-copy";
+import { LiveBackground } from "@/components/live-background";
 import { ThemeScript } from "@/components/theme-script";
 import { isLocale, locales } from "@/lib/i18n/config";
 import { getDictionaryFor } from "@/lib/i18n/dictionaries";
@@ -66,7 +67,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       <head>
         <ThemeScript />
       </head>
-      <body className="flex min-h-dvh flex-col bg-background font-sans text-body-md text-on-background">
+      <body className="relative flex min-h-dvh flex-col bg-background font-sans text-body-md text-on-background">
+        <LiveBackground />
         <a href="#main" className="skip-link">
           {dict.a11y.skipToContent}
         </a>
@@ -74,7 +76,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <main
           id="main"
           tabIndex={-1}
-          className="flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] outline-none md:pb-16"
+          className="relative z-10 flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] outline-none md:pb-16"
         >
           <ClientCopyProvider copy={{ errorPage: dict.errorPage }}>{children}</ClientCopyProvider>
         </main>

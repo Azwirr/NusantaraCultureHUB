@@ -45,7 +45,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section aria-labelledby="hero-title" className="border-b border-ink bg-surface-container-low">
+      <section aria-labelledby="hero-title" className="border-b border-ink bg-surface-container-low/80">
         <div className="page-container page-grid items-center py-10 md:py-14">
           <div className="col-span-4 flex flex-col gap-4 md:col-span-5 lg:col-span-7">
             <p className="flex items-center gap-2 text-label-sm uppercase text-secondary">
