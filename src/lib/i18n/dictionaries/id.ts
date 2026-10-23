@@ -66,7 +66,7 @@ export const id = {
     minutes: "{n} menit",
     sourcesHeading: "Sumber",
     sourcesNote:
-      "Konten ini sudah diperiksa terhadap sumber berikut dan disetujui oleh peninjau yang bukan penulisnya.",
+      "Konten ini sudah diperiksa terhadap sumber berikut sebelum ditayangkan. Setiap konten mengutip sedikitnya dua situs berbeda atau disetujui peninjau.",
     opensNewTab: "(membuka tab baru)",
     readMore: "Buka",
     previewBanner: "Pratinjau draf. Hanya peninjau yang dapat melihat halaman ini, dan isinya belum tayang.",
@@ -86,7 +86,7 @@ export const id = {
       region: "wilayah",
     },
     statsPending:
-      "Konten pertama sedang ditinjau. Angka di sini hanya menghitung yang sudah disetujui peninjau, jadi arsip ini tumbuh perlahan dan teliti.",
+      "Angka di sini hanya menghitung konten yang sudah tayang, masing-masing diperiksa terhadap sumbernya, jadi arsip ini tumbuh perlahan dan teliti.",
     featuredKicker: "Cerita pilihan",
     featuredCta: "Baca cerita",
     pillarsHeading: "Tiga pilar pusaka",
@@ -148,7 +148,7 @@ export const id = {
     noMatch: "Tidak ada item yang cocok dengan saringan ini.",
     emptyTitle: "Belum ada konten yang tayang",
     emptyBody:
-      "Cerita, resep, dan busana adat akan muncul di sini setelah diperiksa terhadap sumbernya dan disetujui peninjau.",
+      "Cerita, resep, dan busana adat akan muncul di sini setelah diperiksa terhadap sumbernya dan ditayangkan.",
   },
   regions: {
     kicker: "Wilayah",
@@ -162,7 +162,7 @@ export const id = {
     },
     open: "Buka halaman wilayah",
     emptyTitle: "Belum ada wilayah yang tayang",
-    emptyBody: "Daftar wilayah akan muncul di sini setelah disetujui peninjau.",
+    emptyBody: "Daftar wilayah akan muncul di sini setelah wilayah diperiksa dan ditayangkan.",
   },
   islandDetail: {
     kicker: "Pulau",

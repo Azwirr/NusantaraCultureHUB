@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Kebaya Sunda, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="72" r="22"/>
+    <path d="M128 64 C130 44 170 44 172 64 M150 50 C175 45 182 70 168 82"/>
+    <path d="M90 115 L210 115 L220 250 L80 250 Z"/>
+    <path d="M128 115 C135 150 165 150 172 115"/>
+    <path d="M90 115 L70 200 M210 115 L230 200"/>
+    <path d="M150 150 L150 250" stroke-dasharray="2 6"/>
+    <path d="M108 250 L102 365 L198 365 L192 250"/>
+    <path d="M106 280 L194 280 M104 310 L196 310 M103 340 L197 340" stroke-dasharray="6 4"/>
+  </g>
+</svg>

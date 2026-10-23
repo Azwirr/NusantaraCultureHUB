@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Baju Cele, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="72" r="22"/>
+    <path d="M128 64 C130 44 170 44 172 64"/>
+    <path d="M90 115 L210 115 L214 230 L86 230 Z"/>
+    <path d="M90 115 L70 190 M210 115 L230 190"/>
+    <path d="M110 115 L110 230 M130 115 L130 230 M150 115 L150 230 M170 115 L170 230 M190 115 L190 230"/>
+    <path d="M88 140 L212 140 M87 165 L213 165 M87 190 L213 190 M86 215 L214 215"/>
+    <path d="M112 230 L104 365 L196 365 L188 230"/>
+    <path d="M196 120 C215 125 220 140 210 150"/>
+  </g>
+</svg>

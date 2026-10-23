@@ -31,7 +31,10 @@ test.describe("signed-in member", () => {
   test("a member sees no drafts through the API, and no review page", async ({ page }) => {
     const stories = await restSelect(page, "stories?select=slug,review_status");
     expect(stories.status).toBe(200);
-    expect(stories.rows).toEqual([]);
+    // Members see published stories only: never the e2e-uji draft fixture.
+    const rows = stories.rows as { slug: string; review_status: string }[];
+    expect(rows.every((row) => row.review_status === "approved")).toBe(true);
+    expect(rows.map((row) => row.slug)).not.toContain("e2e-uji");
     const roles = await restSelect(page, "user_roles?select=role");
     expect(roles.rows).toEqual([]);
 
@@ -100,16 +103,16 @@ test.describe("signed-in reviewer", () => {
   });
 
   test("a reviewer sees drafts through the API", async ({ page }) => {
-    const stories = await restSelect(page, "stories?select=slug,review_status&slug=eq.timun-mas");
-    expect(stories.rows).toEqual([{ slug: "timun-mas", review_status: "draft" }]);
+    const stories = await restSelect(page, "stories?select=slug,review_status&slug=eq.e2e-uji");
+    expect(stories.rows).toEqual([{ slug: "e2e-uji", review_status: "draft" }]);
   });
 
   test("the database refuses to approve an incomplete story, through the real API", async ({ page }) => {
-    const [story] = (await restSelect(page, "stories?select=id&slug=eq.timun-mas")).rows as { id: string }[];
+    // e2e-uji is a fixture that can never be published: guard_approval blocks it.
+    const [story] = (await restSelect(page, "stories?select=id&slug=eq.e2e-uji")).rows as { id: string }[];
     const response = await page.request.post(`/api/review/story/${story.id}/approve`, { data: {} });
     expect(response.status()).toBe(409);
-    // Its region is still a draft (and no source is cited), so guard_approval blocks it.
-    expect((await response.json()).error.message).toContain("region must be approved first");
+    expect((await response.json()).error.message).toMatch(/cannot approve stor(y|ies)/);
     const after = await restSelect(page, `stories?select=review_status&id=eq.${story.id}`);
     expect(after.rows).toEqual([{ review_status: "draft" }]);
   });

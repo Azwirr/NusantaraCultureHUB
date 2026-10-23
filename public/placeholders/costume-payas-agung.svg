@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Payas Agung, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <path d="M118 70 L120 30 L135 52 L150 20 L165 52 L180 30 L182 70 Z"/>
+    <circle cx="150" cy="40" r="5"/>
+    <circle cx="150" cy="92" r="20"/>
+    <path d="M100 125 L200 125 L196 175 L104 175 Z"/>
+    <path d="M104 150 L196 150" stroke-dasharray="2 4"/>
+    <path d="M104 175 L96 365 L204 365 L196 175"/>
+    <path d="M100 215 L200 215 M98 255 L202 255 M97 295 L203 295 M96 335 L204 335"/>
+    <path d="M150 175 L150 365" stroke-dasharray="2 6"/>
+  </g>
+</svg>

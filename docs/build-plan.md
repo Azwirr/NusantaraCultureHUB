@@ -108,7 +108,7 @@ No AI calls, no audio, no try-on, no community submissions, no video, no payment
 
 ## Decision log
 
-Fourteen decisions are recorded so far. Add a row whenever a blocking decision closes.
+Fifteen decisions are recorded so far. Add a row whenever a blocking decision closes.
 
 | Date | Decision | Where it lives |
 | --- | --- | --- |
@@ -126,3 +126,4 @@ Fourteen decisions are recorded so far. Add a row whenever a blocking decision c
 | 2026-10-23 | The reviewed content and the design v2 pages ship together in Phase 2. | `docs/phase-2-plan.md` |
 | 2026-10-23 | Claude researches and drafts content from checked sources; the owner approves alone, including drafts they corrected. Reviewers keep four-eyes; nobody approves what they created. | `docs/phase-2b-plan.md`; migration part 13 |
 | 2026-10-23 | Members read and listen only, and ask for new content on `/requests`. | PRD FR-17; migration part 14 |
+| 2026-10-23 | Claude may publish widely documented heritage itself: 2+ sources from different websites, checked in the database, logged as `ai_workflow`. Thinly sourced items stay drafts for the owner. | `docs/phase-2d-plan.md`; migration part 15 |

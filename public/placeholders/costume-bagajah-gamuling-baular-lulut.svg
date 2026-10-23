@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Bagajah Gamuling Baular Lulut, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="58" r="10"/><circle cx="128" cy="62" r="7"/><circle cx="172" cy="62" r="7"/>
+    <circle cx="150" cy="88" r="20"/>
+    <path d="M110 128 L190 128 L188 178 L112 178 Z"/>
+    <path d="M118 128 C120 145 180 145 182 128" stroke-dasharray="1 5"/>
+    <path d="M112 178 L100 365 L200 365 L188 178"/>
+    <path d="M108 205 L192 205"/>
+    <path d="M120 120 C140 135 160 135 180 120" stroke-dasharray="1 4"/>
+    <path d="M104 260 L196 260 M102 315 L198 315" stroke-dasharray="5 5"/>
+  </g>
+</svg>

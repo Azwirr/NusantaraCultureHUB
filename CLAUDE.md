@@ -15,7 +15,7 @@
 ## Security (never relax)
 - Roles live only in user_roles. Only owner can write to it. Never trust a role sent by the client.
 - RLS on every table. Public read returns approved rows only.
-- Trigger guard_approval on content tables.
+- Trigger guard_approval on content tables. Its only AI path is private.ai_publish (approve only, 2-website rule, all other publish checks).
 - API keys are server-side only. Never use NEXT_PUBLIC_ for secrets.
 - Render user-entered text as plain text, never as HTML.
 
@@ -24,8 +24,9 @@
 - Every new table enables RLS in the same migration.
 
 ## Content
-- Seed data comes from docs/content-seed.md. All content stays draft until a reviewer approves it.
-- Claude may research and draft new content (user decision, 2026-10-23), only from real sources it has opened and checked, cited on every item, in both languages. Claude writes drafts only and never approves; the owner approves.
+- Seed data comes from docs/content-seed.md. All content starts as a draft.
+- Claude may research and draft new content (user decision, 2026-10-23), only from real sources it has opened and checked, cited on every item, in both languages.
+- Claude may publish an item itself only when the user asks for content and the item is widely documented as Indonesian heritage: it cites at least 2 sources from 2 different websites, both opened and matched to the draft (user decision, 2026-10-23). Publish only through private.ai_publish, which checks this and logs it as ai_workflow. Never approve through review_content or as a person. Anything new, disputed or thinly sourced stays a draft for the owner; members ask on /requests.
 - Members never write content. They ask for it on /requests; a request is a suggestion, not content.
 - Never mark a recipe halal unless halal_status = verified_by_source.
 

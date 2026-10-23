@@ -33,7 +33,7 @@ Five roles cover the product. Owner is an assumption for the role listed as "Oth
 | Guest | Any visitor, no sign-in | Browse approved content and use try-on on the device | Save progress to a server, see drafts |
 | Member | Signed-in user | Read and listen, save progress and bookmarks of approved content, earn badges, ask the grounded assistant within a daily limit, request new stories (5 a day) | Write or edit content, change review status, see drafts, grant roles, bookmark drafts |
 | Reviewer | Curator, a human | Create and edit drafts, run AI jobs, approve or reject content, unpublish, read the audit log, triage story requests | Grant roles, delete content, approve their own work |
-| AI Workflow | System actor, no login | Generate chapter drafts, image prompts, and audio through a server job | Approve anything, publish anything, write outside draft status |
+| AI Workflow | System actor, no login | Generate chapter drafts, image prompts, and audio through a server job; publish an item that cites 2+ different websites, through `private.ai_publish` only, logged as `ai_workflow` (Phase 2d) | Reject or unpublish, publish anything thinly sourced, write outside draft status |
 | Owner | Team lead (`zwirr`) | Grant and revoke roles; review like a Reviewer, and approve drafts they corrected (Phase 2b) | Approve content they created |
 
 Roles are assigned on the server only. Users cannot change their own role.
@@ -64,7 +64,7 @@ Seventeen requirements make up the MVP: ten are must-haves and seven are should-
 
 ## Content pipeline
 
-Every story moves through these steps. The AI drafts, and only a reviewer can approve.
+Every story moves through these steps. The AI drafts. A reviewer approves; or, for widely documented heritage (2+ different websites, checked by the database), the AI Workflow publishes it and the audit log names it. The owner can unpublish anything.
 
 &#91;embedded content: story content flow, two review gates\]
 

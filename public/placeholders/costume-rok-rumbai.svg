@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Rok Rumbai, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <path d="M130 55 L135 30 M150 50 L150 22 M170 55 L165 30 M140 52 L142 28 M160 52 L158 28"/>
+    <circle cx="150" cy="78" r="20"/>
+    <path d="M120 115 C135 125 165 125 180 115" stroke-dasharray="1 4"/>
+    <path d="M125 130 C140 138 160 138 175 130" stroke-dasharray="1 4"/>
+    <path d="M110 200 L190 200"/>
+    <path d="M110 200 L98 330 M118 200 L110 335 M126 200 L122 338 M134 200 L132 340 M142 200 L141 340 M150 200 L150 340 M158 200 L159 340 M166 200 L168 340 M174 200 L178 338 M182 200 L190 335 M190 200 L202 330"/>
+  </g>
+</svg>

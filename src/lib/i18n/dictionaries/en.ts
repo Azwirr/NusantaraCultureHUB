@@ -57,7 +57,7 @@ export const en = {
     minutes: "{n} min",
     sourcesHeading: "Sources",
     sourcesNote:
-      "This item was checked against the sources below and approved by a reviewer who did not write it.",
+      "This item was checked against the sources below before it was published. Each item cites at least two different websites or was approved by a reviewer.",
     opensNewTab: "(opens in a new tab)",
     readMore: "Open",
     previewBanner: "Draft preview. Only reviewers can see this page, and it is not public yet.",
@@ -77,7 +77,7 @@ export const en = {
       region: "regions",
     },
     statsPending:
-      "The first items are being reviewed. These numbers only count what reviewers have approved, so the archive grows slowly and carefully.",
+      "These numbers only count published items, each checked against its sources, so the archive grows slowly and carefully.",
     featuredKicker: "Featured story",
     featuredCta: "Read the story",
     pillarsHeading: "Three pillars of heritage",
@@ -139,7 +139,7 @@ export const en = {
     noMatch: "Nothing matches these filters.",
     emptyTitle: "Nothing is published yet",
     emptyBody:
-      "Stories, recipes and traditional dress appear here once they are checked against their sources and approved by a reviewer.",
+      "Stories, recipes and traditional dress appear here once they are checked against their sources and published.",
   },
   regions: {
     kicker: "Regions",
@@ -153,7 +153,7 @@ export const en = {
     },
     open: "Open the region page",
     emptyTitle: "No regions are published yet",
-    emptyBody: "The region list appears here once a reviewer approves it.",
+    emptyBody: "The region list appears here once regions are checked and published.",
   },
   islandDetail: {
     kicker: "Island",

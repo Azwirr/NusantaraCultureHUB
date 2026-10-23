@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Ulos, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="70" r="22"/>
+    <path d="M128 62 C130 42 170 42 172 62"/>
+    <path d="M95 110 L205 110 L215 220 L85 220 Z"/>
+    <path d="M110 110 L95 300 M190 110 L205 300"/>
+    <path d="M95 300 L205 300"/>
+    <path d="M100 130 L200 130 M98 150 L202 150" stroke-dasharray="4 4"/>
+    <path d="M97 270 L203 270 M96 285 L204 285" stroke-dasharray="1 5"/>
+    <path d="M100 300 L98 318 M115 300 L114 318 M130 300 L130 318 M145 300 L145 318 M160 300 L160 318 M175 300 L176 318 M190 300 L192 318"/>
+    <path d="M115 220 L110 365 L190 365 L185 220"/>
+  </g>
+</svg>

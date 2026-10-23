@@ -52,6 +52,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Claude Code skills and settings: tooling, not app code.
     ".claude/**",
+    ".agents/**",
   ]),
 ]);
 

@@ -44,7 +44,7 @@ test.describe("member", () => {
     await signIn(page, member!);
     const response = await insertBookmark(page, "story", draft.id);
     expect(response.status()).toBe(403);
-    expect((await restSelect(page, "bookmarks?select=id")).rows).toEqual([]);
+    expect((await restSelect(page, `bookmarks?select=id&content_id=eq.${draft.id}`)).rows).toEqual([]);
     await page.close();
   });
 
@@ -91,9 +91,13 @@ test.describe("member", () => {
 
     await page.goto("/me");
     await expect(main.getByRole("listitem").filter({ has: page.getByRole("link", { name: /.+/ }) }).first()).toBeVisible();
-    const unsave = main.getByRole("button", { name: /^Saved:/ }).first();
+    // Its name turns from "Saved: …" into "Save: …" when pressed, so match both.
+    const unsave = main.getByRole("button", { name: /^(Save|Saved):/ }).first();
     await unsave.click();
     await expect(unsave).toHaveAttribute("aria-pressed", "false");
-    expect((await restSelect(page, `bookmarks?select=id&content_id=eq.${item!.id}`)).rows).toEqual([]);
+    // The button updates at once; the delete reaches the database a moment later.
+    await expect
+      .poll(async () => (await restSelect(page, `bookmarks?select=id&content_id=eq.${item!.id}`)).rows)
+      .toEqual([]);
   });
 });
