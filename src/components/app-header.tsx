@@ -19,7 +19,7 @@ import { ThemeToggle } from "./theme-toggle";
 export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const navLabels = dict.nav;
   return (
-    <header className="border-b border-ink bg-surface">
+    <header className="relative z-10 border-b border-ink bg-surface">
       <div className="page-container flex flex-wrap items-center gap-x-2 py-2 lg:flex-nowrap lg:gap-x-6">
         <Link href="/" className="mr-auto flex min-h-12 shrink-0 items-center gap-2.5 rounded pr-1 lg:mr-0">
           <BrandMark className="size-10 shrink-0" />

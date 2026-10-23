@@ -49,7 +49,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section aria-labelledby="hero-title" className="overflow-hidden border-b border-ink bg-surface-container-low">
+      <section aria-labelledby="hero-title" className="overflow-hidden border-b border-ink bg-surface-container-low/80">
         <div className="page-container page-grid items-center gap-y-10 py-12 md:py-20">
           <div className="rise col-span-4 flex flex-col gap-5 md:col-span-8 lg:col-span-7">
             <p className="flex items-center gap-2 text-label-sm uppercase text-secondary">
