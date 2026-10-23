@@ -82,6 +82,51 @@ export const id = {
       bajuBodo: "Baju Bodo",
       bundoKanduang: "Bundo Kanduang",
     },
+    sketchShowcase: {
+      tag: "Galeri Sketsa Warisan",
+      badge: "Koleksi Vektor Otentik",
+      switchAction: "Pilih sketsa warisan",
+      nextAction: "Sketsa berikutnya",
+      prevAction: "Sketsa sebelumnya",
+      items: {
+        borobudur: {
+          title: "Candi Borobudur",
+          origin: "Magelang, Jawa Tengah",
+          category: "Arsitektur Monumen",
+          note: "Stupa bertingkat dan mandala batu andesit abad ke-8, mahakarya arsitektur Mahayana.",
+        },
+        pinisi: {
+          title: "Kapal Layar Pinisi",
+          origin: "Bulukumba, Sulawesi Selatan",
+          category: "Warisan Bahari",
+          note: "Perahu layar kayu bertiang ganda kebanggaan pelaut Bugis-Makassar menjelajah samudra.",
+        },
+        gadang: {
+          title: "Rumah Gadang",
+          origin: "Minangkabau, Sumatera Barat",
+          category: "Arsitektur Vernakular",
+          note: "Atap gonjong menjulang menyerupai tanduk kerbau berukir ragam hias flora alam.",
+        },
+        wayang: {
+          title: "Wayang Kulit",
+          origin: "Jawa & Bali",
+          category: "Seni Pertunjukan",
+          note: "Tokoh tatah kulit kerbau berpewarna alami penyampai filosofi hidup dan epos Nusantara.",
+        },
+        keris: {
+          title: "Keris Pusaka",
+          origin: "Nusantara",
+          category: "Metalurgi & Pusaka",
+          note: "Bilah berluk dengan tempaan pamor meteorit, simbol kehormatan dan kearifan adiluhung.",
+        },
+        angklung: {
+          title: "Angklung Bambu",
+          origin: "Tanah Sunda, Jawa Barat",
+          category: "Alat Musik Tradisional",
+          note: "Tabung bambu bernada getar yang dimainkan secara bergotong-royong dalam harmoni.",
+        },
+      },
+    },
     statsLabel: "Isi arsip yang sudah tayang",
     stats: {
       story: "cerita",

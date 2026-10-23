@@ -73,6 +73,51 @@ export const en = {
       bajuBodo: "Baju Bodo",
       bundoKanduang: "Bundo Kanduang",
     },
+    sketchShowcase: {
+      tag: "Heritage Sketch Archive",
+      badge: "Authentic Vector Collection",
+      switchAction: "Select heritage sketch",
+      nextAction: "Next sketch",
+      prevAction: "Previous sketch",
+      items: {
+        borobudur: {
+          title: "Borobudur Temple",
+          origin: "Magelang, Central Java",
+          category: "Monument Architecture",
+          note: "8th-century tiered stupas and andesite stone mandala, a Buddhist architectural masterpiece.",
+        },
+        pinisi: {
+          title: "Pinisi Schooner",
+          origin: "Bulukumba, South Sulawesi",
+          category: "Maritime Heritage",
+          note: "Dual-masted wooden sailing vessel of Bugis-Makassar shipbuilders navigating world oceans.",
+        },
+        gadang: {
+          title: "Rumah Gadang",
+          origin: "Minangkabau, West Sumatra",
+          category: "Vernacular Architecture",
+          note: "Iconic gonjong roofs soaring like buffalo horns with intricate floral wood carvings.",
+        },
+        wayang: {
+          title: "Shadow Puppet (Wayang)",
+          origin: "Java & Bali",
+          category: "Performing Arts",
+          note: "Chiseled water buffalo parchment figures conveying moral wisdom and timeless epics.",
+        },
+        keris: {
+          title: "Keris Dagger",
+          origin: "Nusantara",
+          category: "Metallurgy & Heritage",
+          note: "Wavy blade forged with meteoric pamor inlay, an emblem of honor and spiritual nobility.",
+        },
+        angklung: {
+          title: "Bamboo Angklung",
+          origin: "Sundanese Land, West Java",
+          category: "Traditional Instrument",
+          note: "Resonating bamboo tubes played collaboratively to produce melodic harmonic intervals.",
+        },
+      },
+    },
     statsLabel: "What is live in the archive",
     stats: {
       story: "stories",

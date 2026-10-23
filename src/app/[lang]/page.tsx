@@ -16,7 +16,8 @@ import type { ComponentType, CSSProperties } from "react";
 
 import { ButtonLink } from "@/components/button";
 import { Card } from "@/components/card";
-import { BatikArt, CostumeArt, RecipeArt, StoryArt, WayangArt, RumahGadangArt } from "@/components/line-art";
+import { HeroSketchShowcase } from "@/components/hero-sketch-showcase";
+import { CostumeArt, RecipeArt, StoryArt } from "@/components/line-art";
 import { MotifDivider } from "@/components/motif-divider";
 import { RegionMap } from "@/components/region-map";
 import { SectionHeading } from "@/components/section-heading";
@@ -113,18 +114,8 @@ export default async function HomePage() {
               </ul>
             </div>
           </div>
-          {/* Collage of project line art. Decorative: hidden from assistive tech. */}
-          <div aria-hidden="true" className="relative col-span-4 hidden h-80 md:col-span-8 md:block lg:col-span-5 lg:h-[26rem]">
-            <div className="rise absolute top-0 left-0 w-[62%] rounded border border-ink bg-surface-container-lowest p-3 text-secondary shadow-2 [--rise-delay:80ms]">
-              <RumahGadangArt className="h-auto w-full" />
-            </div>
-            <div className="rise absolute top-6 right-0 w-[30%] rounded border border-ink bg-primary-container p-3 text-on-primary-container shadow-2 [--rise-delay:160ms]">
-              <WayangArt className="h-auto w-full" />
-            </div>
-            <div className="rise absolute bottom-0 left-[12%] w-[64%] rounded border border-ink bg-secondary-container p-3 text-on-secondary-container shadow-2 [--rise-delay:240ms]">
-              <BatikArt className="h-auto w-full" />
-            </div>
-          </div>
+          {/* Interactive Heritage Sketch Gallery Showcase */}
+          <HeroSketchShowcase dict={home.sketchShowcase} />
         </div>
       </section>
 
