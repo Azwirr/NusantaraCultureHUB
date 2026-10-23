@@ -10,3 +10,15 @@ export function contentHref(type: "story" | "recipe" | "costume", slug: string):
   const base = type === "story" ? "/stories" : type === "recipe" ? "/recipes" : "/costumes";
   return `${base}/${encodeURIComponent(slug)}`;
 }
+
+const COMMONS_FILE = "https://commons.wikimedia.org/wiki/Special:FilePath/";
+
+/**
+ * A Wikimedia Commons picture at a given width. Commons originals are often
+ * several MB; Special:FilePath serves a scaled copy for ?width=. Other URLs
+ * (our own /placeholders, illustrations) are returned unchanged.
+ */
+export function sizedImage(url: string, width: number): string {
+  if (!url.startsWith(COMMONS_FILE) || url.includes("?")) return url;
+  return `${url}?width=${width}`;
+}
