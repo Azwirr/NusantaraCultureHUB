@@ -26,6 +26,8 @@ export type ContentCard = {
   summary: string | null;
   region: { slug: string; name: string } | null;
   minutes: number | null;
+  /** The item's first picture, if one is published with it. */
+  picture: { url: string; alt: string } | null;
 };
 
 export type RegionSummary = {
@@ -63,16 +65,27 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
   cacheTag(CONTENT_TAG);
   const supabase = createPublicClient();
   const region = "regions(slug, name_id, name_en)";
-  const [stories, recipes, costumes] = await Promise.all([
+  const [stories, recipes, costumes, pictures] = await Promise.all([
     supabase.from("stories").select(`id, slug, title_id, title_en, summary_id, summary_en, updated_at, ${region}`),
     supabase.from("recipes").select(`id, slug, name_id, name_en, minutes, updated_at, ${region}`),
     supabase.from("costumes").select(`id, slug, name_id, name_en, info_id, info_en, updated_at, ${region}`),
+    supabase
+      .from("content_media")
+      .select("content_type, content_id, url, alt_id, alt_en, sort_order")
+      .in("content_type", ["story", "recipe", "costume"])
+      .order("sort_order"),
   ]);
+  if (pictures.error) fail("media", pictures.error);
+  const firstPicture = new Map<string, { url: string; alt: string }>();
+  for (const row of pictures.data) {
+    const key = `${row.content_type}:${row.content_id}`;
+    if (!firstPicture.has(key)) firstPicture.set(key, { url: row.url, alt: pick(locale, { id: row.alt_id, en: row.alt_en }) });
+  }
   if (stories.error) fail("stories", stories.error);
   if (recipes.error) fail("recipes", recipes.error);
   if (costumes.error) fail("costumes", costumes.error);
 
-  const cards: Array<ContentCard & { updatedAt: string }> = [
+  const cards: Array<Omit<ContentCard, "picture"> & { updatedAt: string }> = [
     ...stories.data.map((row) => ({
       type: "story" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: null,
       title: pick(locale, { id: row.title_id, en: row.title_en }),
@@ -97,6 +110,7 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
     .map((card) => ({
       type: card.type, id: card.id, slug: card.slug, title: card.title,
       summary: card.summary, region: card.region, minutes: card.minutes,
+      picture: firstPicture.get(`${card.type}:${card.id}`) ?? null,
     }));
 }
 
