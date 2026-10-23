@@ -14,9 +14,9 @@ insert into public.user_roles (user_id, role) values
   ('22222222-2222-2222-2222-222222222222', 'reviewer'),
   ('66666666-6666-6666-6666-666666666666', 'reviewer');
 
-insert into public.regions (id, slug, name_id, name_en) values
-  ('a0000000-0000-0000-0000-000000000001', 'wilayah-satu', 'Satu', 'One'),
-  ('a0000000-0000-0000-0000-000000000002', 'wilayah-dua', 'Dua', 'Two');
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en) values
+  ('a0000000-0000-0000-0000-000000000001', 'wilayah-satu', 'Satu', 'One', 'Ringkasan', 'Summary'),
+  ('a0000000-0000-0000-0000-000000000002', 'wilayah-dua', 'Dua', 'Two', 'Ringkasan', 'Summary');
 insert into public.sources (id, title) values ('f0000000-0000-0000-0000-000000000001', 'Source');
 select tests.review('11111111-1111-1111-1111-111111111111', 'region', 'a0000000-0000-0000-0000-000000000001', 'approve');
 
@@ -73,8 +73,8 @@ select throws_ok(
 
 -- 2. Staff accounts can be deleted ----------------------------------------------
 select tests.as_user('66666666-6666-6666-6666-666666666666');
-insert into public.regions (id, slug, name_id, name_en)
-values ('a0000000-0000-0000-0000-000000000003', 'buatan-gone', 'Buatan', 'Made');
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en)
+values ('a0000000-0000-0000-0000-000000000003', 'buatan-gone', 'Buatan', 'Made', 'Ringkasan', 'Summary');
 insert into public.sources (id, title) values ('f0000000-0000-0000-0000-000000000002', 'Source by gone');
 
 select tests.as_operator();

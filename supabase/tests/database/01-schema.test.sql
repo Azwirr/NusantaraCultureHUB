@@ -1,5 +1,6 @@
--- Structure and privilege checks: the 16 PRD tables, RLS everywhere,
--- guard_approval on every content table, no deletes, no anon writes.
+-- Structure and privilege checks: the 16 PRD tables plus the two Phase 2
+-- member tables, RLS everywhere, guard_approval on every content table, no
+-- deletes, no anon writes.
 begin;
 select no_plan();
 
@@ -8,9 +9,11 @@ select tables_are(
   array[
     'profiles', 'user_roles', 'regions', 'stories', 'story_chapters', 'recipes',
     'recipe_ingredients', 'recipe_steps', 'costumes', 'sources', 'content_sources',
-    'badges', 'user_badges', 'user_progress', 'ai_jobs', 'audit_log'
+    'badges', 'user_badges', 'user_progress', 'ai_jobs', 'audit_log',
+    -- Phase 2: saves (FR-02, Member role) and the assistant quota (FR-15).
+    'bookmarks', 'assistant_usage'
   ],
-  'public schema has exactly the 16 PRD tables'
+  'public schema has exactly the 16 PRD tables plus bookmarks and assistant_usage'
 );
 
 select is(
@@ -68,6 +71,15 @@ select ok(
 select ok(
   not has_table_privilege('authenticated', 'public.user_badges', 'insert'),
   'members cannot award themselves badges'
+);
+
+select ok(
+  not has_table_privilege('anon', 'public.bookmarks', 'select')
+  and not has_table_privilege('anon', 'public.assistant_usage', 'select')
+  and not has_table_privilege('authenticated', 'public.assistant_usage', 'insert')
+  and not has_table_privilege('authenticated', 'public.assistant_usage', 'update')
+  and not has_table_privilege('authenticated', 'public.bookmarks', 'update'),
+  'guests cannot read saves or quotas, and members cannot edit either directly'
 );
 
 select ok(

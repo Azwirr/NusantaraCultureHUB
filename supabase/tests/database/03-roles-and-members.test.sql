@@ -18,9 +18,9 @@ select lives_ok(
   'a database operator can bootstrap the first owner'
 );
 
-insert into public.regions (id, slug, name_id, name_en) values
-  ('a0000000-0000-0000-0000-000000000001', 'wilayah-ok', 'Wilayah', 'Region'),
-  ('a0000000-0000-0000-0000-000000000002', 'wilayah-draf', 'Draf', 'Draft');
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en) values
+  ('a0000000-0000-0000-0000-000000000001', 'wilayah-ok', 'Wilayah', 'Region', 'Ringkasan', 'Summary'),
+  ('a0000000-0000-0000-0000-000000000002', 'wilayah-draf', 'Draf', 'Draft', 'Ringkasan', 'Summary');
 insert into public.stories (id, region_id, slug, title_id, title_en, summary_id, summary_en) values
   ('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'kisah-ok', 'Kisah', 'Story', 'Ringkasan', 'Summary'),
   ('b0000000-0000-0000-0000-000000000002', 'a0000000-0000-0000-0000-000000000001', 'kisah-draf', 'Draf', 'Draft', 'Ringkasan', 'Summary');

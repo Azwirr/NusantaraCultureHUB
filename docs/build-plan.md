@@ -108,7 +108,7 @@ No AI calls, no audio, no try-on, no community submissions, no video, no payment
 
 ## Decision log
 
-Seven decisions are recorded so far, all made on 2026-10-22. Add a row whenever a blocking decision closes.
+Twelve decisions are recorded so far. Add a row whenever a blocking decision closes.
 
 | Date | Decision | Where it lives |
 | --- | --- | --- |
@@ -119,3 +119,8 @@ Seven decisions are recorded so far, all made on 2026-10-22. Add a row whenever 
 | 2026-10-22 | RPG mode dropped. The landing page shows content directly, with no mode choice. | PRD, section 4 |
 | 2026-10-22 | Try-on runs in the browser only. No photos are stored. | PRD, section 7 |
 | 2026-10-22 | Audio is generated once per chapter and cached by hash. | PRD, FR-05 |
+| 2026-10-23 | `zwirr` is the first owner (operator bootstrap, recorded in the audit log). A second human reviewer is still needed before any content can go live. | PRD, section 3; `docs/phase-1-foundation.md` |
+| 2026-10-23 | The assistant "Tanya Nusantara" is allowed as grounded Q&A: it answers only from approved, sourced content and cites it. Members only, with a daily limit. Free-form AI chat stays out of scope. | PRD, FR-15 and section 8; CLAUDE.md |
+| 2026-10-23 | A navigation map on `/regions` is allowed. "Map mode" in CLAUDE.md now means a map game, which stays out of scope. | PRD, FR-16; CLAUDE.md |
+| 2026-10-23 | Search (FR-14) and bookmarks for members join the MVP. Bookmarks only hold approved content. | PRD, FR-14 and section 3 |
+| 2026-10-23 | The reviewed content and the design v2 pages ship together in Phase 2. | `docs/phase-2-plan.md` |

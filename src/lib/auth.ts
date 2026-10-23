@@ -74,9 +74,16 @@ export async function requireUser(nextPath: string): Promise<SessionUser> {
  * and the shell's heading is visible, so never put data in the shell. RLS
  * still enforces access in the database.
  */
-export async function requireStaff(): Promise<SessionUser> {
+export async function requireStaff(nextPath = "/review"): Promise<SessionUser> {
   const user = await getSessionUser();
-  if (!user) redirect("/login?next=%2Freview");
+  if (!user) redirect(`/login?next=${encodeURIComponent(nextPath)}`);
   if (!isStaff(user)) notFound();
+  return user;
+}
+
+/** Owner-only pages (role grants). Same streaming caveats as requireStaff. */
+export async function requireOwner(nextPath: string): Promise<SessionUser> {
+  const user = await requireStaff(nextPath);
+  if (!user.roles.includes("owner")) notFound();
   return user;
 }

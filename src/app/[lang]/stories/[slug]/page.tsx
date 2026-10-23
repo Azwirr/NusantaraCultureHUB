@@ -1,37 +1,45 @@
-import { AudioLines, Clock } from "lucide-react";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
-import { Chip } from "@/components/chip";
-import { StoryArt } from "@/components/line-art";
-import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
-import { getDictionary } from "@/lib/i18n/dictionaries";
+import { SaveSlot } from "@/components/save-slot";
+import { StoryView } from "@/components/views/story-view";
+import { getStory } from "@/lib/content";
+import { contentHref } from "@/lib/format";
+import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { storyDetail } = await getDictionary();
-  return { title: storyDetail.title };
+export async function generateMetadata({ params }: PageProps<"/[lang]/stories/[slug]">): Promise<Metadata> {
+  const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
+  const story = await getStory(slug, locale);
+  return story ? { title: story.title, description: story.summary } : { title: dict.storyDetail.title };
 }
 
-// Phase 1 placeholder: no audio, TTS or player code yet (FR-04/FR-05 come later).
-export default async function StoryPage() {
-  const { storyDetail, common } = await getDictionary();
+// FR-04 text reader. Approved stories only (cached guest read); anything
+// else gets the not-found UI. Audio narration arrives in Phase 3.
+export default async function StoryPage({ params }: PageProps<"/[lang]/stories/[slug]">) {
+  const dict = await getDictionary();
   return (
-    <div className="page-container py-8 md:py-12">
-      <PageHeader kicker={storyDetail.kicker} title={storyDetail.title}>
-        <div>
-          <Chip tone="neutral" icon={<Clock size={14} strokeWidth={1.75} />}>
-            {common.comingSoon}
-          </Chip>
-        </div>
-      </PageHeader>
-      <PlaceholderPanel
-        art={<StoryArt className="mx-auto h-32 w-full max-w-72" />}
-        body={storyDetail.body}
-        note={storyDetail.accessibilityNote}
-        noteIcon={<AudioLines size={20} strokeWidth={1.75} />}
-        backHref="/library"
-        backLabel={common.backToLibrary}
-      />
+    <div className="page-container py-10 md:py-16">
+      <Suspense
+        fallback={
+          <p role="status" className="text-body-md text-on-surface-variant">
+            {dict.common.loading}
+          </p>
+        }
+      >
+        <Story params={params} />
+      </Suspense>
     </div>
   );
+}
+
+async function Story({ params }: Pick<PageProps<"/[lang]/stories/[slug]">, "params">) {
+  const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
+  const story = await getStory(slug, locale);
+  if (!story) notFound();
+  return <StoryView
+      story={story}
+      dict={dict}
+      actions={<SaveSlot type="story" id={story.id} title={story.title} nextPath={contentHref("story", story.slug)} copy={dict.save} />}
+    />;
 }

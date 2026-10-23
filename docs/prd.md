@@ -31,7 +31,7 @@ Five roles cover the product. Owner is an assumption for the role listed as "Oth
 | Role | Who | Can | Cannot |
 | --- | --- | --- | --- |
 | Guest | Any visitor, no sign-in | Browse approved content and use try-on on the device | Save progress to a server, see drafts |
-| Member | Signed-in user | Everything a Guest can do, save progress and bookmarks, earn badges | Change review status, see drafts, grant roles |
+| Member | Signed-in user | Everything a Guest can do, save progress and bookmarks of approved content, earn badges, ask the grounded assistant within a daily limit | Change review status, see drafts, grant roles, bookmark drafts |
 | Reviewer | Curator, a human | Create and edit drafts, run AI jobs, approve or reject content, unpublish, read the audit log | Grant roles, delete content, approve their own work |
 | AI Workflow | System actor, no login | Generate chapter drafts, image prompts, and audio through a server job | Approve anything, publish anything, write outside draft status |
 | Owner | Team lead (assumed) | Grant and revoke Reviewer and Owner roles | Nothing else is required of this role |
@@ -40,7 +40,7 @@ Roles are assigned on the server only. Users cannot change their own role.
 
 ## Features
 
-Thirteen requirements make up the MVP: nine are must-haves and four are should-haves. If time runs short, cut the should-haves first, starting with the region pages.
+Sixteen requirements make up the MVP: ten are must-haves and six are should-haves. FR-14 to FR-16 were added on 2026-10-23 (Phase 2). If time runs short, cut the should-haves first, starting with the assistant, then the region map and pages.
 
 | ID | Area | Requirement | Priority |
 | --- | --- | --- | --- |
@@ -57,6 +57,9 @@ Thirteen requirements make up the MVP: nine are must-haves and four are should-h
 | FR-11 | Review queue | List drafts by type and status. Edit fields. Approve, reject with a reason, or unpublish. | Must |
 | FR-12 | AI jobs | Start a job, see its status, and reuse cached output. Jobs run on the server only. | Must |
 | FR-13 | Audit log | Record every approval, rejection, unpublish, and role change with the actor, time, and reason. | Must |
+| FR-14 | Search | Search approved stories, recipes, costumes, and regions from the header (Ctrl+K) and from `/search?q=`. Results are grouped by type, in the visitor's language, and tolerate typos. Drafts are never returned, to anyone. The search term is shown as plain text. | Must |
+| FR-15 | Grounded assistant "Tanya Nusantara" | Members ask a question about Indonesian culture. The answer is built only from approved, sourced content found by FR-14, cites each item it used with a link and its sources, and politely declines anything outside the archive. A daily limit per member keeps costs safe. No question text is stored. This is not free-form chat. | Should |
+| FR-16 | Region map | `/regions` shows a keyboard-accessible province map (Natural Earth, public domain) that opens each region page, with a list fallback below. It is for navigation only, with no game mechanics. | Should |
 
 ## Content pipeline
 
@@ -68,13 +71,13 @@ Recipes and costumes skip chaptering and audio, but they pass the same review ga
 
 ## Data model
 
-The schema has 16 tables. Every content table carries one review status, and only approved rows are public. The full ERD and the RLS policies come from the build spec.
+The schema has 16 tables, plus two member tables added in Phase 2 (bookmarks and assistant_usage). Every content table carries one review status, and only approved rows are public. The full ERD and the RLS policies come from the build spec.
 
 | Table | Purpose | Key fields |
 | --- | --- | --- |
 | profiles | Member identity, linked to the auth user | id, username, created\_at |
 | user\_roles | Reviewer and Owner grants; written by Owner only | user\_id, role |
-| regions | Region pages and the filter for every content type | slug, name\_id, name\_en, sort\_order, review\_status |
+| regions | Region pages, the map, and the filter for every content type | slug, name\_id, name\_en, summary\_id, summary\_en, province\_codes, sort\_order, review\_status |
 | stories | Folklore title and summary | region\_id, slug, title\_id, title\_en, summary\_en, review\_status |
 | story\_chapters | Chapter text, audio, and illustration | story\_id, chapter\_no, text\_id, text\_en, audio\_description, image\_alt, audio\_url, audio\_hash |
 | recipes | Recipe header and dietary data | region\_id, name\_id, name\_en, servings, minutes, dietary\_tags, halal\_status |
@@ -88,6 +91,8 @@ The schema has 16 tables. Every content table carries one review status, and onl
 | user\_progress | Story progress per Member, one row per story | user\_id, story\_id, last\_chapter\_no, updated\_at |
 | ai\_jobs | Every AI request, with its cache key | job\_type, target\_type, target\_id, input\_hash, status, output, model |
 | audit\_log | Who changed what, and why | actor\_id, actor\_type, action, entity, entity\_id, reason |
+| bookmarks | A Member's saved items, approved content only (Phase 2) | user\_id, content\_type, content\_id, created\_at |
+| assistant\_usage | Questions asked per Member per day; counts only, no text (Phase 2) | user\_id, usage\_date, question\_count |
 
 No table stores user photos. Try-on has no upload endpoint.
 
@@ -129,7 +134,7 @@ The MVP is done when all eleven checks pass. Each check is a yes or no, and the 
 
 ## Out of scope
 
-These are not built for the festival MVP. RPG mode and map game mechanics are dropped.
+These are not built for the festival MVP. RPG mode and map game mechanics are dropped. A navigation map (FR-16) and the grounded assistant (FR-15) are allowed; they are not a map game or free-form chat.
 
 - Community story submissions and moderation queues
 - Video generation from stories

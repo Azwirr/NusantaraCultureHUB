@@ -2,7 +2,11 @@
 
 ## Scope
 - MVP only. Read docs/prd.md and docs/build-plan.md before any change.
-- Out of scope: RPG or map mode, community submissions, video, free-form AI chat, photo storage, payments.
+- Out of scope: RPG mode or a map game, community submissions, video, free-form AI chat, photo storage, payments.
+- Allowed (user decision, 2026-10-23):
+  - A navigation map of provinces on /regions that opens region pages. No game mechanics.
+  - The grounded assistant "Tanya Nusantara": it answers only from approved, sourced content, cites the items it used, and declines anything else. Members only, with a daily limit. Free-form chat stays out of scope.
+- AI calls run on the server only, through Vercel AI Gateway. Tests use the fake provider; never call a real model from tests.
 - Phase 1 (foundation) makes no AI, TTS, or image calls.
 
 ## Stack

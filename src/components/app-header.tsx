@@ -5,15 +5,16 @@ import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 import { AccountButton, AccountButtonFallback } from "./account-button";
+import { CommandSearch } from "./command-search";
 import { HeaderNav, HeaderNavLinks } from "./bottom-nav";
 import { LanguageSwitcher } from "./language-switcher";
 import { BrandMark } from "./line-art";
 import { ThemeToggle } from "./theme-toggle";
 
 /**
- * Site header. Phones: brand, language and theme (the bottom tab bar carries
- * navigation and the account tab). md: a second row with the four links and
- * the account button. lg: one row.
+ * Site header. Phones: brand, search, language and theme (the bottom tab bar
+ * carries navigation and the account tab). md: a second row with the links
+ * and the account button. lg: one row, and search becomes a field (Ctrl+K).
  */
 export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const navLabels = dict.nav;
@@ -37,6 +38,7 @@ export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }
         </div>
 
         <div className="flex shrink-0 items-center gap-1">
+          <CommandSearch copy={dict.search} locale={locale} />
           <LanguageSwitcher
             current={locale}
             label={dict.language.label}

@@ -129,3 +129,77 @@ export function StoryArt({ className }: ArtProps) {
     </svg>
   );
 }
+
+/** Wayang kulit figure in profile, on its central rod: home hero collage. */
+export function WayangArt({ className }: ArtProps) {
+  return (
+    <svg viewBox="0 0 160 240" aria-hidden="true" focusable="false" className={`line-art ${className ?? ""}`}>
+      <g {...lineProps}>
+        <path d="M78 22 C70 14 72 6 82 6 C92 8 94 18 88 24" />
+        <path d="M76 24 L66 30 L60 44 L70 42 L74 50 L84 46 L92 34 L88 24 Z" />
+        <path d="M70 42 C66 46 64 50 66 54" />
+        <path d="M74 50 L72 60 C64 64 60 76 62 90 L68 132 L96 132 L102 90 C104 76 98 64 90 60 L84 46" />
+        <path d="M66 70 C52 78 42 94 40 112 L46 114 C50 98 58 86 70 80" />
+        <path d="M98 72 C112 82 120 100 122 120 L116 122 C112 104 104 90 94 82" />
+        <path d="M40 112 L34 132 M122 120 L130 140" />
+        <path d="M68 132 L62 176 L60 196 L74 196 L80 150 L86 196 L100 196 L98 176 L96 132" />
+        <path d="M64 100 L100 100 M66 112 L98 112" strokeDasharray="2 4" />
+        <path d="M80 6 L80 2 M80 196 L80 238" />
+      </g>
+      <g {...lineProps} strokeWidth={1}>
+        <KawungNode cx={80} cy={84} size={7} />
+        <KawungNode cx={80} cy={160} size={6} />
+      </g>
+    </svg>
+  );
+}
+
+/** Rumah gadang with its curved gonjong roof horns: home hero collage. */
+export function RumahGadangArt({ className }: ArtProps) {
+  return (
+    <svg viewBox="0 0 280 180" aria-hidden="true" focusable="false" className={`line-art ${className ?? ""}`}>
+      <g {...lineProps}>
+        <path d="M14 30 C40 58 70 66 96 60 C110 56 124 48 140 44 C156 48 170 56 184 60 C210 66 240 58 266 30" />
+        <path d="M40 54 C34 40 30 30 26 22 M240 54 C246 40 250 30 254 22" />
+        <path d="M96 60 C100 48 104 40 108 32 M184 60 C180 48 176 40 172 32" />
+        <path d="M30 60 C80 80 200 80 250 60 L240 104 L40 104 Z" />
+        <path d="M40 104 L46 138 L234 138 L240 104" />
+        <path d="M60 112 L60 132 M90 112 L90 132 M120 112 L120 132 M160 112 L160 132 M190 112 L190 132 M220 112 L220 132" />
+        <path d="M128 138 L128 112 L152 112 L152 138" />
+        <path d="M50 138 L50 168 M230 138 L230 168 M100 138 L100 168 M180 138 L180 168" />
+        <path d="M118 168 L118 150 L162 150 L162 168 M8 168 L272 168" />
+      </g>
+      <g {...lineProps} strokeWidth={1}>
+        {[70, 110, 170, 210].map((x) => (
+          <KawungNode key={x} cx={x} cy={90} size={6} />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+/** A strip of batik parang: diagonal bands of linked blades. Decorative. */
+export function BatikArt({ className }: ArtProps) {
+  const bands = [0, 1, 2, 3, 4, 5];
+  return (
+    <svg viewBox="0 0 240 120" aria-hidden="true" focusable="false" className={`line-art ${className ?? ""}`}>
+      <g {...lineProps} strokeWidth={1.25}>
+        <rect x="2" y="2" width="236" height="116" rx="4" />
+        {bands.map((band) => {
+          const x = band * 44 - 40;
+          return (
+            <g key={band}>
+              <path d={`M${x} 118 L${x + 112} 2`} />
+              <path d={`M${x + 22} 118 L${x + 134} 2`} strokeDasharray="1 5" />
+              {[0, 1, 2, 3].map((step) => {
+                const cx = x + 14 + step * 28;
+                const cy = 104 - step * 29;
+                return <path key={step} d={`M${cx} ${cy} c6 -10 16 -12 20 -6 c-6 2 -10 8 -12 14 c-4 -2 -6 -5 -8 -8 Z`} />;
+              })}
+            </g>
+          );
+        })}
+      </g>
+    </svg>
+  );
+}

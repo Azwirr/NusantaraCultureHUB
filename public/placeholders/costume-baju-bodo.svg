@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Baju Bodo, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="78" r="22"/>
+    <path d="M128 70 C130 50 170 50 172 70"/>
+    <path d="M80 120 L220 120 L220 210 L80 210 Z"/>
+    <path d="M136 120 L150 140 L164 120"/>
+    <path d="M80 120 L80 160 M220 120 L220 160" stroke-dasharray="2 5"/>
+    <path d="M110 210 L100 360 L200 360 L190 210"/>
+    <path d="M106 250 L194 250 M104 290 L196 290 M102 330 L198 330"/>
+    <path d="M150 210 L150 360" stroke-dasharray="2 6"/>
+  </g>
+</svg>

@@ -1,34 +1,48 @@
 "use client";
 
-import { BookOpen, House, LayoutList, type LucideIcon, UserRound } from "lucide-react";
+import { Bookmark, BookOpen, House, LayoutList, type LucideIcon, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { stripLocalePrefix } from "@/lib/i18n/paths";
 
-export type NavLabels = { home: string; library: string; regions: string; me: string };
+export type NavLabels = {
+  home: string;
+  library: string;
+  regions: string;
+  saved: string;
+  me: string;
+  /** The tab bar has five tabs at 360px, so it uses a shorter library label. */
+  libraryShort: string;
+};
+
+type NavKey = "home" | "library" | "regions" | "saved" | "me";
 
 type NavItem = {
-  key: keyof NavLabels;
+  key: NavKey;
   href: string;
   icon: LucideIcon;
   /** Unprefixed path roots that belong to this tab. */
   sections: string[];
+  /** Only the exact path counts (Saya must not light up on /me/saved). */
+  exact?: boolean;
 };
 
-// Wilayah uses a neutral list icon: regions are lists, never a map (PRD, out of scope).
+// Wilayah keeps a neutral list icon: the region map is for navigation, and
+// the list stays the main way in (FR-16).
 const NAV_ITEMS: NavItem[] = [
   { key: "home", href: "/", icon: House, sections: [] },
-  { key: "library", href: "/library", icon: BookOpen, sections: ["/stories", "/recipes", "/try-on"] },
+  { key: "library", href: "/library", icon: BookOpen, sections: ["/stories", "/recipes", "/costumes", "/try-on", "/search"] },
   { key: "regions", href: "/regions", icon: LayoutList, sections: [] },
-  { key: "me", href: "/me", icon: UserRound, sections: [] },
+  { key: "saved", href: "/me/saved", icon: Bookmark, sections: [] },
+  { key: "me", href: "/me", icon: UserRound, sections: [], exact: true },
 ];
 
 function currentState(item: NavItem, pathname: string | null): "page" | "true" | undefined {
   if (pathname === null) return undefined;
   const path = stripLocalePrefix(pathname);
   if (path === item.href) return "page";
-  if (item.href === "/") return undefined;
+  if (item.href === "/" || item.exact) return undefined;
   const inSection = [item.href, ...item.sections].some(
     (root) => path === root || path.startsWith(`${root}/`),
   );
@@ -47,7 +61,7 @@ export function BottomNavLinks({ labels, label, pathname }: NavProps & { pathnam
       aria-label={label}
       className="fixed inset-x-0 bottom-0 z-40 border-t border-ink bg-surface pb-[env(safe-area-inset-bottom)] md:hidden"
     >
-      <ul className="mx-auto grid max-w-lg grid-cols-4">
+      <ul className="mx-auto grid max-w-lg grid-cols-5">
         {NAV_ITEMS.map((item) => {
           const current = currentState(item, pathname);
           const Icon = item.icon;
@@ -65,7 +79,7 @@ export function BottomNavLinks({ labels, label, pathname }: NavProps & { pathnam
                 ].join(" ")}
               >
                 <Icon aria-hidden="true" size={24} strokeWidth={1.75} />
-                <span>{labels[item.key]}</span>
+                <span>{item.key === "library" ? labels.libraryShort : labels[item.key]}</span>
               </Link>
             </li>
           );

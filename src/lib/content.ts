@@ -1,0 +1,329 @@
+import "server-only";
+
+import { cacheLife, cacheTag } from "next/cache";
+
+import { CONTENT_TAG } from "./content-tags";
+import type { Locale } from "./i18n/config";
+import { createPublicClient } from "./supabase/public";
+
+// Public (approved) content for guest pages. Every cached read uses the guest
+// client, so RLS returns approved rows only, and is tagged CONTENT_TAG: review
+// actions expire it when something is approved or unpublished.
+// The load* functions take a client, so the review queue can preview a draft
+// with the same templates through the reviewer's own session.
+// Content text is data. Pages render it as plain text nodes only.
+
+/** The guest client for public pages, or a reviewer session client for previews. */
+export type ContentClient = ReturnType<typeof createPublicClient>;
+
+export type PublicType = "story" | "recipe" | "costume";
+
+export type ContentCard = {
+  type: PublicType;
+  id: string;
+  slug: string;
+  title: string;
+  summary: string | null;
+  region: { slug: string; name: string } | null;
+  minutes: number | null;
+};
+
+export type RegionSummary = {
+  id: string;
+  slug: string;
+  name: string;
+  summary: string | null;
+  provinceCodes: string[];
+  counts: Record<PublicType, number>;
+};
+
+export type SourceItem = { id: string; title: string; url: string | null; credit: string | null; license: string | null };
+
+type Pair = { id: string | null; en: string | null };
+type RegionRef = { slug: string; name_id: string; name_en: string | null } | null;
+type Key = { slug: string } | { id: string };
+
+/** Approved content has both languages; fall back to the other one just in case. */
+export function pick(locale: Locale, value: Pair): string {
+  return (locale === "en" ? value.en || value.id : value.id || value.en) ?? "";
+}
+
+function regionRef(locale: Locale, region: RegionRef) {
+  return region ? { slug: region.slug, name: pick(locale, { id: region.name_id, en: region.name_en }) } : null;
+}
+
+function fail(what: string, error: { message: string } | null): never {
+  throw new Error(`public content (${what}): ${error?.message ?? "unknown error"}`);
+}
+
+/** Every approved story, recipe and costume as a card, newest first. */
+export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  const supabase = createPublicClient();
+  const region = "regions(slug, name_id, name_en)";
+  const [stories, recipes, costumes] = await Promise.all([
+    supabase.from("stories").select(`id, slug, title_id, title_en, summary_id, summary_en, updated_at, ${region}`),
+    supabase.from("recipes").select(`id, slug, name_id, name_en, minutes, updated_at, ${region}`),
+    supabase.from("costumes").select(`id, slug, name_id, name_en, info_id, info_en, updated_at, ${region}`),
+  ]);
+  if (stories.error) fail("stories", stories.error);
+  if (recipes.error) fail("recipes", recipes.error);
+  if (costumes.error) fail("costumes", costumes.error);
+
+  const cards: Array<ContentCard & { updatedAt: string }> = [
+    ...stories.data.map((row) => ({
+      type: "story" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: null,
+      title: pick(locale, { id: row.title_id, en: row.title_en }),
+      summary: pick(locale, { id: row.summary_id, en: row.summary_en }) || null,
+      region: regionRef(locale, row.regions),
+    })),
+    ...recipes.data.map((row) => ({
+      type: "recipe" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: row.minutes,
+      title: pick(locale, { id: row.name_id, en: row.name_en }),
+      summary: null,
+      region: regionRef(locale, row.regions),
+    })),
+    ...costumes.data.map((row) => ({
+      type: "costume" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: null,
+      title: pick(locale, { id: row.name_id, en: row.name_en }),
+      summary: pick(locale, { id: row.info_id, en: row.info_en }) || null,
+      region: regionRef(locale, row.regions),
+    })),
+  ];
+  return cards
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+    .map((card) => ({
+      type: card.type, id: card.id, slug: card.slug, title: card.title,
+      summary: card.summary, region: card.region, minutes: card.minutes,
+    }));
+}
+
+/** Approved regions with the number of approved items in each. */
+export async function getRegions(locale: Locale): Promise<RegionSummary[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  const { data, error } = await createPublicClient()
+    .from("regions")
+    .select("id, slug, name_id, name_en, summary_id, summary_en, province_codes, sort_order")
+    .order("sort_order")
+    .order("name_id");
+  if (error) fail("regions", error);
+  const library = await getLibrary(locale);
+  return data.map((row) => {
+    const items = library.filter((card) => card.region?.slug === row.slug);
+    const count = (type: PublicType) => items.filter((card) => card.type === type).length;
+    return {
+      id: row.id,
+      slug: row.slug,
+      name: pick(locale, { id: row.name_id, en: row.name_en }),
+      summary: pick(locale, { id: row.summary_id, en: row.summary_en }) || null,
+      provinceCodes: row.province_codes,
+      counts: { story: count("story"), recipe: count("recipe"), costume: count("costume") },
+    };
+  });
+}
+
+export type RegionDetail = RegionSummary & { items: ContentCard[] };
+
+export async function getRegion(slug: string, locale: Locale): Promise<RegionDetail | null> {
+  const region = (await getRegions(locale)).find((item) => item.slug === slug);
+  if (!region) return null;
+  const items = (await getLibrary(locale)).filter((card) => card.region?.slug === slug);
+  return { ...region, items };
+}
+
+/** Sources cited by an item. For guests, RLS hides sources of hidden content. */
+async function sourcesFor(supabase: ContentClient, type: string, id: string): Promise<SourceItem[]> {
+  const { data, error } = await supabase
+    .from("content_sources")
+    .select("sources(id, title, url, credit, license)")
+    .eq("content_type", type)
+    .eq("content_id", id);
+  if (error) fail("sources", error);
+  return data.flatMap((row) => (row.sources ? [row.sources] : []));
+}
+
+export type StoryDetail = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  region: { slug: string; name: string } | null;
+  chapters: Array<{
+    id: string;
+    number: number;
+    text: string;
+    audioDescription: string;
+    imageAlt: string;
+    imageUrl: string | null;
+  }>;
+  sources: SourceItem[];
+};
+
+export async function getStory(slug: string, locale: Locale): Promise<StoryDetail | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  return loadStory(createPublicClient(), { slug }, locale);
+}
+
+/** One story by slug or id, as the given client may see it. */
+export async function loadStory(supabase: ContentClient, key: Key, locale: Locale): Promise<StoryDetail | null> {
+  const query = supabase
+    .from("stories")
+    .select("id, slug, title_id, title_en, summary_id, summary_en, regions(slug, name_id, name_en)");
+  const { data: story, error } = await ("slug" in key ? query.eq("slug", key.slug) : query.eq("id", key.id)).maybeSingle();
+  if (error) fail("story", error);
+  if (!story) return null;
+  const [chapters, sources] = await Promise.all([
+    supabase
+      .from("story_chapters")
+      .select(
+        "id, chapter_no, text_id, text_en, audio_description_id, audio_description_en, image_alt_id, image_alt_en, image_url",
+      )
+      .eq("story_id", story.id)
+      .order("chapter_no"),
+    sourcesFor(supabase, "story", story.id),
+  ]);
+  if (chapters.error) fail("chapters", chapters.error);
+  return {
+    id: story.id,
+    slug: story.slug,
+    title: pick(locale, { id: story.title_id, en: story.title_en }),
+    summary: pick(locale, { id: story.summary_id, en: story.summary_en }),
+    region: regionRef(locale, story.regions),
+    chapters: chapters.data.map((row) => ({
+      id: row.id,
+      number: row.chapter_no,
+      text: pick(locale, { id: row.text_id, en: row.text_en }),
+      audioDescription: pick(locale, { id: row.audio_description_id, en: row.audio_description_en }),
+      imageAlt: pick(locale, { id: row.image_alt_id, en: row.image_alt_en }),
+      imageUrl: row.image_url,
+    })),
+    sources,
+  };
+}
+
+export type RecipeDetail = {
+  id: string;
+  slug: string;
+  title: string;
+  /** The name in the other language (FR-07: bilingual names). */
+  altTitle: string;
+  region: { slug: string; name: string } | null;
+  servings: number;
+  minutes: number | null;
+  dietaryTags: string[];
+  halalStatus: string;
+  ingredients: Array<{ id: string; name: string; amount: number | null; unit: string | null }>;
+  steps: Array<{ id: string; number: number; text: string; timerSeconds: number | null }>;
+  sources: SourceItem[];
+};
+
+export async function getRecipe(slug: string, locale: Locale): Promise<RecipeDetail | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  return loadRecipe(createPublicClient(), { slug }, locale);
+}
+
+export async function loadRecipe(supabase: ContentClient, key: Key, locale: Locale): Promise<RecipeDetail | null> {
+  const query = supabase
+    .from("recipes")
+    .select("id, slug, name_id, name_en, servings, minutes, dietary_tags, halal_status, regions(slug, name_id, name_en)");
+  const { data: recipe, error } = await ("slug" in key ? query.eq("slug", key.slug) : query.eq("id", key.id)).maybeSingle();
+  if (error) fail("recipe", error);
+  if (!recipe) return null;
+  const [ingredients, steps, sources] = await Promise.all([
+    supabase
+      .from("recipe_ingredients")
+      .select("id, name_id, name_en, amount, unit")
+      .eq("recipe_id", recipe.id)
+      .order("position"),
+    supabase
+      .from("recipe_steps")
+      .select("id, step_no, text_id, text_en, timer_seconds")
+      .eq("recipe_id", recipe.id)
+      .order("step_no"),
+    sourcesFor(supabase, "recipe", recipe.id),
+  ]);
+  if (ingredients.error) fail("ingredients", ingredients.error);
+  if (steps.error) fail("steps", steps.error);
+  const names = { id: recipe.name_id, en: recipe.name_en };
+  return {
+    id: recipe.id,
+    slug: recipe.slug,
+    title: pick(locale, names),
+    altTitle: pick(locale === "en" ? "id" : "en", names),
+    region: regionRef(locale, recipe.regions),
+    servings: recipe.servings ?? 1,
+    minutes: recipe.minutes,
+    dietaryTags: recipe.dietary_tags,
+    halalStatus: recipe.halal_status,
+    ingredients: ingredients.data.map((row) => ({
+      id: row.id,
+      name: pick(locale, { id: row.name_id, en: row.name_en }),
+      amount: row.amount === null ? null : Number(row.amount),
+      unit: row.unit,
+    })),
+    steps: steps.data.map((row) => ({
+      id: row.id,
+      number: row.step_no,
+      text: pick(locale, { id: row.text_id, en: row.text_en }),
+      timerSeconds: row.timer_seconds,
+    })),
+    sources,
+  };
+}
+
+export type CostumeDetail = {
+  id: string;
+  slug: string;
+  title: string;
+  altTitle: string;
+  info: string;
+  imageUrl: string | null;
+  region: { slug: string; name: string } | null;
+  sources: SourceItem[];
+};
+
+export async function getCostume(slug: string, locale: Locale): Promise<CostumeDetail | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  return loadCostume(createPublicClient(), { slug }, locale);
+}
+
+export async function loadCostume(supabase: ContentClient, key: Key, locale: Locale): Promise<CostumeDetail | null> {
+  const query = supabase
+    .from("costumes")
+    .select("id, slug, name_id, name_en, info_id, info_en, reference_image_url, regions(slug, name_id, name_en)");
+  const { data: costume, error } = await ("slug" in key ? query.eq("slug", key.slug) : query.eq("id", key.id)).maybeSingle();
+  if (error) fail("costume", error);
+  if (!costume) return null;
+  const names = { id: costume.name_id, en: costume.name_en };
+  return {
+    id: costume.id,
+    slug: costume.slug,
+    title: pick(locale, names),
+    altTitle: pick(locale === "en" ? "id" : "en", names),
+    info: pick(locale, { id: costume.info_id, en: costume.info_en }),
+    imageUrl: costume.reference_image_url,
+    region: regionRef(locale, costume.regions),
+    sources: await sourcesFor(supabase, "costume", costume.id),
+  };
+}
+
+/** Slugs of approved items, so detail pages can be prerendered. */
+export async function getPublicSlugs(type: PublicType): Promise<string[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  const table = type === "story" ? "stories" : type === "recipe" ? "recipes" : "costumes";
+  const { data, error } = await createPublicClient().from(table).select("slug");
+  if (error) fail(`${type} slugs`, error);
+  return data.map((row) => row.slug);
+}

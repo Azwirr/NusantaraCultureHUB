@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Bundo Kanduang dress, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <path d="M150 40 C120 40 96 54 90 70 C110 62 130 60 150 60 C170 60 190 62 210 70 C204 54 180 40 150 40 Z"/>
+    <path d="M100 62 C96 50 92 44 86 40 M200 62 C204 50 208 44 214 40"/>
+    <circle cx="150" cy="96" r="22"/>
+    <path d="M110 140 C120 124 180 124 190 140 L200 230 L100 230 Z"/>
+    <path d="M110 140 L80 220 L96 226 L118 170 M190 140 L220 220 L204 226 L182 170"/>
+    <path d="M118 138 L182 222" stroke-width="3"/>
+    <path d="M100 230 L90 360 L210 360 L200 230"/>
+    <path d="M96 270 L204 270 M94 300 L206 300 M92 330 L208 330" stroke-dasharray="2 5"/>
+  </g>
+</svg>

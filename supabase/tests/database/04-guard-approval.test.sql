@@ -14,10 +14,10 @@ insert into public.user_roles (user_id, role) values
   ('11111111-1111-1111-1111-111111111111', 'reviewer'),
   ('22222222-2222-2222-2222-222222222222', 'reviewer');
 
-insert into public.regions (id, slug, name_id, name_en) values
-  ('a0000000-0000-0000-0000-000000000001', 'wilayah-satu', 'Satu', 'One'),
-  ('a0000000-0000-0000-0000-000000000002', 'wilayah-dua', 'Dua', 'Two'),
-  ('a0000000-0000-0000-0000-000000000003', 'wilayah-tiga', 'Tiga', null);
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en) values
+  ('a0000000-0000-0000-0000-000000000001', 'wilayah-satu', 'Satu', 'One', 'Ringkasan', 'Summary'),
+  ('a0000000-0000-0000-0000-000000000002', 'wilayah-dua', 'Dua', 'Two', 'Ringkasan', 'Summary'),
+  ('a0000000-0000-0000-0000-000000000003', 'wilayah-tiga', 'Tiga', null, 'Ringkasan', 'Summary');
 insert into public.sources (id, title) values ('f0000000-0000-0000-0000-000000000001', 'Source');
 select tests.review('11111111-1111-1111-1111-111111111111', 'region', 'a0000000-0000-0000-0000-000000000001', 'approve');
 
@@ -89,8 +89,8 @@ select is(
 
 -- Four-eyes review --------------------------------------------------------------
 select tests.as_user('11111111-1111-1111-1111-111111111111');
-insert into public.regions (id, slug, name_id, name_en)
-values ('a0000000-0000-0000-0000-000000000004', 'buatan-a', 'Buatan A', 'Made by A');
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en)
+values ('a0000000-0000-0000-0000-000000000004', 'buatan-a', 'Buatan A', 'Made by A', 'Ringkasan', 'Summary');
 select throws_ok(
   $$ select public.review_content('region', 'a0000000-0000-0000-0000-000000000004', 'approve') $$,
   '42501', 'you cannot approve content you created or last edited',
@@ -131,6 +131,26 @@ select throws_ok(
   '23514', 'cannot approve regions: missing name_en',
   'approval needs both languages'
 );
+-- Region intros (migration part 8) are visible text too.
+select tests.as_operator();
+insert into public.regions (id, slug, name_id, name_en, summary_id)
+values ('a0000000-0000-0000-0000-000000000005', 'tanpa-ringkasan', 'Tanpa', 'Without', 'Ringkasan saja');
+select tests.as_user('11111111-1111-1111-1111-111111111111');
+select throws_ok(
+  $$ select public.review_content('region', 'a0000000-0000-0000-0000-000000000005', 'approve') $$,
+  '23514', 'cannot approve regions: missing summary_en',
+  'a region needs its intro in both languages'
+);
+select throws_ok(
+  $$ update public.regions set province_codes = array['ID-XX'] where id = 'a0000000-0000-0000-0000-000000000005' $$,
+  '23514', null,
+  'only real ISO 3166-2:ID province codes are accepted'
+);
+select lives_ok(
+  $$ update public.regions set province_codes = array['ID-SB', 'ID-PD'] where id = 'a0000000-0000-0000-0000-000000000005' $$,
+  'current province codes, including the 2022 Papua provinces, are accepted'
+);
+
 select throws_ok(
   $$ select public.review_content('region', 'a0000000-0000-0000-0000-000000000003', 'reject') $$,
   '23514', 'a reason is required to reject',

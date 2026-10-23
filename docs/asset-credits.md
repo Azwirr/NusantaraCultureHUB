@@ -32,6 +32,10 @@ Drawn for this project as inline SVG in `src/components/line-art.tsx` and `src/c
 | RecipeArt | Home recipe pillar, /recipes placeholder | Cobek and ulekan with chilli and bay leaf |
 | StoryArt | Home story pillar, /stories placeholder | Gunungan (kayon) with sound arcs |
 | MotifDivider | Home | Two 1px rules meeting at a kawung node |
+| WayangArt | Home hero collage (Phase 2) | Wayang kulit figure in profile on its rod |
+| RumahGadangArt | Home hero collage and regions teaser (Phase 2) | Rumah gadang with gonjong roof horns |
+| BatikArt | Home hero collage (Phase 2) | A strip of batik parang |
+| `public/placeholders/costume-*.svg` (3 files) | Costume reference image until a reviewed photo exists (Phase 2) | Line drawings of Pengantin Jawa, Bundo Kanduang and Baju Bodo. Placeholders, not references: reviewers replace them |
 
 ## Other files
 

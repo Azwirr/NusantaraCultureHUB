@@ -8,9 +8,9 @@ select tests.create_user('11111111-1111-1111-1111-111111111111', 'reviewer_a');
 select tests.create_user('33333333-3333-3333-3333-333333333333', 'member_m');
 insert into public.user_roles (user_id, role) values ('11111111-1111-1111-1111-111111111111', 'reviewer');
 
-insert into public.regions (id, slug, name_id, name_en) values
-  ('a0000000-0000-0000-0000-000000000001', 'wilayah-ok', 'Wilayah', 'Region'),
-  ('a0000000-0000-0000-0000-000000000002', 'wilayah-draf', 'Draf', 'Draft');
+insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en) values
+  ('a0000000-0000-0000-0000-000000000001', 'wilayah-ok', 'Wilayah', 'Region', 'Ringkasan', 'Summary'),
+  ('a0000000-0000-0000-0000-000000000002', 'wilayah-draf', 'Draf', 'Draft', 'Ringkasan', 'Summary');
 
 insert into public.stories (id, region_id, slug, title_id, title_en, summary_id, summary_en) values
   ('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'kisah-ok', 'Kisah', 'Story', 'Ringkasan', 'Summary'),

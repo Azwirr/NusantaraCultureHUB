@@ -62,6 +62,30 @@ export type Database = {
         }
         Relationships: []
       }
+      assistant_usage: {
+        Row: {
+          created_at: string
+          question_count: number
+          updated_at: string
+          usage_date: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          question_count?: number
+          updated_at?: string
+          usage_date: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          question_count?: number
+          updated_at?: string
+          usage_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       audit_log: {
         Row: {
           action: string
@@ -128,6 +152,30 @@ export type Database = {
           name_en?: string
           name_id?: string
           rule_key?: string
+        }
+        Relationships: []
+      }
+      bookmarks: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -397,9 +445,12 @@ export type Database = {
           id: string
           name_en: string | null
           name_id: string
+          province_codes: string[]
           review_status: string
           slug: string
           sort_order: number
+          summary_en: string | null
+          summary_id: string | null
           updated_at: string
           updated_by: string | null
         }
@@ -409,9 +460,12 @@ export type Database = {
           id?: string
           name_en?: string | null
           name_id: string
+          province_codes?: string[]
           review_status?: string
           slug: string
           sort_order?: number
+          summary_en?: string | null
+          summary_id?: string | null
           updated_at?: string
           updated_by?: string | null
         }
@@ -421,9 +475,12 @@ export type Database = {
           id?: string
           name_en?: string | null
           name_id?: string
+          province_codes?: string[]
           review_status?: string
           slug?: string
           sort_order?: number
+          summary_en?: string | null
+          summary_id?: string | null
           updated_at?: string
           updated_by?: string | null
         }
@@ -676,6 +733,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assistant_quota: {
+        Args: never
+        Returns: {
+          daily_limit: number
+          remaining: number
+          used: number
+        }[]
+      }
+      consume_assistant_question: {
+        Args: never
+        Returns: {
+          allowed: boolean
+          daily_limit: number
+          remaining: number
+        }[]
+      }
       review_content: {
         Args: {
           p_action: string
@@ -684,6 +757,19 @@ export type Database = {
           p_reason?: string
         }
         Returns: string
+      }
+      search_content: {
+        Args: { p_limit?: number; p_locale?: string; p_query: string }
+        Returns: {
+          content_type: string
+          id: string
+          rank: number
+          region_name: string
+          region_slug: string
+          slug: string
+          summary: string
+          title: string
+        }[]
       }
     }
     Enums: {

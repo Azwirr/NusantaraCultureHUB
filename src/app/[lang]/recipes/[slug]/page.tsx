@@ -1,38 +1,44 @@
-import { Clock, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
-import { Chip } from "@/components/chip";
-import { RecipeArt } from "@/components/line-art";
-import { PageHeader } from "@/components/page-header";
-import { PlaceholderPanel } from "@/components/placeholder-panel";
-import { getDictionary } from "@/lib/i18n/dictionaries";
+import { SaveSlot } from "@/components/save-slot";
+import { RecipeView } from "@/components/views/recipe-view";
+import { getRecipe } from "@/lib/content";
+import { contentHref } from "@/lib/format";
+import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { recipeDetail } = await getDictionary();
-  return { title: recipeDetail.title };
+export async function generateMetadata({ params }: PageProps<"/[lang]/recipes/[slug]">): Promise<Metadata> {
+  const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
+  const recipe = await getRecipe(slug, locale);
+  return recipe ? { title: recipe.title } : { title: dict.recipeDetail.title };
 }
 
-// Phase 1 placeholder. When recipes load, the label goes through
-// <HalalBadge status={recipe.halal_status} />, which shows only verified_by_source.
-export default async function RecipePage() {
-  const { recipeDetail, common } = await getDictionary();
+// FR-07 recipe page. Approved recipes only; the halal label only through HalalBadge.
+export default async function RecipePage({ params }: PageProps<"/[lang]/recipes/[slug]">) {
+  const dict = await getDictionary();
   return (
-    <div className="page-container py-8 md:py-12">
-      <PageHeader kicker={recipeDetail.kicker} title={recipeDetail.title}>
-        <div>
-          <Chip tone="neutral" icon={<Clock size={14} strokeWidth={1.75} />}>
-            {common.comingSoon}
-          </Chip>
-        </div>
-      </PageHeader>
-      <PlaceholderPanel
-        art={<RecipeArt className="mx-auto h-32 w-full max-w-72" />}
-        body={recipeDetail.body}
-        note={recipeDetail.halalNote}
-        noteIcon={<ShieldCheck size={20} strokeWidth={1.75} />}
-        backHref="/library"
-        backLabel={common.backToLibrary}
-      />
+    <div className="page-container py-10 md:py-16">
+      <Suspense
+        fallback={
+          <p role="status" className="text-body-md text-on-surface-variant">
+            {dict.common.loading}
+          </p>
+        }
+      >
+        <Recipe params={params} />
+      </Suspense>
     </div>
   );
+}
+
+async function Recipe({ params }: Pick<PageProps<"/[lang]/recipes/[slug]">, "params">) {
+  const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
+  const recipe = await getRecipe(slug, locale);
+  if (!recipe) notFound();
+  return <RecipeView
+      recipe={recipe}
+      dict={dict} locale={locale}
+      actions={<SaveSlot type="recipe" id={recipe.id} title={recipe.title} nextPath={contentHref("recipe", recipe.slug)} copy={dict.save} />}
+    />;
 }

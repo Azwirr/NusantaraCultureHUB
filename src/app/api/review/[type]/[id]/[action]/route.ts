@@ -1,8 +1,10 @@
+import { revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { apiError, requireApiRole } from "@/lib/api";
+import { CONTENT_TAG } from "@/lib/content-tags";
 import { isReviewAction, isReviewEntityType } from "@/lib/review";
 import { createClient } from "@/lib/supabase/server";
 
@@ -64,5 +66,7 @@ export async function POST(request: NextRequest, ctx: RouteContext<"/api/review/
     }
   }
 
+  // Public pages cache approved content; refresh them in the background.
+  revalidateTag(CONTENT_TAG, "max");
   return NextResponse.json({ id, review_status: data }, { headers: { "Cache-Control": "no-store" } });
 }

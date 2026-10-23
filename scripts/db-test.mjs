@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { PGlite } from "@electric-sql/pglite";
+import { pg_trgm } from "@electric-sql/pglite/contrib/pg_trgm";
 import { pgtap } from "@electric-sql/pglite-pgtap";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -36,7 +37,7 @@ function tapLines(results) {
 }
 
 async function main() {
-  const db = await PGlite.create({ extensions: { pgtap } });
+  const db = await PGlite.create({ extensions: { pgtap, pg_trgm } });
   await db.exec(await read(path.join(root, "scripts", "pglite", "supabase-shim.sql")));
   await db.exec("set search_path to public, extensions;");
 

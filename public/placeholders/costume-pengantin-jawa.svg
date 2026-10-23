@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Javanese wedding attire, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="100" cy="74" r="20"/>
+    <path d="M80 70 C84 50 116 50 120 70"/>
+    <path d="M74 110 C80 96 120 96 126 110 L132 210 L68 210 Z"/>
+    <path d="M100 98 L100 210 M86 120 L114 120"/>
+    <path d="M68 210 L60 350 L140 350 L132 210"/>
+    <path d="M70 250 L130 250 M66 290 L134 290" stroke-dasharray="3 6"/>
+    <circle cx="200" cy="74" r="20"/>
+    <path d="M178 66 C182 46 218 46 222 66 L222 74 L178 74 Z"/>
+    <path d="M172 112 C178 96 222 96 228 112 L232 200 L168 200 Z"/>
+    <path d="M200 100 L200 200 M186 130 L214 130 M186 150 L214 150"/>
+    <path d="M168 200 L164 350 L236 350 L232 200"/>
+    <path d="M168 230 L232 230" stroke-dasharray="3 6"/>
+  </g>
+</svg>

@@ -1,54 +1,11 @@
-import { type BrowserContext, expect, type Page, test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
+import { accessToken, account, publishableKey, restSelect, sessionCookies, signIn, supabaseUrl } from "./helpers";
 import { SAMPLE_ID } from "./routes";
 
-// Signed-in flows against a real Supabase project (staging). The accounts are
-// confirmed test users whose credentials live only in .env.local:
-//   E2E_MEMBER_EMAIL / E2E_MEMBER_PASSWORD      (no role)
-//   E2E_REVIEWER_EMAIL / E2E_REVIEWER_PASSWORD  (user_roles: reviewer)
-// None of these tests changes data: review calls are made where the database
-// must refuse them.
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "";
-
-function account(role: "MEMBER" | "REVIEWER") {
-  const email = process.env[`E2E_${role}_EMAIL`];
-  const password = process.env[`E2E_${role}_PASSWORD`];
-  return email && password ? { email, password } : null;
-}
-
-async function signIn(page: Page, credentials: { email: string; password: string }) {
-  await page.goto("/login");
-  await page.locator('input[name="email"]').fill(credentials.email);
-  await page.locator('input[name="password"]').fill(credentials.password);
-  // The email form's button; the Google button is a separate form.
-  await page.getByRole("button", { name: /^(Sign in|Masuk)$/ }).click();
-  await page.waitForURL("**/me");
-}
-
-/** The session cookie, reassembled from its chunks. */
-async function sessionCookies(context: BrowserContext) {
-  return (await context.cookies())
-    .filter((cookie) => /^sb-.+-auth-token(\.\d+)?$/.test(cookie.name))
-    .sort((a, b) => Number(a.name.split(".").at(-1)) - Number(b.name.split(".").at(-1)));
-}
-
-async function accessToken(context: BrowserContext): Promise<string> {
-  const raw = (await sessionCookies(context)).map((cookie) => cookie.value).join("");
-  const json = raw.startsWith("base64-")
-    ? Buffer.from(raw.slice("base64-".length), "base64url").toString("utf8")
-    : decodeURIComponent(raw);
-  return (JSON.parse(json) as { access_token: string }).access_token;
-}
-
-/** Queries the Supabase REST API directly with this user's own token. */
-async function restSelect(page: Page, path: string): Promise<{ status: number; rows: unknown[] }> {
-  const response = await page.request.get(`${supabaseUrl}/rest/v1/${path}`, {
-    headers: { apikey: publishableKey, Authorization: `Bearer ${await accessToken(page.context())}` },
-  });
-  return { status: response.status(), rows: response.ok() ? await response.json() : [] };
-}
+// Signed-in flows against a real Supabase project (staging); see helpers.ts
+// for the test accounts. None of these tests changes data: review calls are
+// made where the database must refuse them.
 
 test.describe("signed-in member", () => {
   const member = account("MEMBER");
@@ -149,8 +106,8 @@ test.describe("signed-in reviewer", () => {
     const [story] = (await restSelect(page, "stories?select=id&slug=eq.timun-mas")).rows as { id: string }[];
     const response = await page.request.post(`/api/review/story/${story.id}/approve`, { data: {} });
     expect(response.status()).toBe(409);
-    // The seed has no Indonesian summary yet, so guard_approval blocks it.
-    expect((await response.json()).error.message).toContain("summary_id");
+    // Its region is still a draft (and no source is cited), so guard_approval blocks it.
+    expect((await response.json()).error.message).toContain("region must be approved first");
     const after = await restSelect(page, `stories?select=review_status&id=eq.${story.id}`);
     expect(after.rows).toEqual([{ review_status: "draft" }]);
   });

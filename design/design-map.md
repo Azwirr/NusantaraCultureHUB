@@ -131,3 +131,24 @@ Every route lives under `src/app/[lang]/`. The proxy rewrites unprefixed URLs to
 | Badges for finishing story 1 and cooking the first recipe | FR-10 | Shown on /me |
 | Review queue: edit, approve, reject with reason, unpublish | FR-11 | Uses the status tokens defined here |
 | AI jobs and the audit log views | FR-12, FR-13 | Staff only |
+
+## Design v2 (Phase 2, 2026-10-23)
+
+The Stitch "sketchbook archive" identity stays: paper, Batik Indigo, Saga Brown, kawung linework, Merriweather and Plus Jakarta Sans. Phase 2 makes it editorial.
+
+| Change | Where | Notes |
+| --- | --- | --- |
+| Display type: `text-display` (60px) and `text-display-mobile` (38px), `text-numeral` for big numbers | `globals.css` | Page heroes and detail titles. Merriweather 700; numerals in 300 |
+| `rule-lead`: a 1px ink rule with a short saga-brown lead | `globals.css` | Opens every editorial section (`SectionHeading`) |
+| `measure`: a 68ch reading column | `globals.css` | Story text, recipe steps, info cards |
+| `rise`: content rises 8px and fades in once, staggered with `--rise-delay` | `globals.css` | Cut to nothing under `prefers-reduced-motion` |
+| Hero collage: rumah gadang, wayang and batik parang on paper plates | Home | Project-owned line art, decorative (`aria-hidden`) |
+| Live counts from approved rows only | Home | Hidden while nothing is approved; a note explains the review instead. Replaces the invented "38 Provinsi" strip |
+| "How we verify" strip on the inverse surface | Home | Bilingual, sourced, approved by a second person. Our trust edge |
+| `ContentCard`: tinted line-art plate, kicker with type and region, serif title as a stretched link | Library, region pages | `action` slot for the save button (M4) |
+| Detail views shared with the staff preview | `src/components/views/*` | `/review/preview/[type]/[id]` renders a draft with the public template |
+| Story reader: audio description, then illustration (or its alt text), then text | `/stories/[slug]` | PRD FR-04 order; chapter list on the side from `lg` |
+| Recipe page: servings stepper that scales amounts, numbered steps | `/recipes/[slug]` | The halal chip only through `HalalBadge` |
+| Costume page: reference image plate and info card | `/costumes/[slug]` | New route; try-on joins in Phase 4 |
+
+Public pages read approved content through a cookie-less guest client with `"use cache"` and the `public-content` tag, so they prerender. Review actions expire the tag.

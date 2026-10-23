@@ -1,4 +1,4 @@
-/** Every page route from the build plan, plus the extra /regions index. */
+/** Every page route from the build plan, plus the Phase 2 pages. */
 export const PAGE_ROUTES = [
   "/",
   "/library",
@@ -6,8 +6,11 @@ export const PAGE_ROUTES = [
   "/regions/jawa",
   "/stories/timun-mas",
   "/recipes/rendang-daging",
+  "/costumes/baju-bodo",
   "/try-on",
   "/me",
+  "/me/saved",
+  "/search?q=rendang",
   "/login",
   "/signup",
   "/review",

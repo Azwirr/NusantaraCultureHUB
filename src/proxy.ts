@@ -64,14 +64,15 @@ export async function proxy(request: NextRequest) {
   return response;
 }
 
-/** Pages that need a signed-in user, without their locale prefix. */
-const SIGNED_IN_PAGES = new Set(["/me", "/review"]);
+/** Sections that need a signed-in user, without their locale prefix. */
+const SIGNED_IN_SECTIONS = ["/me", "/review"];
 
 function guestRedirect(request: NextRequest): URL | null {
   const segments = request.nextUrl.pathname.split("/");
   const path = isLocale(segments[1]) ? `/${segments.slice(2).join("/")}` : request.nextUrl.pathname;
   const normalized = path.replace(/\/+$/, "") || "/";
-  if (!SIGNED_IN_PAGES.has(normalized)) return null;
+  const protectedPath = SIGNED_IN_SECTIONS.some((root) => normalized === root || normalized.startsWith(`${root}/`));
+  if (!protectedPath) return null;
 
   const url = request.nextUrl.clone();
   url.pathname = "/login";
