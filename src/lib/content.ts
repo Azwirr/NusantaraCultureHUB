@@ -4,6 +4,7 @@ import { cacheLife, cacheTag } from "next/cache";
 
 import { CONTENT_TAG } from "./content-tags";
 import { localCover, type Cover } from "./media/covers";
+import { costumeParts } from "./try-on/assets";
 import type { Locale } from "./i18n/config";
 import { createPublicClient } from "./supabase/public";
 
@@ -391,7 +392,7 @@ export async function getPublicSlugs(type: PublicType): Promise<string[]> {
 }
 
 /** Approved dress with a picture, for the try-on studio. Cached like the library. */
-export type TryOnDress = { slug: string; title: string; imageUrl: string; credit: string; licence: string };
+export type TryOnDress = { slug: string; title: string; parts: Record<"head" | "top" | "bottom", string>; credit: string; licence: string };
 
 export async function getTryOnDresses(locale: Locale): Promise<TryOnDress[]> {
   "use cache";
@@ -399,7 +400,8 @@ export async function getTryOnDresses(locale: Locale): Promise<TryOnDress[]> {
   cacheTag(CONTENT_TAG);
   const slugs = await getPublicSlugs("costume");
   const details = await Promise.all(slugs.map((slug) => getCostume(slug, locale)));
-  return details.flatMap((dress) =>
-    dress?.picture ? [{ slug: dress.slug, title: dress.title, imageUrl: dress.picture.url, credit: dress.picture.credit, licence: dress.picture.licence }] : [],
-  );
+  return details.flatMap((dress) => {
+    const parts = dress && costumeParts(dress.slug);
+    return dress && parts ? [{ slug: dress.slug, title: dress.title, parts, credit: "Nusantara Culture Hub · OpenAI", licence: "Ilustrasi AI / AI illustration" }] : [];
+  });
 }

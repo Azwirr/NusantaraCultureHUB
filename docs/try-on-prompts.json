@@ -1,0 +1,108 @@
+[
+  {
+    "slug": "baju-bodo",
+    "prompt": "Use case: product-mockup. Asset: a single Baju Bodo traditional Bugis–Makassar costume sprite atlas for a browser virtual dressing room. Transparent RGBA background, no person, no mannequin, no skin, no face, no arms or legs, no hanger, no text, no borders or shadow outside objects. Wide canvas divided into three equal vertical columns, objects strictly confined to their own column with ample transparent gaps. LEFT column: gold jasmine floral hair ornament only. CENTER column: front-facing vivid coral-orange Baju Bodo, loose rectangular short sleeved translucent silk blouse with modest opaque lining and gold collar necklace, straight symmetric invisible-body garment with empty neck opening and empty sleeve openings. RIGHT column: matching long straight woven Bugis silk sarong in burgundy with gold fine check pattern, front-facing from waist to ankles. Only these three separate garments, not assembled. Elegant detailed realistic textile catalog render, crisp clean alpha edges, consistent soft lighting. Respect Baju Bodo's simple square silhouette; no fantasy armour, no shoes, no hands. Each object vertically centered inside its third; do not cross thirds. Landscape 3:2 composition.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      473,
+      1111,
+      1536
+    ]
+  },
+  {
+    "slug": "payas-agung",
+    "prompt": "Use case: product-mockup. A single transparent RGBA costume sprite atlas for Balinese Payas Agung, a browser virtual dressing room. Three separate front-facing garment components arranged left to right in three columns with large fully transparent vertical gaps, each centered. LEFT: tall intricate gold Balinese floral bridal crown with golden cempaka flower sprays, only crown, no hair or face. CENTER: luxurious gold prada chest wrap and red-gold belt, fitted sleeveless upper-body garment from shoulders to hips, no person. RIGHT: long narrow red and gold brocade Balinese kamen and tapih wrap skirt, waist to ankles, no legs. Highly detailed realistic textile product render. No person, mannequin, flesh, face, limbs, hanger, shoes, scenery, backdrop, glow, shadow, labels, borders or text. Neck and sleeve openings empty transparent. Individual objects do not overlap or touch, with at least 50 pixel transparent gutters between all components. Each object entirely isolated; crisp alpha. Landscape 3:2. Interpretive cultural garment, not fantasy armour.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      574,
+      1039,
+      1536
+    ]
+  },
+  {
+    "slug": "ulos",
+    "prompt": "Use case: product-mockup. A single Batak Toba Ulos costume sprite atlas for browser virtual dressing. Three isolated front-facing garment parts arranged LEFT CENTER RIGHT with generous transparent vertical gutters between. LEFT: a tall red black and gold Batak sortali ceremonial headdress only. CENTER: a dark modest black tunic with a distinctive red-black-white geometric handwoven Ulos cloth draped across the shoulders and chest, front view. RIGHT: a matching straight long red-black-white woven Ulos sarong from waist to ankle. Detailed realistic textile product render, warm natural colors, accurately inspired Indonesian heritage. Transparent RGBA background: absolutely no person, mannequin, skin, face, hands, limbs, hanger, shoes, text, labels, grid, scenery, background, glow or drop shadow. Empty neck and sleeve openings. All three pieces detached from one another, each occupying its own area without overlap. Centered garments, full objects in frame. Landscape 3:2.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      433,
+      1105,
+      1536
+    ]
+  },
+  {
+    "slug": "pengantin-jawa",
+    "prompt": "Use case: product-mockup. A single Javanese bridal dress costume sprite atlas for browser virtual dressing. Three isolated front-facing garment parts arranged LEFT CENTER RIGHT with generous transparent vertical gutters between. LEFT: a golden Javanese bridal cunduk mentul ornament with jasmine strands, open center no hair. CENTER: a black velvet long-sleeved Javanese bridal kebaya with gold embroidery, front view, modest opaque lining. RIGHT: a long brown cream black batik parang wrap skirt, waist to ankle. Detailed realistic textile product render, warm natural colors, accurately inspired Indonesian heritage. Transparent RGBA background: absolutely no person, mannequin, skin, face, hands, limbs, hanger, shoes, text, labels, grid, scenery, background, glow or drop shadow. Empty neck and sleeve openings. All three pieces detached from one another, each occupying its own area without overlap. Centered garments, full objects in frame. Landscape 3:2.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      512,
+      1111,
+      1536
+    ]
+  },
+  {
+    "slug": "kebaya-sunda",
+    "prompt": "Use case: product-mockup. One Sundanese kebaya costume sprite atlas for browser virtual dress try-on. Three separate garment components LEFT CENTER RIGHT, arranged as isolated product cutouts with generous fully transparent vertical gutters. LEFT: small jasmine and gold floral hair ornament only, no hair. CENTER: elegant long-sleeved ivory pale green lace kebaya with modest opaque lining and delicate gold brooch, front facing. RIGHT: long brown indigo cream floral batik sinjang wrap skirt. Realistic detailed textile and craft render. Transparent RGBA background, no people, no mannequin, no body, no flesh, no hands, no face, no limbs, no hanger, no shoes, no backdrop, no glow or shadows, no labels, no text, no grid. Neck and sleeve openings empty. Individual objects must not overlap; keep entirely within frame. Landscape 3:2. Culturally respectful interpretive garment illustration; do not add fantasy armour or generic tribal decoration.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      362,
+      1089,
+      1536
+    ]
+  },
+  {
+    "slug": "bagajah-gamuling-baular-lulut",
+    "prompt": "Use case: product-mockup. One Banjar Bagajah Gamuling Baular Lulut formal costume costume sprite atlas for browser virtual dress try-on. Three separate garment components LEFT CENTER RIGHT, arranged as isolated product cutouts with generous fully transparent vertical gutters. LEFT: ornate gold Banjar bridal floral headdress with delicate flower stems and gold leaf ornaments, no hair. CENTER: yellow gold embroidered velvet long-sleeved formal upper garment with golden chest ornaments and small decorative shoulder drapes. RIGHT: a long deep red and gold Banjar woven cloth skirt. Realistic detailed textile and craft render. Transparent RGBA background, no people, no mannequin, no body, no flesh, no hands, no face, no limbs, no hanger, no shoes, no backdrop, no glow or shadows, no labels, no text, no grid. Neck and sleeve openings empty. Individual objects must not overlap; keep entirely within frame. Landscape 3:2. Culturally respectful interpretive garment illustration; do not add fantasy armour or generic tribal decoration.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      511,
+      1127,
+      1536
+    ]
+  },
+  {
+    "slug": "baju-cele",
+    "prompt": "Use case: product-mockup. One Maluku Baju Cele costume sprite atlas for browser virtual dress try-on. Three separate garment components LEFT CENTER RIGHT, arranged as isolated product cutouts with generous fully transparent vertical gutters. LEFT: a modest cream and red folded fabric headcloth only. CENTER: red Baju Cele long-sleeved blouse with distinctive small white checks and modest round collar, waist-length, front view. RIGHT: a long dark red black and cream geometric woven Maluku sarong. Realistic detailed textile and craft render. Transparent RGBA background, no people, no mannequin, no body, no flesh, no hands, no face, no limbs, no hanger, no shoes, no backdrop, no glow or shadows, no labels, no text, no grid. Neck and sleeve openings empty. Individual objects must not overlap; keep entirely within frame. Landscape 3:2. Culturally respectful interpretive garment illustration; do not add fantasy armour or generic tribal decoration.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      417,
+      1119,
+      1536
+    ]
+  },
+  {
+    "slug": "rok-rumbai",
+    "prompt": "Use case: product-mockup. Transparent PNG sprite atlas for an interpretive Papuan plant-fiber costume, designed for a browser dressing room. EXACT LAYOUT: 1536x1024 landscape. THREE equal vertical columns of width512px. Each object fully inside its own column, with 75px transparent padding on every side. LEFT COLUMN: a simple woven natural fiber headband with small pale plant-leaf tufts only, no sacred symbols, no hair. CENTER COLUMN: a modest brown woven plant-fiber chest panel with two shoulder straps, flat front-facing garment, width350px maximum. RIGHT COLUMN: natural sago-fiber rok rumbai skirt with dense hanging straw fibers and a braided waistband, waist to knees, width350px maximum. Keep skirt narrow enough for its column. Separate front-facing ghost mannequin product objects without actual mannequin or any human. Realistic woven texture, cultural interpretive illustration. No body, flesh, head, face, limbs, hanger, text, labels, shadow, glow, scenery, grid, background. Entire canvas alpha-zero except the three isolated pieces. At least150px horizontal fully transparent gaps between garments. No piece may touch any other piece.",
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true,
+    "cuts": [
+      0,
+      512,
+      1024,
+      1536
+    ]
+  },
+  {
+    "slug": "baju-bundo-kanduang",
+    "prompts": {
+      "head": "Use case: product-mockup. One isolated transparent costume sprite: a Minangkabau Bundo Kanduang red and gold tengkuluk tanduk headdress, cloth folded into twin upward horn-shaped ends. Only the headdress. Realistic detailed textile catalog illustration. Center the entire object with generous transparent margin. RGBA alpha background. Absolutely no person, mannequin, body, skin, face, hands, limbs, hanger, other garments, labels, text, background, scenery, glow or shadow. The single garment only, front facing, crisp clean alpha outline. For a virtual try-on application.",
+      "top": "Use case: product-mockup. One isolated transparent costume sprite: a Minangkabau Bundo Kanduang red velvet baju kurung long-sleeved upper garment with rich gold embroidery and gold collar necklace. Shoulders to hips only, front view, empty transparent neck and sleeve openings. Only the tunic. Realistic detailed textile catalog illustration. Center the entire object with generous transparent margin. RGBA alpha background. Absolutely no person, mannequin, body, skin, face, hands, limbs, hanger, other garments, labels, text, background, scenery, glow or shadow. The single garment only, front facing, crisp clean alpha outline. For a virtual try-on application.",
+      "bottom": "Use case: product-mockup. One isolated transparent costume sprite: a Minangkabau Bundo Kanduang long red and gold songket sarong, straight woven wrap skirt from waist to ankles, front-facing. Only the skirt. Realistic detailed textile catalog illustration. Center the entire object with generous transparent margin. RGBA alpha background. Absolutely no person, mannequin, body, skin, face, hands, limbs, hanger, other garments, labels, text, background, scenery, glow or shadow. The single garment only, front facing, crisp clean alpha outline. For a virtual try-on application."
+    },
+    "tool": "OpenAI built-in image_gen",
+    "transparent_background": true
+  }
+]

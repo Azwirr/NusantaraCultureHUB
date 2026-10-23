@@ -1,5 +1,6 @@
 import { Shirt } from "lucide-react";
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 import type { CostumeDetail } from "@/lib/content";
 import { fill, sizedImage } from "@/lib/format";
@@ -10,7 +11,7 @@ import { SourceList } from "../source-list";
 import { DetailHeader } from "./detail-header";
 import { CoverArt } from "../cover-art";
 
-/** Traditional dress info card with its reference image. Try-on arrives in Phase 4. */
+/** Traditional dress info, attributed cover and a link into the camera studio. */
 export function CostumeView({ costume, dict, actions }: { costume: CostumeDetail; dict: Dictionary; actions?: ReactNode }) {
   const copy = dict.costumeDetail;
   return (
@@ -48,7 +49,7 @@ export function CostumeView({ costume, dict, actions }: { costume: CostumeDetail
           </section>
           <p className="flex items-start gap-3 rounded border border-ink bg-surface-container-low p-4 text-body-md text-on-surface-variant">
             <Shirt aria-hidden="true" size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-primary" />
-            <span>{copy.tryOnSoon}</span>
+            <Link href={`/try-on?dress=${encodeURIComponent(costume.slug)}`} className="inline-flex min-h-12 items-center underline underline-offset-4">{copy.tryOnSoon}</Link>
           </p>
           <SourceList sources={costume.sources} copy={dict.common} />
         </div>

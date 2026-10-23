@@ -100,6 +100,6 @@ function localeRewrite(request: NextRequest): URL | null {
 export const config = {
   matcher: [
     // Everything except Next internals and static files served from /public.
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|txt|xml|webmanifest|woff2?)$).*)",
+    "/((?!_next/static|_next/image|try-on/|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|txt|xml|webmanifest|woff2?)$).*)",
   ],
 };

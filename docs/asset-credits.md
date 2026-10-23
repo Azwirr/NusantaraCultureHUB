@@ -52,3 +52,17 @@ No sounds or photographs ship in Phase 1.
 ## Library covers (24 October 2026)
 
 33 item-specific WebP covers are bundled in public/covers/: 19 licensed photographs and 14 AI illustrations. Every asset, creator, source and licence is recorded in [library-cover-credits.md](library-cover-credits.md) and src/lib/media/covers.json. Generated artwork is explicitly labelled in the interface. See [library-covers.md](library-covers.md) for visual direction and [cover-prompts.json](cover-prompts.json) for the exact prompts.
+
+## Camera studio (24 October 2026)
+
+The 27 transparent garment sprites in `public/try-on/costumes/` were generated
+with OpenAI image_gen for Nusantara Culture Hub. They are interpretive AI art;
+the studio and downloaded photos identify them as such. Prompts are recorded
+in [try-on-prompts.json](try-on-prompts.json). Generated figures contain no
+photographed people. These garment sprites do not replace the library's
+credited documentary photographs.
+
+MediaPipe Tasks Vision 1.1.1 (Google/MediaPipe contributors, Apache-2.0) and
+Pose Landmarker Lite float16 v1 are bundled locally. The upstream licence is
+in `public/try-on/vision/LICENSE`; sources and implementation details are in
+[camera-try-on.md](camera-try-on.md).

@@ -1,5 +1,6 @@
 import { ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { Card } from "@/components/card";
 import { PageHeader } from "@/components/page-header";
@@ -13,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // PRD privacy rule: try-on photos are processed in the browser and never
-// uploaded. The camera runs in the browser (TryOnCamera); no pose detection.
+// uploaded. The camera and pose model run entirely in the browser.
 export default async function TryOnPage() {
   const [{ tryOn, common }, locale] = await Promise.all([getDictionary(), getLocale()]);
   const dresses = await getTryOnDresses(locale);
@@ -43,7 +44,9 @@ export default async function TryOnPage() {
         </Card>
 
         <Card as="section" aria-label={tryOn.title} className="col-span-4 flex flex-col gap-4 p-5 md:col-span-8 lg:col-span-7">
-          <TryOnCamera dresses={dresses} copy={{ ...tryOn, ...common }} />
+          <Suspense fallback={<p>{common.loading}</p>}>
+            <TryOnCamera dresses={dresses} copy={{ ...tryOn, ...common }} />
+          </Suspense>
         </Card>
       </div>
     </div>

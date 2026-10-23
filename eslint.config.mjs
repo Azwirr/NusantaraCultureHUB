@@ -53,6 +53,10 @@ const eslintConfig = defineConfig([
     // Claude Code skills and settings: tooling, not app code.
     ".claude/**",
     ".agents/**",
+    "public/try-on/vision/**",
+    "test-results/**",
+    "playwright-report/**",
+    "tmp/**",
   ]),
 ]);
 

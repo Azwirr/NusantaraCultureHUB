@@ -59,4 +59,5 @@ The job list and originals are working files, not required to build the app.
 assertions, production build, secret scan and 134 browser tests (1 skipped).
 Cover checks verify all 33 WebP responses and published dress-card images and
 attribution. Desktop previews cover all three categories; the 390px mobile
-preview has no horizontal overflow. Changes have not been committed or deployed.
+preview has no horizontal overflow. The cover batch was committed as `262c95f`
+and pushed to main during the following camera-studio task.
