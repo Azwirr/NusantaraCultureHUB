@@ -4,6 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 import { AUTH_COOKIE_OPTIONS } from "./cookies";
+import type { Database } from "./database.types";
 import { supabasePublishableKey, supabaseUrl } from "./env";
 
 /**
@@ -14,7 +15,7 @@ import { supabasePublishableKey, supabaseUrl } from "./env";
 export async function createClient() {
   const cookieStore = await cookies();
 
-  return createServerClient(supabaseUrl(), supabasePublishableKey(), {
+  return createServerClient<Database>(supabaseUrl(), supabasePublishableKey(), {
     cookieOptions: AUTH_COOKIE_OPTIONS,
     cookies: {
       getAll() {

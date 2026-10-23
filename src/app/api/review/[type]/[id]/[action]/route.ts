@@ -45,7 +45,7 @@ export async function POST(request: NextRequest, ctx: RouteContext<"/api/review/
     p_entity: type,
     p_id: id,
     p_action: action,
-    p_reason: reason,
+    p_reason: reason ?? undefined,
   });
 
   if (error) {

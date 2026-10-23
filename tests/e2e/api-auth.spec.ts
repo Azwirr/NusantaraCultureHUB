@@ -41,28 +41,3 @@ test.describe("anonymous API access", () => {
     expect((await request.get(`/api/review/story/${SAMPLE_ID}/approve`)).status()).toBe(405);
   });
 });
-
-// Needs a live Supabase stack with email confirmation off (the local default).
-test.describe("signed-in member", () => {
-  test.skip(!process.env.E2E_SUPABASE, "set E2E_SUPABASE=1 with `npx supabase start` running");
-
-  test("a member gets 403 from review routes and 501 from the progress stub", async ({ page }) => {
-    const nickname = `e2e_${Date.now().toString(36)}`;
-    await page.goto("/signup");
-    await page.locator('input[name="username"]').fill(nickname);
-    await page.locator('input[name="email"]').fill(`${nickname}@example.test`);
-    await page.locator('input[name="password"]').fill("correct-horse-battery");
-    await page.locator('form button[type="submit"]').click();
-    await page.waitForURL("**/me");
-
-    const review = await page.request.post(`/api/review/story/${SAMPLE_ID}/approve`, { data: {} });
-    expect(review.status()).toBe(403);
-
-    const progress = await page.request.post("/api/progress", { data: {} });
-    expect(progress.status()).toBe(501);
-
-    await page.goto("/review");
-    expect(await page.title()).toBeTruthy();
-    await expect(page.locator("main")).not.toContainText(/draft|draf/i);
-  });
-});

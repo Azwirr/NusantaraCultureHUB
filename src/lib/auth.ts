@@ -2,6 +2,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { connection } from "next/server";
 import { cache } from "react";
 
 import { hasSessionCookie } from "@/lib/supabase/cookies";
@@ -30,6 +31,9 @@ export const getSessionUser = cache(async (): Promise<SessionUser | null> => {
   // Guests carry no Supabase auth cookie: skip the client entirely.
   const cookieStore = await cookies();
   if (!hasSessionCookie(cookieStore.getAll())) return null;
+  // Session checks compare token expiry with the clock, so they must run at
+  // request time only, never in a prerender.
+  await connection();
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();

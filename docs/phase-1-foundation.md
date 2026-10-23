@@ -35,8 +35,8 @@ Oct 22, 2026 · Built from the build plan's foundation prompt (Track B and the s
 
 | # | Check | Verified by | Status |
 | --- | --- | --- | --- |
-| 1 | Builds and deploys to a Vercel preview | `npm run build` | Build passes. The preview deploy needs the team's Vercel project |
-| 2 | Migration runs on a fresh Supabase project | `npm run test:db` applies all five migrations and the seed to a fresh database | Passes on PGlite. Rerun with `npx supabase db reset` once Docker runs |
+| 1 | Builds and deploys to a Vercel preview | `npm run build` | Build passes. The preview deploy needs the Vercel connector authorized (`/mcp`) or the Vercel CLI |
+| 2 | Migration runs on a fresh Supabase project | Applied to the new staging project, plus `npm run test:db` on PGlite | Passes on both. All five migrations ran on the empty hosted project with no errors |
 | 3 | Anonymous client sees approved rows only | `supabase/tests/database/02-public-read.test.sql` | Passes |
 | 4 | A member cannot change review_status or user_roles | `03-roles-and-members.test.sql` | Passes |
 | 5 | Anonymous client gets 401/403 from every review route | `tests/e2e/api-auth.spec.ts` (all 15 type and action pairs, plus the stubs) | Passes |
@@ -81,6 +81,23 @@ Thirteen findings were refuted or judged trade-offs. Two are worth keeping in mi
 - **Auth rate limits.** Supabase rate-limits sign-in by IP, and every call comes from the server's IP. Consider passing the client IP or adding app-level throttling before launch.
 - **Citations.** The reviewer who adds a citation can still approve the item it cites. Only content authorship is under the four-eyes rule.
 
+## Staging on hosted Supabase
+
+The staging project is `nusantara-culture-hub-staging` (ref `mjhgzyecleviqoogqejc`, Singapore, free tier) in the AnumakiiT organization. It was created on 2026-10-23.
+
+- **Migrations:** all five were applied through the Supabase connector. The migration history was set to the local file versions, so a later `supabase db push` sees them as applied.
+- **Seed:** `supabase/seed.sql` was loaded. All rows are drafts.
+- **pgTAP on the real database:** all 116 assertions pass (11 + 22 + 26 + 46 + 11). Each test file ran as a plpgsql function inside a subtransaction that is rolled back, so the run left no rows behind. The temporary `tests` schema and the pgTAP extension were removed afterwards. This matters most for the grant checks, because hosted projects give broad default privileges that the migrations must revoke.
+- **Supabase advisors:** the security advisor reports nothing. The performance advisor has two INFO-level notes. Fifteen foreign keys have no index; they only slow down deleting a user account, and can get indexes in a later migration if needed. Four indexes are unused, which is expected on a new database.
+- **App and test accounts:** `.env.local` points the app at staging, and `src/lib/supabase/database.types.ts` is generated from it. Two confirmed test accounts, `e2e-member` and `e2e-reviewer`, exist for the signed-in browser tests (`tests/e2e/signed-in.spec.ts`). Their passwords are only in `.env.local`, and only bcrypt hashes were sent to the database. Recreate them with `supabase/scripts/create-e2e-users.sql`. Remove them before any production launch.
+- **Signed-in tests:** these sign in for real and query the Supabase REST API with each user's own token:
+  - a member sees no drafts and cannot grant itself a role;
+  - a reviewer sees drafts;
+  - the review API returns 409 when asked to approve the incomplete seed story;
+  - the session cookie is HttpOnly;
+  - sign-out clears the session.
+- **Found only against a real session:** the session read in `src/lib/auth.ts` now calls `connection()`. Without it, Next.js logged errors on `/me` and `/review`, because the Supabase client reads the clock during a prerender step.
+
 ## How the database tests run without Docker
 
 Docker Desktop cannot start on the development machine until WSL is installed. `npm run test:db` therefore runs the same pgTAP files on PGlite, which is real Postgres compiled to WebAssembly. A small stand-in (`scripts/pglite/supabase-shim.sql`) provides the Supabase roles, `auth.users` and `auth.uid()`.
@@ -97,10 +114,11 @@ The real stack remains the reference. With Docker running: `npx supabase db rese
 
 ## Open items for the team
 
-- **WSL and Docker**: run `wsl --install` in an administrator terminal and reboot. Then run `npx supabase start`, put the printed publishable key in `.env.local`, and run `npm run db:types` to generate `src/lib/supabase/database.types.ts`. Until then the Supabase client is untyped.
-- **Hosted projects**: create the Supabase staging project and the Vercel project, then set the env vars from `.env.example`. Add `https://<preview-domain>/auth/callback` to the Supabase redirect allow-list.
-- **First owner**: sign up, then run `supabase/scripts/bootstrap-owner.sql`.
-- **Member end-to-end tests**: `E2E_SUPABASE=1 npm run test:e2e` runs the sign-up and member-403 tests against a live stack.
+- **Local Supabase (optional now)**: on this PC, Windows reports that hardware virtualization is turned off. Enable Intel VT-x or AMD SVM in the BIOS, then run `wsl --install` as administrator and reboot. Staging covers the checks until then.
+- **Staging auth URLs (dashboard)**: in Authentication → URL Configuration, add `http://localhost:3000/auth/callback`, and later the Vercel preview's `/auth/callback`, to Redirect URLs. Confirmation emails then land on the callback and sign the user in.
+- **Vercel project**: authorize the Vercel connector (`/mcp`) or install the Vercel CLI. Then create the project and set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `SITE_URL`.
+- **First owner**: sign up in the app with your own email and confirm it. Then run `supabase/scripts/bootstrap-owner.sql` with that email.
+- **Email sign-up end to end**: not covered by automated tests on staging, because the built-in mailer only sends to team members. Check it by hand while creating the first owner.
 - **Still open from the build plan**: the target age group (decides consent at sign-up), confirmation of the owner role, the three regions (seeded as placeholders), recipe sources, the cultural verifier, and ElevenLabs access.
 - **Before release**: replace `public/favicon.ico` (still the create-next-app placeholder), and add a nonce-based Content Security Policy.
 

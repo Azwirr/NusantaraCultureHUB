@@ -15,7 +15,11 @@ Next.js 16 (App Router, Cache Components) · TypeScript · Tailwind CSS 4 · Sup
 
 ## Getting started
 
-Prerequisites: Node.js 24, and Docker Desktop for the local Supabase stack (on Windows this needs WSL 2: run `wsl --install` in an administrator terminal and reboot once).
+Prerequisites: Node.js 24. For a local Supabase stack you also need Docker Desktop, which on Windows needs WSL 2 and hardware virtualization turned on in the BIOS.
+
+**Against the staging project** (no Docker needed): copy `.env.example` to `.env.local`, set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` from the Supabase dashboard (project `nusantara-culture-hub-staging`, Settings → API Keys), then `npm install && npm run dev`.
+
+**Against a local stack:**
 
 ```bash
 npm install

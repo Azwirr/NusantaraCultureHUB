@@ -2,10 +2,14 @@ import { expect, test } from "@playwright/test";
 
 // Regression tests for the Phase 1 security and accessibility review.
 
+// supabase-js names the session cookie after the first label of the project
+// host: sb-127-auth-token locally, sb-<project-ref>-auth-token when hosted.
+const sessionCookie = `sb-${new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "http://127.0.0.1:54321").hostname.split(".")[0]}-auth-token`;
+
 test.describe("session cookies", () => {
   test("an unusable session cookie is deleted for good, with HttpOnly", async ({ request }) => {
     const response = await request.get("/library", {
-      headers: { Cookie: "sb-127-auth-token=base64-eyJ4IjoxfQ" },
+      headers: { Cookie: `${sessionCookie}=base64-eyJ4IjoxfQ` },
       maxRedirects: 0,
     });
     const setCookies = response
@@ -21,7 +25,7 @@ test.describe("session cookies", () => {
   });
 
   test("empty or PKCE-only cookies do not count as signed in", async ({ request }) => {
-    for (const cookie of ["sb-127-auth-token=", "sb-127-auth-token-code-verifier=abc"]) {
+    for (const cookie of [`${sessionCookie}=`, `${sessionCookie}-code-verifier=abc`]) {
       const response = await request.get("/me", { headers: { Cookie: cookie }, maxRedirects: 0 });
       expect(response.status(), cookie).toBe(307);
       expect(response.headers()["location"]).toMatch(/\/login\?next=%2Fme$/);
