@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     title: { template: "%s · Nusantara", default: dict.meta.defaultTitle },
     description: dict.meta.description,
     applicationName: "Nusantara",
+    // Absolute URLs for the link-preview image (src/app/opengraph-image.jpg).
+    metadataBase: new URL(process.env.SITE_URL || "https://nusantaraculturehub.vercel.app"),
   };
 }
 

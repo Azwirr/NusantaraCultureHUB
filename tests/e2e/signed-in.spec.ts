@@ -53,7 +53,7 @@ test.describe("signed-in member", () => {
 
   test("the nickname can be changed, and taken or invalid ones are refused", async ({ page, context, baseURL }) => {
     await context.addCookies([{ name: "nch_locale", value: "en", url: baseURL! }]);
-    await page.goto("/me");
+    await page.goto("/me/settings");
     const field = page.getByLabel("Nickname", { exact: true });
     const save = page.getByRole("button", { name: "Save nickname" });
     await expect(field).toHaveValue("e2e_member");

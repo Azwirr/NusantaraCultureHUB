@@ -1,5 +1,6 @@
 import type { AppRole } from "@/lib/auth";
 import type { AuthErrorCode } from "@/lib/auth-actions";
+import type { RequestErrorCode } from "@/lib/request-actions";
 import type { ReviewErrorCode } from "@/lib/review-errors";
 import type { DIETARY_TAGS, INGREDIENT_UNITS } from "@/lib/review-fields";
 import type { ReviewAction, ReviewEntityType, ReviewStatus } from "@/lib/review-types";
@@ -298,6 +299,50 @@ export const id = {
     note:
       "Batas provinsi dari Natural Earth (domain publik). Di data ini Kalimantan Utara dan empat provinsi baru di Papua (2022) belum terpisah.",
   },
+  requests: {
+    kicker: "Permintaan",
+    title: "Minta Cerita",
+    lead: "Belum menemukan dongeng, resep, atau busana adat dari daerahmu? Mintalah di sini. Tim kami meneliti sumbernya, lalu menambahkannya setelah diperiksa.",
+    formHeading: "Kirim permintaan",
+    titleLabel: "Apa yang ingin kamu baca?",
+    titleHint: "Misalnya: Legenda Danau Toba dari Sumatera Utara.",
+    noteLabel: "Catatan (opsional)",
+    noteHint: "Versi cerita, daerah, atau sumber yang kamu tahu. Maksimal 500 karakter.",
+    submit: "Kirim permintaan",
+    pending: "Mengirim…",
+    done: "Terima kasih! Permintaanmu sudah tercatat.",
+    signInPrompt: "Masuk untuk mengirim permintaan.",
+    signInLink: "Masuk",
+    listHeading: "Permintaan terbaru",
+    empty: "Belum ada permintaan. Jadilah yang pertama.",
+    by: "oleh {nickname}",
+    statuses: {
+      open: "Diterima",
+      planned: "Sedang diteliti",
+      done: "Sudah tayang",
+      hidden: "Disembunyikan",
+    },
+    errors: {
+      signed_out: "Masuk dulu untuk mengirim permintaan.",
+      invalid_input: "Tulis judul 3 sampai 120 karakter.",
+      limit: "Batas 5 permintaan hari ini sudah tercapai. Coba lagi besok.",
+      forbidden: "Kamu tidak memiliki izin untuk tindakan ini.",
+      unknown: "Terjadi kesalahan. Silakan coba lagi.",
+    } satisfies Record<RequestErrorCode, string>,
+    cta: "Tidak menemukan yang kamu cari? Minta cerita",
+  },
+  settings: {
+    kicker: "Saya",
+    title: "Pengaturan",
+    lead: "Atur nama panggilan, bahasa, dan tampilan.",
+    open: "Pengaturan",
+    back: "Kembali ke halaman anggota",
+    displayHeading: "Tampilan",
+    languageLabel: "Bahasa",
+    themeLabel: "Mode gelap",
+    accountHeading: "Akun",
+    signOut: "Keluar",
+  },
   roles: {
     reviewer: "Peninjau",
     owner: "Pemilik",
@@ -312,6 +357,7 @@ export const id = {
       queue: "Antrean",
       audit: "Log audit",
       roles: "Peran",
+      requests: "Permintaan",
     },
     tableCaption: "Jumlah konten per jenis dan status",
     typeHeader: "Jenis konten",
@@ -459,6 +505,13 @@ export const id = {
       invalid_input: "Periksa kembali isian yang ditandai.",
       unknown: "Terjadi kesalahan. Silakan coba lagi.",
     } satisfies Record<ReviewErrorCode, string>,
+    requestsQueue: {
+      title: "Permintaan Cerita",
+      lead: "Permintaan dari anggota. Tandai yang sedang diteliti, yang sudah tayang, atau sembunyikan spam.",
+      empty: "Belum ada permintaan.",
+      setStatus: "Ubah status",
+      saved: "Status diperbarui.",
+    },
     audit: {
       title: "Log Audit",
       lead: "Setiap persetujuan, penolakan, penurunan, dan perubahan peran, dengan pelaku, waktu, dan alasannya.",

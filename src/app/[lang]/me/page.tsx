@@ -1,4 +1,4 @@
-import { ArrowRight, Bookmark, ClipboardList, LogOut, UserRound } from "lucide-react";
+import { ArrowRight, Bookmark, ClipboardList, LogOut, MessageSquarePlus, Settings, UserRound } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -62,9 +62,9 @@ async function MemberPanel({ dict, locale }: { dict: Dictionary; locale: Locale 
     { key: "costume", value: counts.costume },
   ] as const;
 
-  // One fixed place in the tree, so the form keeps its "saved" message when
-  // saving flips needsNickname and the page refreshes.
-  const nicknameForm = (
+  // Members who signed in with Google (or whose nickname was taken) must
+  // choose one first; changing it later lives in /me/settings.
+  const nicknameStep = (
     <NicknameForm
       copy={{
         ...me.nickname,
@@ -80,7 +80,7 @@ async function MemberPanel({ dict, locale }: { dict: Dictionary; locale: Locale 
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <div className="flex min-w-0 flex-col gap-6">
-        {user.needsNickname ? nicknameForm : null}
+        {user.needsNickname ? nicknameStep : null}
 
         <Card className="flex flex-col gap-5 p-5 md:p-6">
           <div className="flex items-center gap-4">
@@ -125,18 +125,29 @@ async function MemberPanel({ dict, locale }: { dict: Dictionary; locale: Locale 
                 {me.reviewLink}
               </ButtonLink>
             ) : null}
-            <form action={signOut}>
-              <Button type="submit" variant="secondary" className="w-full">
-                <LogOut aria-hidden="true" size={18} strokeWidth={1.75} />
-                {me.signOut}
-              </Button>
-            </form>
+            <div className="grid grid-cols-2 gap-3">
+              <ButtonLink href="/me/settings" variant="secondary" className="w-full">
+                <Settings aria-hidden="true" size={18} strokeWidth={1.75} />
+                {dict.settings.open}
+              </ButtonLink>
+              <form action={signOut}>
+                <Button type="submit" variant="secondary" className="w-full">
+                  <LogOut aria-hidden="true" size={18} strokeWidth={1.75} />
+                  {me.signOut}
+                </Button>
+              </form>
+            </div>
           </div>
         </Card>
 
-        {!user.needsNickname ? (
-          <section aria-label={me.accountHeading}>{nicknameForm}</section>
-        ) : null}
+        <Link
+          href="/requests"
+          className="flex min-h-12 items-center gap-3 rounded border border-ink bg-surface-container-low p-4 text-body-md text-primary hover:bg-surface-container"
+        >
+          <MessageSquarePlus aria-hidden="true" size={20} strokeWidth={1.75} className="shrink-0" />
+          <span className="flex-1">{dict.requests.cta}</span>
+          <ArrowRight aria-hidden="true" size={18} strokeWidth={1.75} />
+        </Link>
       </div>
 
       <section aria-labelledby="collection-heading" className="flex min-w-0 flex-col gap-4">

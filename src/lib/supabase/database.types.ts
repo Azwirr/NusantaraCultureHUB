@@ -572,6 +572,36 @@ export type Database = {
           },
         ]
       }
+      story_requests: {
+        Row: {
+          created_at: string
+          id: string
+          note: string | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       story_chapters: {
         Row: {
           audio_description_en: string | null
@@ -757,6 +787,17 @@ export type Database = {
           p_reason?: string
         }
         Returns: string
+      }
+      story_requests_list: {
+        Args: { p_limit?: number }
+        Returns: {
+          created_at: string
+          id: string
+          nickname: string
+          note: string
+          status: string
+          title: string
+        }[]
       }
       search_content: {
         Args: { p_limit?: number; p_locale?: string; p_query: string }

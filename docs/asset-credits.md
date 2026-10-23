@@ -41,7 +41,7 @@ Drawn for this project as inline SVG in `src/components/line-art.tsx` and `src/c
 
 | Asset | Licence | Note |
 | --- | --- | --- |
-| `public/favicon.ico` | From the create-next-app scaffold | Placeholder. Replace with a project-owned icon before release |
+| Nusantara logo (`public/brand/logo-*.png`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/opengraph-image.jpg`) | Provided by the team (zwirr), 2026-10-23 | Header logo, browser-tab icon and link-preview image. Confirm who made it and its licence before release (if it was made with an image generator, note the tool and its terms) |
 
 ## Not shipped
 

@@ -62,6 +62,7 @@ test.describe("reviewer", () => {
     // A reviewer is not an owner: no roles section.
     await expect(page.getByRole("navigation", { name: "Reviewer sections" }).getByRole("link")).toHaveText([
       "Queue",
+      "Requests",
       "Audit log",
     ]);
     await page.goto("/review/roles");

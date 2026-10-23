@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -8,7 +9,6 @@ import { AccountButton, AccountButtonFallback } from "./account-button";
 import { CommandSearch } from "./command-search";
 import { HeaderNav, HeaderNavLinks } from "./bottom-nav";
 import { LanguageSwitcher } from "./language-switcher";
-import { BrandMark } from "./line-art";
 import { ThemeToggle } from "./theme-toggle";
 
 /**
@@ -22,7 +22,15 @@ export function AppHeader({ dict, locale }: { dict: Dictionary; locale: Locale }
     <header className="relative z-10 border-b border-ink bg-surface">
       <div className="page-container flex flex-wrap items-center gap-x-2 py-2 lg:flex-nowrap lg:gap-x-6">
         <Link href="/" className="mr-auto flex min-h-12 shrink-0 items-center gap-2.5 rounded pr-1 lg:mr-0">
-          <BrandMark className="size-10 shrink-0" />
+          {/* The Nusantara logo. Decorative here: the wordmark beside it names the site. */}
+          <Image
+            src="/brand/logo-96.png"
+            alt=""
+            width={96}
+            height={96}
+            priority
+            className="size-12 shrink-0 rounded-full border border-ink object-cover"
+          />
           <span className="flex flex-col">
             {/* Brand wordmark: the same in both languages. */}
             <span className="font-serif text-wordmark text-primary">Nusantara</span>

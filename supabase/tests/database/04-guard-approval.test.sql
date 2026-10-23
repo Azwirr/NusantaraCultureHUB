@@ -93,7 +93,7 @@ insert into public.regions (id, slug, name_id, name_en, summary_id, summary_en)
 values ('a0000000-0000-0000-0000-000000000004', 'buatan-a', 'Buatan A', 'Made by A', 'Ringkasan', 'Summary');
 select throws_ok(
   $$ select public.review_content('region', 'a0000000-0000-0000-0000-000000000004', 'approve') $$,
-  '42501', 'you cannot approve content you created or last edited',
+  '42501', 'you cannot approve content you created',
   'a reviewer cannot approve content they created'
 );
 

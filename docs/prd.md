@@ -31,16 +31,16 @@ Five roles cover the product. Owner is an assumption for the role listed as "Oth
 | Role | Who | Can | Cannot |
 | --- | --- | --- | --- |
 | Guest | Any visitor, no sign-in | Browse approved content and use try-on on the device | Save progress to a server, see drafts |
-| Member | Signed-in user | Everything a Guest can do, save progress and bookmarks of approved content, earn badges, ask the grounded assistant within a daily limit | Change review status, see drafts, grant roles, bookmark drafts |
-| Reviewer | Curator, a human | Create and edit drafts, run AI jobs, approve or reject content, unpublish, read the audit log | Grant roles, delete content, approve their own work |
+| Member | Signed-in user | Read and listen, save progress and bookmarks of approved content, earn badges, ask the grounded assistant within a daily limit, request new stories (5 a day) | Write or edit content, change review status, see drafts, grant roles, bookmark drafts |
+| Reviewer | Curator, a human | Create and edit drafts, run AI jobs, approve or reject content, unpublish, read the audit log, triage story requests | Grant roles, delete content, approve their own work |
 | AI Workflow | System actor, no login | Generate chapter drafts, image prompts, and audio through a server job | Approve anything, publish anything, write outside draft status |
-| Owner | Team lead (assumed) | Grant and revoke Reviewer and Owner roles | Nothing else is required of this role |
+| Owner | Team lead (`zwirr`) | Grant and revoke roles; review like a Reviewer, and approve drafts they corrected (Phase 2b) | Approve content they created |
 
 Roles are assigned on the server only. Users cannot change their own role.
 
 ## Features
 
-Sixteen requirements make up the MVP: ten are must-haves and six are should-haves. FR-14 to FR-16 were added on 2026-10-23 (Phase 2). If time runs short, cut the should-haves first, starting with the assistant, then the region map and pages.
+Seventeen requirements make up the MVP: ten are must-haves and seven are should-haves. FR-14 to FR-17 were added on 2026-10-23 (Phase 2 and 2b). If time runs short, cut the should-haves first, starting with the assistant, then the region map and pages.
 
 | ID | Area | Requirement | Priority |
 | --- | --- | --- | --- |
@@ -60,6 +60,7 @@ Sixteen requirements make up the MVP: ten are must-haves and six are should-have
 | FR-14 | Search | Search approved stories, recipes, costumes, and regions from the header (Ctrl+K) and from `/search?q=`. Results are grouped by type, in the visitor's language, and tolerate typos. Drafts are never returned, to anyone. The search term is shown as plain text. | Must |
 | FR-15 | Grounded assistant "Tanya Nusantara" | Members ask a question about Indonesian culture. The answer is built only from approved, sourced content found by FR-14, cites each item it used with a link and its sources, and politely declines anything outside the archive. A daily limit per member keeps costs safe. No question text is stored. This is not free-form chat. | Should |
 | FR-16 | Region map | `/regions` shows a keyboard-accessible province map (Natural Earth, public domain) that opens each region page, with a list fallback below. It is for navigation only, with no game mechanics. | Should |
+| FR-17 | Story requests | Members ask for a new story, recipe or dress on `/requests` (title and short note, 5 a day). Everyone sees visible requests with the nickname only; staff plan, close or hide them. Requests never become content by themselves. | Should |
 
 ## Content pipeline
 
@@ -136,7 +137,7 @@ The MVP is done when all eleven checks pass. Each check is a yes or no, and the 
 
 These are not built for the festival MVP. RPG mode and map game mechanics are dropped. A navigation map (FR-16) and the grounded assistant (FR-15) are allowed; they are not a map game or free-form chat.
 
-- Community story submissions and moderation queues
+- Community story submissions and moderation queues (story requests, FR-17, are allowed: they are suggestions, not content)
 - Video generation from stories
 - Free-form AI chat with characters
 - Realistic cloth simulation in try-on

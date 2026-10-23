@@ -1,4 +1,4 @@
-import { BookOpen, X } from "lucide-react";
+import { BookOpen, MessageSquarePlus, X } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -105,6 +105,7 @@ async function Results({
         icon={<BookOpen size={28} strokeWidth={1.75} />}
         title={library.emptyTitle}
         description={library.emptyBody}
+        action={<RequestLink label={dict.requests.cta} />}
       />
     );
   }
@@ -162,6 +163,18 @@ async function Results({
           {library.noMatch}
         </p>
       )}
+      <div className="mt-10">
+        <RequestLink label={dict.requests.cta} />
+      </div>
     </>
+  );
+}
+
+function RequestLink({ label }: { label: string }) {
+  return (
+    <Link href="/requests" className="inline-flex min-h-12 items-center gap-2 rounded px-2 text-label-md text-primary hover:underline">
+      <MessageSquarePlus aria-hidden="true" size={18} strokeWidth={1.75} />
+      {label}
+    </Link>
   );
 }

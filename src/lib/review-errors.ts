@@ -38,7 +38,7 @@ export function mapReviewError(error: DbError): ReviewError {
   if (code === "P0002") return { code: "not_found" };
   if (code === "23505") return { code: "duplicate" };
   if (code === "42501") {
-    return message.includes("created or last edited") ? { code: "own_work" } : { code: "forbidden" };
+    return message.includes("cannot approve content you created") ? { code: "own_work" } : { code: "forbidden" };
   }
   if (code === "23503") return { code: "not_found" };
   if (code === "22023" || code === "22P02") return { code: "invalid_input" };

@@ -25,6 +25,8 @@
 
 ## Content
 - Seed data comes from docs/content-seed.md. All content stays draft until a reviewer approves it.
+- Claude may research and draft new content (user decision, 2026-10-23), only from real sources it has opened and checked, cited on every item, in both languages. Claude writes drafts only and never approves; the owner approves.
+- Members never write content. They ask for it on /requests; a request is a suggestion, not content.
 - Never mark a recipe halal unless halal_status = verified_by_source.
 
 ## Working style

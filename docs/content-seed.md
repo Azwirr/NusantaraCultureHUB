@@ -18,57 +18,39 @@ I have not checked these against outside sources. The reviewer must do this befo
 
 ## Story 1: Timun Mas (Jawa)
 
-Region: Jawa. Category: Curated. Summary (EN): A poor widow makes a bargain with a giant, and her daughter outwits him with four magical seeds and objects.
+Region: Jawa. Category: Curated. Summary (EN): A widow receives cucumber seeds from a giant, and her daughter, Timun Mas, escapes him with four magic bundles from a hermit.
+
+Updated 2026-10-23 (Phase 2b) to follow the cited source, [detikJateng, "Kisah Timun Mas, Cerita Rakyat dari Jawa Tengah"](https://www.detik.com/jateng/budaya/d-6264915/kisah-timun-mas-cerita-rakyat-dari-jawa-tengah) (2022), retold in our own words. The audio descriptions and alt text are in `supabase/content/2026-10-23-batch-1.sql`. The first draft (the mother gives the items, chili becomes fire) is replaced.
 
 ### Chapter 1
 
-**ID:** Mbok Sirni adalah janda miskin yang tinggal di sebuah desa. Suatu hari ia bertemu Buto Ijo, raksasa yang menawarkan harta dengan satu syarat: anak yang kelak lahir harus diserahkan kepada sang raksasa.
+**ID:** Di sebuah desa hiduplah Mbok Randa, seorang janda yang sangat ingin memiliki anak. Suatu hari raksasa bernama Buto Ijo memberinya biji timun, dengan satu syarat: anak itu harus diserahkan kepadanya ketika berusia enam tahun.
 
-**EN:** Mbok Sirni was a poor widow in a village. One day she met Buto Ijo, a giant who offered her wealth on one condition: the child she would one day have must be given to him.
-
-*Audio description:* A small wooden house at dusk. An old woman stands at the door while a huge green figure stoops over the path.
-
-*Image alt:* Mbok Sirni, a thin older woman, stands at her doorway as a tall green giant bends toward her in the evening light.
+**EN:** In a village lived Mbok Randa, a widow who longed for a child. One day a giant named Buto Ijo gave her cucumber seeds on one condition: the child must be handed over to him at the age of six.
 
 ### Chapter 2
 
-**ID:** Bertahun-tahun kemudian, Buto Ijo datang menagih janjinya. Mbok Sirni memohon, dan raksasa itu memberi waktu. Anak mereka, yang bersinar seperti emas, diberi nama Timun Mas.
+**ID:** Mbok Randa menanam biji itu. Tumbuhlah sebuah timun besar berwarna keemasan, dan di dalamnya ada seorang bayi perempuan. Ia memberinya nama Timun Mas dan merawatnya dengan penuh kasih.
 
-**EN:** Years later, Buto Ijo came to claim his promise. Mbok Sirni pleaded, and the giant gave her time. Their daughter, who shone like gold, was named Timun Mas.
-
-*Audio description:* A girl with a golden glow grows up in a small house while the giant waits outside.
-
-*Image alt:* A young girl with golden skin glowing beside her mother, while a green giant looms at the edge of the frame.
+**EN:** Mbok Randa planted the seeds. A large golden cucumber grew, and inside it was a baby girl. She named her Timun Mas and raised her with great love.
 
 ### Chapter 3
 
-**ID:** Ketika Timun Mas beranjak dewasa, Buto Ijo kembali. Sang ibu memberinya empat benda ajaib: biji timun, jarum, garam, dan cabai. Timun Mas pun berlari keluar dari rumah.
+**ID:** Ketika Timun Mas berusia enam tahun, Buto Ijo datang menagih janji. Mbok Randa meminta waktu, lalu pergi kepada seorang pertapa. Pertapa itu memberinya empat bungkusan kecil: biji timun, jarum, garam, dan terasi. Saat raksasa kembali, Timun Mas berlari membawa bungkusan itu.
 
-**EN:** When Timun Mas was grown, the giant returned. Her mother gave her four magic items: cucumber seeds, a needle, salt, and chili. Timun Mas ran from the house.
-
-*Audio description:* A girl runs down a dirt path holding four small objects in her hands, while the giant chases her.
-
-*Image alt:* A young girl runs along a path holding a small bag, with a giant striding after her.
+**EN:** When Timun Mas turned six, Buto Ijo came to claim his promise. Mbok Randa asked for time and went to a hermit, who gave her four small bundles: cucumber seeds, needles, salt and shrimp paste. When the giant returned, Timun Mas ran off with the bundles.
 
 ### Chapter 4
 
-**ID:** Buto Ijo mengejar. Timun Mas melempar biji timun, dan tumbuhlah ladang timun yang membuat raksasa itu tertahan. Lalu jarum menjadi hutan bambu, garam menjadi lautan, dan cabai menjadi api yang menghalangi sang raksasa.
+**ID:** Timun Mas menebar biji timun, dan tumbuhlah ladang timun yang menjerat raksasa. Lalu ia melempar jarum, yang menjadi rumpun bambu yang tajam. Kemudian ia menabur garam, yang menjadi lautan luas, tetapi raksasa itu masih bisa berenang menyeberanginya.
 
-**EN:** The giant gave chase. Timun Mas threw the cucumber seeds, and a cucumber field grew to slow him. Then the needle became a bamboo forest, the salt became a sea, and the chili became a fire that blocked the giant.
-
-*Audio description:* Four magic changes in a row: a field of cucumbers, a dense bamboo forest, a shining sea, and a wall of flame.
-
-*Image alt:* Four scenes in one picture: green cucumber vines, tall bamboo, a blue sea, and a line of orange flames, with the giant held back at the edge.
+**EN:** Timun Mas scattered the cucumber seeds, and a cucumber field sprang up and tangled the giant. Then she threw the needles, which became sharp bamboo thickets. Next she scattered the salt, which became a wide sea, but the giant still swam across.
 
 ### Chapter 5
 
-**ID:** Buto Ijo tidak dapat menyeberangi api itu dan tidak pernah kembali. Timun Mas pulang kepada ibunya, dan mereka hidup dengan tenang. Cerita ini mengajarkan bahwa kecerdikan dan keberanian dapat mengalahkan kekuatan yang besar.
+**ID:** Terakhir, Timun Mas melempar terasi. Terasi itu berubah menjadi lautan lumpur, dan Buto Ijo tenggelam di dalamnya. Timun Mas pulang kepada ibunya, dan mereka hidup bahagia. Cerita ini mengajarkan bahwa kecerdikan dan keberanian dapat mengalahkan kekuatan yang besar.
 
-**EN:** The giant could not cross the fire and never returned. Timun Mas went home to her mother, and they lived in peace. The story teaches that courage and cleverness can overcome great strength.
-
-*Audio description:* A girl and her mother stand together in front of their house in the morning sun.
-
-*Image alt:* A girl and her mother stand outside their house in warm morning light, the fire and the giant far behind them.
+**EN:** Last, Timun Mas threw the shrimp paste. It became a sea of mud, and Buto Ijo sank into it. Timun Mas went home to her mother, and they lived happily. The story teaches that cleverness and courage can overcome great strength.
 
 ## Story 2: Malin Kundang (Minangkabau)
 
@@ -230,8 +212,8 @@ This doc gives you the text, audio descriptions, alt text, and image prompts. It
 | --- | --- |
 | 1 | Warm village house at dusk, an old widow at the door, a tall green giant bending down. Hand-drawn ink sketch with soft wash. |
 | 2 | A young girl with a golden glow beside her mother, the giant at the edge of the frame. Ink sketch with soft wash. |
-| 3 | A girl runs along a dirt path holding four small objects, the giant chasing behind. Ink sketch. |
-| 4 | Four panels in one picture: cucumber vines, a bamboo forest, a blue sea, and a wall of flame. Ink sketch. |
-| 5 | A mother and daughter outside their house in morning light. Ink sketch with soft wash. |
+| 3 | An old hermit hands four small bundles to a widow; a girl runs along a dirt path, the giant chasing behind. Ink sketch. |
+| 4 | Three panels in one picture: tangling cucumber vines, a sharp bamboo thicket, and a wide sea the giant swims across. Ink sketch. |
+| 5 | The giant sinking into a sea of mud; a mother and daughter outside their house in morning light. Ink sketch with soft wash. |
 
 Use one style for all five chapters. Check each picture for accuracy, then approve it in the review queue.

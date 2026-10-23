@@ -108,7 +108,7 @@ No AI calls, no audio, no try-on, no community submissions, no video, no payment
 
 ## Decision log
 
-Twelve decisions are recorded so far. Add a row whenever a blocking decision closes.
+Fourteen decisions are recorded so far. Add a row whenever a blocking decision closes.
 
 | Date | Decision | Where it lives |
 | --- | --- | --- |
@@ -124,3 +124,5 @@ Twelve decisions are recorded so far. Add a row whenever a blocking decision clo
 | 2026-10-23 | A navigation map on `/regions` is allowed. "Map mode" in CLAUDE.md now means a map game, which stays out of scope. | PRD, FR-16; CLAUDE.md |
 | 2026-10-23 | Search (FR-14) and bookmarks for members join the MVP. Bookmarks only hold approved content. | PRD, FR-14 and section 3 |
 | 2026-10-23 | The reviewed content and the design v2 pages ship together in Phase 2. | `docs/phase-2-plan.md` |
+| 2026-10-23 | Claude researches and drafts content from checked sources; the owner approves alone, including drafts they corrected. Reviewers keep four-eyes; nobody approves what they created. | `docs/phase-2b-plan.md`; migration part 13 |
+| 2026-10-23 | Members read and listen only, and ask for new content on `/requests`. | PRD FR-17; migration part 14 |

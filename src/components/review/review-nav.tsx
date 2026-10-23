@@ -2,9 +2,14 @@ import Link from "next/link";
 
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-type Section = "queue" | "audit" | "roles";
+type Section = "queue" | "requests" | "audit" | "roles";
 
-const HREFS: Record<Section, string> = { queue: "/review", audit: "/review/audit", roles: "/review/roles" };
+const HREFS: Record<Section, string> = {
+  queue: "/review",
+  requests: "/review/requests",
+  audit: "/review/audit",
+  roles: "/review/roles",
+};
 
 /** Queue, audit log and (owners only) roles. The current section is marked for assistive tech too. */
 export function ReviewNav({
@@ -16,7 +21,7 @@ export function ReviewNav({
   current: Section | null;
   isOwner: boolean;
 }) {
-  const sections: Section[] = isOwner ? ["queue", "audit", "roles"] : ["queue", "audit"];
+  const sections: Section[] = isOwner ? ["queue", "requests", "audit", "roles"] : ["queue", "requests", "audit"];
   return (
     <nav aria-label={copy.label} className="mb-8">
       <ul className="flex flex-wrap gap-2">

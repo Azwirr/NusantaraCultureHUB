@@ -11,9 +11,11 @@ select tables_are(
     'recipe_ingredients', 'recipe_steps', 'costumes', 'sources', 'content_sources',
     'badges', 'user_badges', 'user_progress', 'ai_jobs', 'audit_log',
     -- Phase 2: saves (FR-02, Member role) and the assistant quota (FR-15).
-    'bookmarks', 'assistant_usage'
+    'bookmarks', 'assistant_usage',
+    -- Phase 2b: story requests from members.
+    'story_requests'
   ],
-  'public schema has exactly the 16 PRD tables plus bookmarks and assistant_usage'
+  'public schema has exactly the 16 PRD tables plus the Phase 2 member tables'
 );
 
 select is(

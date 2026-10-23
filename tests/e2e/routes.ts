@@ -10,6 +10,8 @@ export const PAGE_ROUTES = [
   "/try-on",
   "/me",
   "/me/saved",
+  "/me/settings",
+  "/requests",
   "/search?q=rendang",
   "/login",
   "/signup",
