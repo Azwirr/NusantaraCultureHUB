@@ -5,6 +5,7 @@ import {
   CookingPot,
   Languages,
   type LucideIcon,
+  Search,
   ShieldCheck,
   Shirt,
   UsersRound,
@@ -40,6 +41,17 @@ const TRUST: Array<{ key: "bilingual" | "sourced" | "reviewed"; icon: LucideIcon
   { key: "bilingual", icon: Languages },
   { key: "sourced", icon: ShieldCheck },
   { key: "reviewed", icon: UsersRound },
+];
+
+type QuickSearchKey = "timunMas" | "malinKundang" | "rendang" | "gudeg" | "bajuBodo" | "bundoKanduang";
+
+const QUICK_SEARCH_TOPICS: Array<{ key: QuickSearchKey; query: string; icon: string }> = [
+  { key: "rendang", query: "Rendang", icon: "🥘" },
+  { key: "timunMas", query: "Timun Mas", icon: "🥒" },
+  { key: "malinKundang", query: "Malin Kundang", icon: "⛵" },
+  { key: "gudeg", query: "Gudeg", icon: "🍲" },
+  { key: "bajuBodo", query: "Baju Bodo", icon: "👘" },
+  { key: "bundoKanduang", query: "Bundo Kanduang", icon: "👑" },
 ];
 
 // Prerendered per language: the approved-content reads are cached ("use
@@ -80,6 +92,25 @@ export default async function HomePage() {
               <ButtonLink href="/regions" variant="secondary">
                 {home.secondaryCta}
               </ButtonLink>
+            </div>
+            <div className="flex flex-col gap-2.5 pt-2">
+              <p className="flex items-center gap-1.5 text-label-sm text-secondary">
+                <Search size={14} aria-hidden="true" className="shrink-0" />
+                <span>{home.quickSearchLabel}</span>
+              </p>
+              <ul className="flex flex-wrap gap-2" aria-label={home.quickSearchLabel}>
+                {QUICK_SEARCH_TOPICS.map((topic) => (
+                  <li key={topic.query}>
+                    <Link
+                      href={`/search?q=${encodeURIComponent(topic.query)}`}
+                      className="press inline-flex min-h-9 items-center gap-1.5 rounded-full border border-ink/40 bg-surface-container-lowest px-3 py-1 text-label-sm text-on-surface shadow-1 hover:border-primary hover:bg-primary-container hover:text-on-primary-container transition-colors"
+                    >
+                      <span aria-hidden="true">{topic.icon}</span>
+                      <span>{home.quickSearchTopics[topic.key]}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           {/* Collage of project line art. Decorative: hidden from assistive tech. */}

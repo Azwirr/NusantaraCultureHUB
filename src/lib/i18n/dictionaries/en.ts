@@ -64,6 +64,15 @@ export const en = {
     lead: "Traditional dress, heritage recipes and folk tales from across Indonesia, in Indonesian and English. Every item is checked against its source before it goes live.",
     primaryCta: "Open the library",
     secondaryCta: "Explore by region",
+    quickSearchLabel: "Popular searches:",
+    quickSearchTopics: {
+      timunMas: "Timun Mas",
+      malinKundang: "Malin Kundang",
+      rendang: "Rendang",
+      gudeg: "Gudeg",
+      bajuBodo: "Baju Bodo",
+      bundoKanduang: "Bundo Kanduang",
+    },
     statsLabel: "What is live in the archive",
     stats: {
       story: "stories",

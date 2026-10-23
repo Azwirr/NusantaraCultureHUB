@@ -73,6 +73,15 @@ export const id = {
     lead: "Busana adat, resep warisan, dan dongeng rakyat dari berbagai daerah di Indonesia, dalam bahasa Indonesia dan Inggris. Setiap item diperiksa terhadap sumbernya sebelum tayang.",
     primaryCta: "Buka perpustakaan",
     secondaryCta: "Jelajah per wilayah",
+    quickSearchLabel: "Pencarian populer:",
+    quickSearchTopics: {
+      timunMas: "Timun Mas",
+      malinKundang: "Malin Kundang",
+      rendang: "Rendang Padang",
+      gudeg: "Gudeg Yogyakarta",
+      bajuBodo: "Baju Bodo",
+      bundoKanduang: "Bundo Kanduang",
+    },
     statsLabel: "Isi arsip yang sudah tayang",
     stats: {
       story: "cerita",
