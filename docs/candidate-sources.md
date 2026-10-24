@@ -89,3 +89,19 @@ One new region per island, loaded as drafts by `supabase/content/2026-10-24-batc
 | Bagajah Gamuling Baular Lulut | [4 Baju Adat Kalimantan Selatan](https://www.detik.com/kalimantan/budaya/d-8172884/4-baju-adat-kalimantan-selatan-warisan-budaya-banjar-yang-tetap-lestari) | detikKalimantan, 2025 |
 | Baju cele | [Ragam rupa pakaian adat Maluku](https://www.antaranews.com/berita/4292483/ragam-rupa-pakaian-adat-maluku) | ANTARA, 2024 |
 | Rok rumbai | [Mengenal Baju Adat Papua](https://www.goodnewsfromindonesia.id/2024/11/12/mengenal-baju-adat-papua-simbol-keindahan-dan-kearifan-lokal) | GNFI, 2024 |
+
+## Batch 4 (2026-10-24)
+
+Loaded and published by `supabase/content/2026-10-24-batch-4.sql` and `2026-10-24-publish-2.sql`. Every item cites two different websites.
+
+| Item | Sources | Notes |
+| --- | --- | --- |
+| Region: Sasak (Lombok, NTB) | its three items below | New region on the Bali & Nusa Tenggara island page. |
+| Putri Mandalika | [GNFI, 2026](https://www.goodnewsfromindonesia.id/indonesiana/legenda/cerita-rakyat-putri-mandalika-legenda-di-balik-tradisi-bau-nyale-dan-kemegahan-sirkuit-lombok); [Mongabay, 2017](https://mongabay.co.id/2017/02/22/liputan-bau-nyale-puluhan-ribu-warga-ke-laut-mencari-cacing-laut-jelmaan-putri/) | Names of the king and queen follow GNFI; other versions differ. |
+| Putri Tandampalik | [detikSulsel, 2022](https://www.detik.com/sulsel/budaya/d-6036473/8-cerita-rakyat-sulawesi-selatan-beserta-pesan-moralnya); [Gramedia](https://www.gramedia.com/literasi/menyelami-7-cerita-rakyat-sulawesi-selatan-yang-sarat-falsafah-hidup/) | The white buffalo and Wajo come from detik; Gramedia confirms the exile, healing and marriage. One GNFI page places the tale in Central Sulawesi; most sources say Luwu, South Sulawesi. |
+| Batu Berdaun (second source) | [REINHA, 2018](https://www.reinha.com/2018/10/29/cerita-rakyat-maluku-kisah-batu-berdaun/) | Matches the GNFI version; adds that a neighbour takes the children in. |
+| Kasuari dan Dara Makota (second source) | [Analisadaily, 2014](https://analisadaily.com/berita/arsip/2014/9/14/63761/kasuari-dan-dara-mahkota/) | In this version the birds break each other's wings before the race; the draft follows detik (the cassowary crashes into a tree). |
+| Ayam taliwang | [Liputan6, 2026](https://www.liputan6.com/lifestyle/read/8307016/resep-ayam-taliwang); [detikBali, 2024](https://www.detik.com/bali/kuliner/d-7221636/asal-usul-dan-resep-ayam-taliwang-kuliner-pedas-gurih-khas-lombok) | Amounts, 4 servings and about 95 minutes follow Liputan6. |
+| Baju lambung | [Orami, 2024](https://www.orami.co.id/magazine/pakaian-adat-suku-sasak); [detikTravel, 2021](https://travel.detik.com/domestic-destination/d-5870658/baju-lambung-crop-top-adat-perempuan-khas-suku-sasak); [indonesia.travel](https://www.indonesia.travel/us/en/travel-ideas/culture/pakaian-lambung/) | Sources differ on who wears it (girls or mothers); the draft leaves that out. Placeholder drawing only. |
+
+Still drafts: nasi timbel, ikan kuah kuning and papeda. The pages that give servings and time describe different recipes from the ones drafted.

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img">
+  <title>Placeholder: Baju Lambung, line drawing</title>
+  <rect width="300" height="400" fill="#fffbf2"/>
+  <g fill="none" stroke="#5a5348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="12" width="276" height="376" rx="8" stroke="#c9bfae"/>
+    <circle cx="150" cy="72" r="22"/>
+    <path d="M128 64 C130 44 170 44 172 64"/>
+    <path d="M100 115 L200 115 L196 185 L104 185 Z"/>
+    <path d="M130 115 L150 145 L170 115"/>
+    <path d="M100 115 L96 140 M200 115 L204 140" stroke-dasharray="2 5"/>
+    <path d="M104 185 L196 185 L198 205 L102 205 Z"/>
+    <path d="M190 118 C215 150 210 190 200 230" stroke-dasharray="4 4"/>
+    <path d="M106 205 L98 365 L202 365 L194 205"/>
+    <path d="M102 250 L198 250 M100 295 L200 295 M99 335 L201 335" stroke-dasharray="6 4"/>
+  </g>
+</svg>
