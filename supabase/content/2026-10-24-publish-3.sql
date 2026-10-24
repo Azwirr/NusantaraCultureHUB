@@ -1,0 +1,7 @@
+-- Publish run 3 (2026-10-24), by Claude as the AI Workflow, after batch 5.
+-- Every item cites two different websites that were opened and compared with
+-- the draft. private.ai_publish checks that and every other publish rule.
+-- Items the database refuses stay drafts. Re-running is safe.
+-- Result on staging: 19 items published. kuah-beulangong and papiong stay
+-- drafts: their sources give no serving count, which the publish rule needs.
+-- Order matters: regions first, then stories, recipes and dress.

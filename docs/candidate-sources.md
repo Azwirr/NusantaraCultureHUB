@@ -105,3 +105,27 @@ Loaded and published by `supabase/content/2026-10-24-batch-4.sql` and `2026-10-2
 | Baju lambung | [Orami, 2024](https://www.orami.co.id/magazine/pakaian-adat-suku-sasak); [detikTravel, 2021](https://travel.detik.com/domestic-destination/d-5870658/baju-lambung-crop-top-adat-perempuan-khas-suku-sasak); [indonesia.travel](https://www.indonesia.travel/us/en/travel-ideas/culture/pakaian-lambung/) | Sources differ on who wears it (girls or mothers); the draft leaves that out. Placeholder drawing only. |
 
 Still drafts: nasi timbel, ikan kuah kuning and papeda. The pages that give servings and time describe different recipes from the ones drafted.
+
+## Batch 5 (2026-10-24): six more regions
+
+Loaded by `supabase/content/2026-10-24-batch-5.sql`, published by `2026-10-24-publish-3.sql`. Each item cites two different websites.
+
+| Region | Item | Sources | Notes |
+| --- | --- | --- | --- |
+| Betawi (DKI Jakarta) | Si Pitung (story) | GNFI 2024; detikTravel 2022 | detikTravel says historians still debate whether he existed. The invulnerability and golden-bullet details come from GNFI only. |
+| Betawi | Kerak telor | Kompas 2021 (2 porsi); detikFood 2022 (45 minutes) | Duck eggs, glutinous rice, dried shrimp, grated coconut. |
+| Betawi | Baju sadariah | indonesia.travel; ANTARA 2024 | The men's dress. ANTARA says the top is modelled on the baju koko; the colours are not stated. |
+| Aceh | Putri Pukes (story) | GNFI 2024; Kompas 2022 | Gayo princess who looks back, turns to stone; the lake forms from the rain. |
+| Aceh | Kuah beulangong | Kompas 2020; detikSumut 2023 | Not published: neither source gives a serving count for the recipe. detikSumut says one pot makes about 200 portions. |
+| Aceh | Linto baro | indonesia.travel; Liputan6 2025 | The groom's dress; components from Liputan6. |
+| Toraja | La Dana dan Kerbaunya (story) | GNFI 2024; detikSulsel 2022 | Both retell the tale the same way. |
+| Toraja | Pa'piong | Kompas 2014; Liputan6 2025 | Not published: no serving count. Kompas gives about 1.5 hours of grilling. |
+| Toraja | Baju pokko' | detikSulsel 2023; Kompas 2025 | Meanings of the colours differ between sources: detikSulsel explains them, Kompas does not. |
+| Dayak Ngaju (Central Kalimantan) | Baju sangkarut | detikKalimantan 2025; Kompas 2021 | The two sources disagree on the ornaments. Kompas says the vest is plain; detikKalimantan describes shells, buttons and motifs. |
+| Rote and Flores (NTT) | Danau Kelimutu (story) | Kompas 2022; detikEdu 2024 | The two pages tell different legends. The Ata Bupu tale is from Kompas; the offerings and lake guardians are from detikEdu. |
+| Rote and Flores | Sei sapi sambal luat | Orami 2025 (2 porsi, 1 hour); Kompas 2020 | Orami's sambal luat version. |
+| Rote and Flores | Ti'i langga | detikBali 2025; Kompas 2022 | A hat rather than a full outfit. Kompas gives 18 notches for the kingdoms of Rote; the source does not say how many kingdoms the island had. |
+| Minahasa (North Sulawesi) | Toar dan Lumimuut (story) | Liputan6 2022; Kompas 2022 | Both say this is one of several explanations of Minahasa origins. |
+| Minahasa | Tinutuan | detikFood 2022 (6 porsi, 60 minutes); Kompas 2024 | Mushroom seasoning and gedi leaves follow detikFood. No Minahasa dress is listed: no verified source was found. |
+
+Dress placeholder: the new dress items use `public/placeholders/costume-generic.svg` until pictures are added.
