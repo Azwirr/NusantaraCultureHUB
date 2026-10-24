@@ -772,5 +772,235 @@
     "prompt": "Use case: product-mockup. Editorial food cover for Tinutuan (Manado vegetable porridge), a traditional Indonesian recipe. Show the actual prepared dish, not raw ingredients. Recipe ingredients: Short-grain rice, Water, Bay leaves, Lemongrass, bruised, Sweet corn, cut, Yellow pumpkin or sweet potato, diced, Water spinach, cleaned, Gedi leaves, chopped, Spring onion, coarsely sliced, Pandan leaves, coarsely sliced, Mushroom seasoning, Salt, Lemon basil, Salted jambal roti fish, fried (to serve). Preparation: Rinse the rice well and drain it. Bring the water to a boil with the bay leaves and lemongrass. Add the rice and cook until the grains break down and the porridge starts to thicken. Add the corn and pumpkin or sweet potato, and cook until soft and thick. Add the water spinach, gedi leaves, spring onion, pandan, mushroom seasoning and salt. Cook until the vegetables are tender. Add the kemangi just before turning off the heat, then serve warm with fried salted fish and sambal.. Natural ceramic plate or bowl suited to this dish, warm natural window light on a modest wood table, slight overhead three-quarter view, beautiful appetizing real food texture, no people. Refined hand-painted gouache and fine ink on warm cream textured paper, sophisticated Indonesian cultural storybook, natural light, indigo, terracotta, restrained ochre and leafy green. Landscape 16:9 with generous safe margins. No text, labels, lettering, borders, logos, watermark or collage. One coherent illustration. Respect Indonesian regional setting, no modern brands. Interpretive AI art, not documentary evidence.",
     "tool": "OpenAI built-in image_gen",
     "date": "2026-10-24"
+  },
+  {
+    "key": "ceremony-pasola-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "pasola",
+    "prompt": "Dramatic but respectful editorial illustration of Pasola in West Sumba, East Nusa Tenggara: Sumbanese horse riders in traditional woven ikat and headcloths on sturdy horses, holding blunt wooden spears in a ceremonial contest across a grassy field, distant dry hills and village spectators, movement and dust, culturally grounded Sumba architecture, no blood, no injury, no violence detail, documentary-art realism, warm natural daylight, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Pasola di Sumba Barat, Nusa Tenggara Timur",
+    "alt_en": "Ilustrasi AI: Pasola in West Sumba, East Nusa Tenggara"
+  },
+  {
+    "key": "ceremony-ngaben-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "ngaben",
+    "prompt": "Respectful editorial illustration of a Balinese Hindu Ngaben procession in Bali: ornate bade tower and animal-shaped patulangan carried through a village street, families in modest traditional Balinese ceremonial clothing, offerings and temple architecture, no body visible, no cremation or fire detail, reverent documentary-art realism, warm daylight, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Prosesi Ngaben di Bali",
+    "alt_en": "Ilustrasi AI: Ngaben procession in Bali"
+  },
+  {
+    "key": "ceremony-tiwah-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "tiwah",
+    "prompt": "Respectful editorial illustration of a Dayak Ngaju Tiwah ceremony in Central Kalimantan: families gathered near a carved ironwood sapundu post and a traditional sandung bone-house, ceremonial textiles and offerings, lush riverine forest village, no remains, no body, no animal sacrifice, reverent documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Ritual Tiwah Dayak Ngaju di Kalimantan Tengah",
+    "alt_en": "Ilustrasi AI: Dayak Ngaju Tiwah ritual in Central Kalimantan"
+  },
+  {
+    "key": "ceremony-sekaten-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "sekaten",
+    "prompt": "Editorial illustration of Sekaten in Yogyakarta: Javanese court gamelan musicians performing in a palace pavilion, visitors in modest batik and traditional dress, a graceful gunungan procession in the background, no religious caricature, historically grounded architecture and instruments, warm evening lantern light, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Gamelan dan gunungan dalam perayaan Sekaten",
+    "alt_en": "Ilustrasi AI: Gamelan and gunungan at the Sekaten festival"
+  },
+  {
+    "key": "ceremony-seren-taun-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "seren-taun",
+    "prompt": "Editorial illustration of Seren Taun harvest thanksgiving in Cigugur, West Java: Sundanese community in traditional attire carrying rice bundles and a decorated harvest offering toward a village hall, rice fields and hills, respectful depiction of living tradition, documentary-art realism, gentle daylight, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Syukuran panen Seren Taun masyarakat Sunda",
+    "alt_en": "Ilustrasi AI: Sundanese Seren Taun harvest thanksgiving"
+  },
+  {
+    "key": "ceremony-yadnya-kasada-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "yadnya-kasada",
+    "prompt": "Respectful editorial illustration of Yadnya Kasada at Mount Bromo, East Java: Tenggerese people in traditional clothing making a procession with crops and flowers toward the crater viewpoint, Mount Bromo and sea of sand in the distance, no one falling or in danger, sacred ceremony shown reverently, dawn light, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Prosesi Yadnya Kasada masyarakat Tengger di Bromo",
+    "alt_en": "Ilustrasi AI: Tengger Yadnya Kasada procession at Bromo"
+  },
+  {
+    "key": "ceremony-mapalus-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "mapalus",
+    "prompt": "Editorial illustration of Mapalus communal work in Minahasa, North Sulawesi: neighbors working together in a green village field, planting and carrying harvest baskets, traditional North Sulawesi architecture in the distance, warm communal atmosphere, culturally grounded clothing, documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Gotong royong Mapalus di Minahasa",
+    "alt_en": "Ilustrasi AI: Mapalus communal work in Minahasa"
+  },
+  {
+    "key": "ceremony-bakar-batu-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "bakar-batu",
+    "prompt": "Respectful editorial illustration of a Dani community Bakar Batu feast in the Baliem Valley, Papua: community members preparing a shared earth-oven meal with hot stones, banana leaves and vegetables, elders and families in culturally respectful attire, no stereotypes, no exposed body, mountain valley setting, documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Persiapan pesta Bakar Batu di Lembah Baliem",
+    "alt_en": "Ilustrasi AI: Bakar Batu feast preparation in the Baliem Valley"
+  },
+  {
+    "key": "ceremony-manene-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "manene",
+    "prompt": "Respectful editorial illustration of the Toraja Ma'nene family remembrance tradition in South Sulawesi: relatives gathered around a family tongkonan and carved wooden tau-tau, sharing stories and tending woven textiles, no remains, no bodies, no coffins, reverent and dignified, highland landscape, documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Keluarga Toraja berkumpul untuk tradisi Ma'nene",
+    "alt_en": "Ilustrasi AI: Toraja family gathering for the Ma'nene tradition"
+  },
+  {
+    "key": "ceremony-tabuik-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "tabuik",
+    "prompt": "Editorial illustration of Tabuik in Pariaman, West Sumatra: colorful towering Tabuik structures carried by a large crowd toward the coast during the cultural procession, Minangkabau clothing and coastal town setting, energetic but respectful, no depiction of violence, golden afternoon, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Arak-arakan Tabuik di Pariaman",
+    "alt_en": "Ilustrasi AI: Tabuik procession in Pariaman"
+  },
+  {
+    "key": "ceremony-mappacci-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "mappacci",
+    "prompt": "Editorial illustration of a Bugis Mappacci pre-wedding ritual in South Sulawesi: bride and groom seated modestly in traditional silk attire, family elders applying symbolic pacci henna leaves to the bride's palms, warm decorated home, respectful private family ceremony, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Ritual Mappacci dalam adat pernikahan Bugis",
+    "alt_en": "Ilustrasi AI: Mappacci ritual in a Bugis wedding tradition"
+  },
+  {
+    "key": "ceremony-mangongkal-holi-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "mangongkal-holi",
+    "prompt": "Respectful editorial illustration of the Batak Toba Mangongkal Holi ancestral remembrance gathering in North Sumatra: extended family in ulos textiles assembled at a traditional Batak house, elders speaking and offerings arranged, no graves, bones, remains, or coffins shown, dignified communal ceremony, Lake Toba highlands, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Keluarga Batak Toba berkumpul mengenakan ulos",
+    "alt_en": "Ilustrasi AI: Batak Toba family gathering in ulos textiles"
+  },
+  {
+    "key": "ceremony-baayun-maulid-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "baayun-maulid",
+    "prompt": "Gentle editorial illustration of Baayun Maulid in Banjar, South Kalimantan: infants safely resting in decorated traditional cloth cradles suspended indoors while families gather for prayers and celebration, bright woven textiles and Banjar ornaments, no unattended baby, respectful and warm, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Ayunan bayi berhias dalam tradisi Baayun Maulid Banjar",
+    "alt_en": "Ilustrasi AI: Decorated baby cradles at the Banjar Baayun Maulid tradition"
+  },
+  {
+    "key": "ceremony-pukul-sapu-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "pukul-sapu",
+    "prompt": "Respectful editorial illustration of the Pukul Sapu tradition in Mamala, Maluku: two adult participants in traditional attire perform a symbolic cane ritual at a village festival, shown before contact with long soft-looking ritual rods, no wounds, blood, injury, or impact, supportive crowd, documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Pertunjukan tradisi Pukul Sapu di Maluku",
+    "alt_en": "Ilustrasi AI: Pukul Sapu cultural performance in Maluku"
+  },
+  {
+    "key": "ceremony-bau-nyale-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "bau-nyale",
+    "prompt": "Editorial illustration of Bau Nyale on a Lombok beach, West Nusa Tenggara: Sasak families at dawn gently collecting tiny sea worms from shallow water during the seasonal festival, traditional woven clothing, calm surf and coastal hills, respectful community scene, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Masyarakat Sasak mencari nyale di pantai Lombok",
+    "alt_en": "Ilustrasi AI: Sasak community gathering nyale on a Lombok beach"
+  },
+  {
+    "key": "ceremony-palang-pintu-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "palang-pintu",
+    "prompt": "Editorial illustration of a Betawi Palang Pintu wedding tradition in Jakarta: two adult performers in traditional Betawi attire exchange pantun and demonstrate silat footwork playfully before a wedding procession, no striking or injury, ondel-ondel and tanjidor musicians nearby, colorful respectful urban neighborhood, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Pantun dan silat dalam tradisi Palang Pintu Betawi",
+    "alt_en": "Ilustrasi AI: Pantun and silat in the Betawi Palang Pintu tradition"
+  },
+  {
+    "key": "ceremony-peusijuek-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "peusijuek",
+    "prompt": "Respectful editorial illustration of Peusijuek in Aceh: an Acehnese elder blessing a family with water and rice leaves in a home gathering, guests in modest traditional Acehnese clothing, calm and reverent, clear local textiles and interior, documentary-art realism, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Prosesi Peusijuek di Aceh",
+    "alt_en": "Ilustrasi AI: Peusijuek blessing ceremony in Aceh"
+  },
+  {
+    "key": "ceremony-caci-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "caci",
+    "prompt": "Respectful editorial illustration of Caci dance in Manggarai, Flores: two adult dancers in traditional Manggarai clothing, masks and headgear pose in a cultural performance arena with shields and whips held ceremonially, no contact, no injury, no blood, audience and village setting, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Pertunjukan tari Caci Manggarai di Flores",
+    "alt_en": "Ilustrasi AI: Manggarai Caci dance performance in Flores"
+  },
+  {
+    "key": "ceremony-rambu-solo-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "rambu-solo",
+    "prompt": "Respectful editorial illustration of a Toraja Rambu Solo' funeral ceremony in South Sulawesi: large community gathered in a traditional tongkonan courtyard, buffalo presented at a distance as part of a solemn customary event, no killing, blood, body, or coffin, dignified architecture and textiles, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Keluarga berkumpul dalam upacara Rambu Solo' Toraja",
+    "alt_en": "Ilustrasi AI: Family gathering at a Toraja Rambu Solo' ceremony"
+  },
+  {
+    "key": "ceremony-karapan-sapi-ai-v1",
+    "kind": "cover",
+    "type": "ceremony",
+    "slug": "karapan-sapi",
+    "prompt": "Editorial illustration of Karapan Sapi in Madura, East Java: two healthy bulls wearing colorful decorative harnesses pull a lightweight wooden sled across a sandy race track, skilled jockey balanced safely, spectators behind barriers, no injury or animal distress, bright festival atmosphere, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Lomba Karapan Sapi di Madura",
+    "alt_en": "Ilustrasi AI: Karapan Sapi race in Madura"
+  },
+  {
+    "key": "recipe-pisang-epe-ai-v1",
+    "kind": "cover",
+    "type": "recipe",
+    "slug": "pisang-epe",
+    "prompt": "Appetizing editorial food photography illustration of Pisang Epe, Makassar: flattened grilled kepok bananas with light char marks on a small plate, glossy palm-sugar syrup and pandan leaf garnish, simple Makassar street-food presentation, natural soft daylight, no text, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Pisang Epe Makassar dengan saus gula merah",
+    "alt_en": "Ilustrasi AI: Makassar Pisang Epe with palm-sugar sauce"
+  },
+  {
+    "key": "recipe-nasu-likku-ai-v1",
+    "kind": "cover",
+    "type": "recipe",
+    "slug": "nasu-likku",
+    "prompt": "Appetizing editorial food photography illustration of Bugis Nasu Likku from South Sulawesi: tender chicken pieces cooked in rich golden coconut milk with visibly abundant finely shredded galangal, lemongrass and warm spices, served in a traditional ceramic bowl with rice, natural soft daylight, no text, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Nasu Likku Bugis dengan ayam dan lengkuas",
+    "alt_en": "Ilustrasi AI: Bugis Nasu Likku chicken with galangal"
+  },
+  {
+    "key": "story-putri-junjung-buih-ai-v1",
+    "kind": "cover",
+    "type": "story",
+    "slug": "putri-junjung-buih",
+    "prompt": "Respectful editorial illustration inspired by the Banjar folklore Putri Junjung Buih of South Kalimantan: a young princess in elegant historical Banjar ceremonial clothing emerges symbolically from luminous river foam near the Tabalong River, a royal family watches from the bank, richly detailed traditional Banjar motifs, magical realism, no text, landscape 3:2 composition.",
+    "created_with": "OpenAI image generation",
+    "alt_id": "Ilustrasi AI: Ilustrasi Putri Junjung Buih dari cerita rakyat Banjar",
+    "alt_en": "Ilustrasi AI: Illustration of Putri Junjung Buih from Banjar folklore"
   }
 ]

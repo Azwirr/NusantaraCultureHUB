@@ -4,7 +4,8 @@ import { Suspense } from "react";
 
 import { Card } from "@/components/card";
 import { PageHeader } from "@/components/page-header";
-import { TryOnCamera } from "@/components/try-on-camera";
+import { PortraitStudio } from "@/components/portrait-studio";
+import { getSessionUser } from "@/lib/auth";
 import { getTryOnDresses } from "@/lib/content";
 import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 
@@ -13,10 +14,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: tryOn.title, description: tryOn.lead };
 }
 
-// PRD privacy rule: try-on photos are processed in the browser and never
-// uploaded. The camera and pose model run entirely in the browser.
+// The owner replaced the manual compositor with generated portraits. One face
+// photo is sent only after sign-in, consent and Generate; no photo is stored.
 export default async function TryOnPage() {
-  const [{ tryOn, common }, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const [{ tryOn, common, portrait }, locale] = await Promise.all([getDictionary(), getLocale()]);
   const dresses = await getTryOnDresses(locale);
   return (
     <div className="page-container py-8 md:py-12">
@@ -43,12 +44,23 @@ export default async function TryOnPage() {
           </div>
         </Card>
 
-        <Card as="section" aria-label={tryOn.title} className="col-span-4 flex flex-col gap-4 p-5 md:col-span-8 lg:col-span-7">
+        <Card as="section" aria-labelledby="portrait-title" className="col-span-4 flex flex-col gap-4 p-5 md:col-span-8 lg:col-span-12">
+          <div className="flex flex-col gap-1">
+            <h2 id="portrait-title" className="font-serif text-headline-md">{portrait.sectionTitle}</h2>
+            <p className="text-body-md text-on-surface-variant">{portrait.sectionLead}</p>
+          </div>
           <Suspense fallback={<p>{common.loading}</p>}>
-            <TryOnCamera dresses={dresses} copy={{ ...tryOn, ...common }} />
+            <Studio dresses={dresses} />
           </Suspense>
         </Card>
       </div>
     </div>
   );
+}
+
+async function Studio({ dresses }: { dresses: Awaited<ReturnType<typeof getTryOnDresses>> }) {
+  const [user, dict] = await Promise.all([getSessionUser(), getDictionary()]);
+  const testMode = process.env.TRY_ON_FAKE_PROVIDER === "1" && !process.env.VERCEL;
+  const enabled = testMode || (process.env.TRY_ON_AI_ENABLED === "true" && !!process.env.AI_GATEWAY_API_KEY);
+  return <PortraitStudio dresses={dresses} copy={dict.portrait} signedIn={!!user} enabled={enabled} testMode={testMode} />;
 }

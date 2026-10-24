@@ -21,8 +21,8 @@ it is an interpretive cover, not historical evidence or a reference photograph.
 The owner requested illustrated Ulos and Baju Bodo covers as well. These use
 versioned v2 URLs so existing image caches do not keep showing the old photos.
 All fifteen dress covers are now illustrations; the complete catalog contains
-36 illustrations and 17 licensed photographs. The two old dress photos remain
-archived, with their original attribution in `library-cover-credits.md`.
+59 illustrations and 16 licensed photographs. Older replaced photos remain
+archived with their original attribution in `library-cover-credits.md`.
 
 Licensed photographs retain the photographer's credit and a link to their
 Commons page, plus the applicable Creative Commons licence link. Resizing and
@@ -68,4 +68,5 @@ attribution. Desktop previews cover all three categories; the 390px mobile
 preview has no horizontal overflow. The cover batch was committed as `262c95f`
 and pushed to main during the following camera-studio task.
 
-The expanded collection includes 53 chapter-specific illustrations, 20 additional covers (seven reuse chapter-one artwork), and complete three-part references for 15 outfits. See `project-media-prompts.json` and `project-media-plan.md`. Media lookup happens only after the content passes its existing RLS read; installing an asset never publishes a draft.
+
+The expanded collection includes 53 chapter-specific illustrations, 20 earlier additional covers (seven reuse chapter-one artwork), and complete three-part references for 15 outfits. The 24 October culture batch adds 20 ceremony illustrations, two recipe covers and a new Putri Junjung Buih illustration. See `project-media-prompts.json` and `project-media-plan.md`. Media lookup happens only after the content passes its existing RLS read; installing an asset never publishes a draft.

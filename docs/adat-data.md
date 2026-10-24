@@ -197,5 +197,5 @@ For Mappacci and Peusijuek, the first journal PDFs found could not be read, so e
 1. **Built:** the ceremony content type (migration `20261025001800_ceremonies.sql`, pages under `/ceremonies/[slug]`, review queue, search).
 2. **Published:** batches 6 and 7 (20 ceremonies) and the Sumba region, through `private.ai_publish` (`supabase/content/2026-10-24-publish-4.sql`). The disputed details listed above are not in any published text. The owner can unpublish any item from `/review`.
 3. **Live site:** ceremonies show on the public site only after the code is pushed and Vercel redeploys.
-4. **Pictures.** Codex will handle these. `content_media` already accepts ceremonies.
+4. **Pictures.** AI illustrations are now registered for all 20 ceremonies in `src/lib/media/covers.json`. They are editorial illustrations, not documentary evidence; credits and prompts are recorded in `docs/library-cover-credits.md` and `docs/project-media-prompts.json`.
 5. **Not yet built:** saving ceremonies to My collection.

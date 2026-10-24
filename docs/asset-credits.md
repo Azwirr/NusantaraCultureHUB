@@ -51,7 +51,7 @@ No sounds or photographs ship in Phase 1.
 
 ## Library covers (24 October 2026)
 
-53 item-specific WebP covers are bundled in public/covers/: 17 licensed photographs and 36 AI illustrations. Every asset, creator, source and licence is recorded in [library-cover-credits.md](library-cover-credits.md) and src/lib/media/covers.json. Generated artwork is explicitly labelled in the interface. See [library-covers.md](library-covers.md) for visual direction and [cover-prompts.json](cover-prompts.json) for the exact prompts. Ulos and Baju Bodo use generated v2 covers; their original licensed photographs remain as archived assets (the Ulos photograph is also a camera-test fixture).
+75 item-specific WebP covers are bundled in public/covers/: 16 licensed photographs and 59 AI illustrations. Every asset, creator, source and licence is recorded in [library-cover-credits.md](library-cover-credits.md) and src/lib/media/covers.json. Generated artwork is explicitly labelled in the interface. See [library-covers.md](library-covers.md) for visual direction and [cover-prompts.json](cover-prompts.json) for the exact prompts. Ulos and Baju Bodo use generated v2 covers; their original licensed photographs remain as archived assets (the Ulos photograph is also a camera-test fixture).
 
 ## Camera studio (24 October 2026)
 
@@ -67,6 +67,9 @@ Pose Landmarker Lite float16 v1 are bundled locally. The upstream licence is
 in `public/try-on/vision/LICENSE`; sources and implementation details are in
 [camera-try-on.md](camera-try-on.md).
 
+
 ## Chapter illustrations and expanded outfit references (24 October 2026)
 
-53 chapter scenes and 18 additional transparent garment components were generated with OpenAI image_gen. Scene descriptions follow the approved bilingual story text. They are interpretive AI artwork, not documentary evidence. The chapter registry is `src/lib/media/chapters.json`; prompts for these scenes, 13 new covers and six outfit atlases are in [project-media-prompts.json](project-media-prompts.json). Seven story covers reuse their first chapter scene. All generated images display an AI illustration credit.
+53 chapter scenes and 18 additional transparent garment components were generated with OpenAI image_gen. Scene descriptions follow the approved bilingual story text. They are interpretive AI artwork, not documentary evidence. The chapter registry is `src/lib/media/chapters.json`; prompts for these scenes, earlier covers and outfit atlases are in [project-media-prompts.json](project-media-prompts.json). Seven story covers reuse their first chapter scene. All generated images display an AI illustration credit.
+
+The 24 October culture update adds 20 ceremony illustrations, two recipe covers and a new Putri Junjung Buih illustration. The story's Commons river photograph remains archived with its attribution. See [culture-batch-9.md](culture-batch-9.md) for research notes and [library-cover-credits.md](library-cover-credits.md) for asset-by-asset credits.

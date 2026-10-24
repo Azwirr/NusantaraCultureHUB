@@ -4,6 +4,26 @@ Updated 24 October 2026. Photographs retain their checked Commons author and lic
 
 | Item | Kind | Credit | Licence | Original source |
 | --- | --- | --- | --- | --- |
+| ceremony / baayun-maulid | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / bakar-batu | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / bau-nyale | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / caci | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / karapan-sapi | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / manene | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / mangongkal-holi | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / mapalus | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / mappacci | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / ngaben | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / palang-pintu | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / pasola | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / peusijuek | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / pukul-sapu | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / rambu-solo | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / sekaten | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / seren-taun | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / tabuik | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / tiwah | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| ceremony / yadnya-kasada | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | costume / bagajah-gamuling-baular-lulut | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | costume / baju-bodo | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | costume / baju-bundo-kanduang | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
@@ -33,8 +53,10 @@ Updated 24 October 2026. Photographs retain their checked Commons author and lic
 | recipe / konro-bakar | picture | Gunawan Kartapranata | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Original source](https://commons.wikimedia.org/wiki/File:Konro_Bakar_4.jpg) |
 | recipe / mie-aceh | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | recipe / nasi-timbel | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
+| recipe / nasu-likku | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | recipe / papeda | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | recipe / pecel | picture | Gunawan Kartapranata | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Original source](https://commons.wikimedia.org/wiki/File:Pecel_Solo.JPG) |
+| recipe / pisang-epe | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | recipe / rawon | picture | ESCapade | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Original source](https://commons.wikimedia.org/wiki/File:Nasi_Rawon_B.JPG) |
 | recipe / rendang-daging | picture | Dr.Francostein1975 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Original source](https://commons.wikimedia.org/wiki/File:Nasi_Padang_With_beef_rendang.jpg) |
 | recipe / sate-padang | picture | Sakurai Midori | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | [Original source](https://commons.wikimedia.org/wiki/File:Sate_Padang2.JPG) |
@@ -49,7 +71,7 @@ Updated 24 October 2026. Photographs retain their checked Commons author and lic
 | story / la-dana-dan-kerbaunya | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | story / malin-kundang | picture | Crisco 1492 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Original source](https://commons.wikimedia.org/wiki/File:Batu_Malin_Kundang,_Air_Manis_Beach,_Padang_2017-02-14_02.jpg) |
 | story / manik-angkeran | picture | Tiket2 | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Original source](https://commons.wikimedia.org/wiki/File:Gunung_Agung,_an_active_volcano_in_Bali,_Indonesia;_January_2020.jpg) |
-| story / putri-junjung-buih | picture | Ezagren (bicara / talk) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Original source](https://commons.wikimedia.org/wiki/File:Sungai_Tabalong.jpg) |
+| story / putri-junjung-buih | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | story / putri-mandalika | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | story / putri-pukes | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
 | story / putri-tandampalik | illustration | Nusantara Culture Hub · OpenAI | Ilustrasi AI / AI illustration | Built-in OpenAI image_gen |
@@ -68,3 +90,4 @@ photographs remain in the project; the Ulos photograph is a camera-test fixture.
 | --- | --- | --- | --- |
 | public/covers/costume-ulos.webp | Ning Gusti | [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) | [Commons file](https://commons.wikimedia.org/wiki/File:Pakaian_adat_batak_(ulos).jpg) |
 | public/covers/costume-baju-bodo.webp | Fery Indrawan from Bandung - Jawa Barat, indonesia | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Commons file](https://commons.wikimedia.org/wiki/File:Baju_Bodo.jpg) |
+| public/covers/story-putri-junjung-buih.webp | Ezagren (bicara / talk) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons file](https://commons.wikimedia.org/wiki/File:Sungai_Tabalong.jpg) |

@@ -5,7 +5,7 @@ import { localCover } from "../../src/lib/media/covers";
 
 describe("library cover assets", () => {
   it("ships every catalog image as an actual WebP with bilingual descriptions", () => {
-    expect(covers).toHaveLength(53);
+    expect(covers).toHaveLength(75);
     expect(new Set(covers.map((cover) => `${cover.type}:${cover.slug}`)).size).toBe(covers.length);
     for (const cover of covers) {
       expect(cover.url).toMatch(/^\/covers\/[a-z0-9-]+\.webp$/);

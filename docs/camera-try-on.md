@@ -1,5 +1,10 @@
 # Camera try-on
 
+Historical implementation: the owner subsequently requested generated portraits.
+The current `/try-on` flow is documented in [ai-portrait-studio.md](ai-portrait-studio.md).
+The former on-device compositor remains in source, but is no longer the page UI.
+The shared outfit reference collection now has 45 parts across 15 outfits.
+
 Requested by zwirr on 24 October 2026. The studio replaces full rectangular
 reference photographs with 27 transparent garment components for the nine
 published costumes: headwear, upper garment and lower garment. Parts are
