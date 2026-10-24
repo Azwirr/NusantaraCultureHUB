@@ -19,7 +19,8 @@ describe("on-device try-on composition", () => {
     expect(adjustedBox(left.top, DEFAULT_ADJUSTMENT, 750, 1000)).toEqual(left.top);
     expect(adjustedBox(left.top, { ...DEFAULT_ADJUSTMENT, x: 10 }, 750, 1000).x).toBe(left.top.x + 75);
   });
-  it("ships 27 transparent garment parts with no remote image dependency", async () => {
+  it("ships 45 transparent garment parts with no remote image dependency", async () => {
+    expect(COSTUME_SLUGS).toHaveLength(15);
     for (const slug of COSTUME_SLUGS) for (const path of Object.values(costumeParts(slug)!)) {
       const bytes = readFileSync(`public${path}`);
       expect(bytes.length).toBeLessThan(1_000_000);
@@ -29,5 +30,5 @@ describe("on-device try-on composition", () => {
       expect(stats.channels[3].max, path).toBeGreaterThan(200);
     }
     expect(costumeParts("unpublished-unknown")).toBeNull();
-  });
+  }, 30_000);
 });

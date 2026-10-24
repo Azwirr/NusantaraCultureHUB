@@ -4,6 +4,7 @@ import { cacheLife, cacheTag } from "next/cache";
 
 import { CONTENT_TAG } from "./content-tags";
 import { localCover, type Cover } from "./media/covers";
+import { chapterIllustration } from "./media/chapters";
 import { costumeParts } from "./try-on/assets";
 import type { Locale } from "./i18n/config";
 import { createPublicClient } from "./supabase/public";
@@ -247,11 +248,11 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
       number: row.chapter_no,
       text: pick(locale, { id: row.text_id, en: row.text_en }),
       audioDescription: pick(locale, { id: row.audio_description_id, en: row.audio_description_en }),
-      imageAlt: pick(locale, { id: row.image_alt_id, en: row.image_alt_en }),
-      imageUrl: mediaByChapter.get(row.id)?.url ?? row.image_url,
-      imageCredit: mediaByChapter.get(row.id)
+      imageAlt: chapterIllustration(story.slug, row.chapter_no, locale)?.alt ?? pick(locale, { id: row.image_alt_id, en: row.image_alt_en }),
+      imageUrl: chapterIllustration(story.slug, row.chapter_no, locale)?.url ?? mediaByChapter.get(row.id)?.url ?? row.image_url,
+      imageCredit: chapterIllustration(story.slug, row.chapter_no, locale) ?? (mediaByChapter.get(row.id)
         ? { credit: mediaByChapter.get(row.id)!.credit, licence: mediaByChapter.get(row.id)!.licence }
-        : null,
+        : null),
     })),
     sources,
   };

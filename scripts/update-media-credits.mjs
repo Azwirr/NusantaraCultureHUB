@@ -1,0 +1,14 @@
+import { readFile, writeFile } from "node:fs/promises";
+const covers = JSON.parse(await readFile("src/lib/media/covers.json", "utf8"));
+const old = await readFile("docs/library-cover-credits.md", "utf8");
+const archived = old.slice(old.indexOf("## Archived photographs"));
+const rows = covers.map(r => `| ${r.type} / ${r.slug} | ${r.kind} | ${r.credit.replaceAll("|", "\\|")} | ${r.licenceUrl ? `[${r.licence}](${r.licenceUrl})` : r.licence} | ${r.sourceUrl ? `[Original source](${r.sourceUrl})` : "Built-in OpenAI image_gen"} |`);
+await writeFile("docs/library-cover-credits.md", `# Library cover attribution\n\nUpdated 24 October 2026. Photographs retain their checked Commons author and licence. Generated images are interpretive AI illustrations. Exact prompts are in cover-prompts.json and project-media-prompts.json.\n\n| Item | Kind | Credit | Licence | Original source |\n| --- | --- | --- | --- | --- |\n${rows.join("\n")}\n\n${archived}`);
+let credits = await readFile("docs/asset-credits.md", "utf8");
+credits = credits.replace("33 item-specific WebP covers", "53 item-specific WebP covers").replace("17 licensed photographs and 16 AI illustrations", "17 licensed photographs and 36 AI illustrations").replace("The 27 transparent garment sprites", "The 45 transparent garment sprites");
+credits += "\n## Chapter illustrations and expanded outfit references (24 October 2026)\n\n53 chapter scenes and 18 additional transparent garment components were generated with OpenAI image_gen. Scene descriptions follow the approved bilingual story text. They are interpretive AI artwork, not documentary evidence. The chapter registry is `src/lib/media/chapters.json`; prompts for these scenes, 13 new covers and six outfit atlases are in [project-media-prompts.json](project-media-prompts.json). Seven story covers reuse their first chapter scene. All generated images display an AI illustration credit.\n";
+await writeFile("docs/asset-credits.md", credits);
+let direction = await readFile("docs/library-covers.md", "utf8");
+direction = direction.replace("9 dress items, 16 recipes and\n8 folk tales", "15 dress items, 23 recipe entries and\n15 folk tales (three recipe entries remain drafts)").replace("All nine dress covers", "All fifteen dress covers").replace("16 illustrations and 17 licensed photographs", "36 illustrations and 17 licensed photographs");
+direction += "\nThe expanded collection includes 53 chapter-specific illustrations, 20 additional covers (seven reuse chapter-one artwork), and complete three-part references for 15 outfits. See `project-media-prompts.json` and `project-media-plan.md`. Media lookup happens only after the content passes its existing RLS read; installing an asset never publishes a draft.\n";
+await writeFile("docs/library-covers.md", direction);

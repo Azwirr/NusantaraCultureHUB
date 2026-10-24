@@ -82,5 +82,17 @@
     "prompt": "Use case: historical-scene. Create one landscape editorial cover illustration for Nusantara Culture Hub: Payas Agung, Balinese ceremonial bridal dress. A fictional adult Balinese bride standing gracefully in a warm sandstone courtyard, elaborate tall golden floral headdress, gold prada fabric, a long tapih wrapped from chest down to the feet, kemben chest wrap, gold waist belt and bracelets. Three-quarter full-length view, headdress entirely in frame, face natural and respectful. Detailed hand-painted gouache and fine ink, tactile cream paper, warm gold and deep indigo accents, soft daylight, museum editorial feel, sophisticated and aesthetically beautiful. This is an interpretive illustration, not a documentary photograph. Broad landscape composition suitable for a 16:9 cover, central subject and generous margins for cropping; no words, no watermark, no invented emblems. Save the generated image as a local file and return its absolute file path.",
     "tool": "Built-in image_gen",
     "date": "2026-10-24"
+  },
+  {
+    "slug": "ulos",
+    "prompt": "Use case: illustration-story. A single landscape editorial cover for Nusantara Culture Hub, traditional Indonesian dress library. An adult Batak woman wearing a carefully handwoven red, black and white Ulos cloth draped prominently around her shoulders over a modest dark blouse and a long woven sarong. Fine geometric weave, fringe, handmade texture visible. She stands by a traditional carved wooden Batak house with a restrained view of Lake Toba and green hills behind her. Hands relaxed, warm dignified expression. Keep textile the main subject. Style: refined hand-painted gouache and fine ink on warm cream textured paper, realistic textile detail, sophisticated cultural archive, restrained indigo, terracotta, earthy ochre, natural green. Wide 16:9 landscape composition. Three-quarter to full figure centered with generous safe crop margins; important clothing visible in central 60 percent for card cropping. Fictional person, interpretive illustration, not documentary photography. No text, labels, borders, logo, watermark, collage, extra people or modern brands.",
+    "tool": "Built-in image_gen",
+    "date": "2026-10-24"
+  },
+  {
+    "slug": "baju-bodo",
+    "prompt": "Use case: illustration-story. A single landscape editorial cover for Nusantara Culture Hub, traditional Indonesian dress library. An adult Bugis woman in a coral-orange Baju Bodo with its distinctive loose rectangular silhouette and short wide sleeves, modest opaque lining, delicate gold necklace and bracelets, and a burgundy fine-check silk sarong. Subtle gold floral hair ornament. She stands gracefully by a traditional South Sulawesi timber house, leafy garden and soft warm daylight. No Balinese crown or Javanese kebaya. Keep the blouse shape and woven sarong clearly visible. Style: refined hand-painted gouache and fine ink on warm cream textured paper, realistic textile detail, sophisticated cultural archive, restrained indigo, terracotta, earthy ochre, natural green. Wide 16:9 landscape composition. Three-quarter to full figure centered with generous safe crop margins; important clothing visible in central 60 percent for card cropping. Fictional person, interpretive illustration, not documentary photography. No text, labels, borders, logo, watermark, collage, extra people or modern brands.",
+    "tool": "Built-in image_gen",
+    "date": "2026-10-24"
   }
 ]

@@ -1,8 +1,8 @@
 # Library covers
 
 Requested by the owner on 24 October 2026: replace repeated line-art placeholders
-with individual, relevant covers for the library's 9 dress items, 16 recipes and
-8 folk tales. The files are bundled in `public/covers/`, so the visitor does not
+with individual, relevant covers for the library's 15 dress items, 23 recipe entries and
+15 folk tales (three recipe entries remain drafts). The files are bundled in `public/covers/`, so the visitor does not
 depend on Wikimedia redirects or another site's image server.
 
 `src/lib/media/covers.json` is the complete asset register: each entry has an
@@ -17,6 +17,12 @@ Food images show the actual named dish; dress images keep the relevant garments
 and headwear visible. Fictional scenes from folk tales are illustrations.
 Generated artwork is labelled **Ilustrasi AI / AI illustration** wherever shown;
 it is an interpretive cover, not historical evidence or a reference photograph.
+
+The owner requested illustrated Ulos and Baju Bodo covers as well. These use
+versioned v2 URLs so existing image caches do not keep showing the old photos.
+All fifteen dress covers are now illustrations; the complete catalog contains
+36 illustrations and 17 licensed photographs. The two old dress photos remain
+archived, with their original attribution in `library-cover-credits.md`.
 
 Licensed photographs retain the photographer's credit and a link to their
 Commons page, plus the applicable Creative Commons licence link. Resizing and
@@ -61,3 +67,5 @@ Cover checks verify all 33 WebP responses and published dress-card images and
 attribution. Desktop previews cover all three categories; the 390px mobile
 preview has no horizontal overflow. The cover batch was committed as `262c95f`
 and pushed to main during the following camera-studio task.
+
+The expanded collection includes 53 chapter-specific illustrations, 20 additional covers (seven reuse chapter-one artwork), and complete three-part references for 15 outfits. See `project-media-prompts.json` and `project-media-plan.md`. Media lookup happens only after the content passes its existing RLS read; installing an asset never publishes a draft.

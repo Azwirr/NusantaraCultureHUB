@@ -55,3 +55,4 @@ supabase/.temp
 # Cover download metadata, generation job paths and visual verification output
 /tmp/covers/
 /tmp/try-on/
+/tmp/media/
