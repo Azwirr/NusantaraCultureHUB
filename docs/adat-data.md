@@ -172,10 +172,30 @@ Source abbreviations used below: **detik** = detik.com, **Kompas** = kompas.com,
 
 ---
 
+## Batch 7: eleven more ceremonies
+
+Added 24 October 2026, one for every region that had no ceremony, plus Rambu Solo' (Toraja) and Karapan Sapi (Java). Each was checked on two different websites. Text and sources are in `supabase/content/2026-10-24-batch-7-ceremonies.sql`.
+
+| Ceremony | Region | Sources (2 different websites) | Left out or single-source |
+| --- | --- | --- | --- |
+| Tabuik | Minangkabau | GNFI (Irwandi, 2023); Kompas (2022); indonesia.travel | The release into the sea at Gandoriah Beach and the Tamil origin are from Kompas only. GNFI says the towers are destroyed. |
+| Mappacci | Bugis | Panrita journal, UNM (Arifin et al., 2022); Kompas (2025) | The four stages and the meanings of the items come from the Pangkep study only. |
+| Mangongkal Holi | Batak | GNFI (Sianturi, 2024); JPTAM (Sinulingga et al., 2024) | None. |
+| Baayun Maulid | Banjar | ANTARA Kalsel (2023); GNFI (2025) | The tapih swing is from ANTARA only. |
+| Pukul Sapu | Maluku | GNFI (Cung, 2026); ANTARA (2026) | **Conflict:** the brooms are said to be enau or coconut fronds, so the palm is left out. Origin stories and healing come from GNFI only. |
+| Bau Nyale | Sasak | GNFI (Lestari, 2022); Kompas (2023) | The exact 20th day is from Kompas only. GNFI says only the 10th month. |
+| Palang Pintu | Betawi | GNFI (Qonita, 2025); Katadata (2022) | **Conflict:** salawat (GNFI) or Qur'an recitation (Katadata). The text says "a religious recitation". |
+| Peusijuek | Aceh | detikSumut (2023); GNFI (2021) | None. |
+| Caci | Rote and Flores | indonesia.travel; Wikipedia | None. |
+| Rambu Solo' | Toraja | GNFI (Akbar, 2025); Kompas (2021) | **Conflict:** 10 to 14 days (GNFI) or 3 to 7 days (Kompas). The text says "several days". Puya is from GNFI only. |
+| Karapan Sapi | Java (Madura) | GNFI (Hamamah, 2024); Mojok (2020) | The 130 m track and the Pamekasan final are from GNFI only. |
+
+For Mappacci and Peusijuek, the first journal PDFs found could not be read, so each cites a readable news page as its second source.
+
 ## Next steps
 
-1. **Built:** the ceremony content type (migration `20261025001800_ceremonies.sql`, pages under `/ceremonies/[slug]`, review queue, search). The nine entries are drafts in `supabase/content/2026-10-24-batch-6-ceremonies.sql`, with the two sources from above on each.
-2. **Owner review.** Each entry is a draft until the owner approves it in `/review`. Four entries still carry a source disagreement (Pasola, Tiwah, Sekaten, Kasada). Their text leaves the disputed details out, but the owner should confirm them before approval.
-3. **Region.** Pasola is on Sumba, which had no region. A draft region `sumba` is added in batch 6 for the owner to approve.
+1. **Built:** the ceremony content type (migration `20261025001800_ceremonies.sql`, pages under `/ceremonies/[slug]`, review queue, search).
+2. **Published:** batches 6 and 7 (20 ceremonies) and the Sumba region, through `private.ai_publish` (`supabase/content/2026-10-24-publish-4.sql`). The disputed details listed above are not in any published text. The owner can unpublish any item from `/review`.
+3. **Live site:** ceremonies show on the public site only after the code is pushed and Vercel redeploys.
 4. **Pictures.** Codex will handle these. `content_media` already accepts ceremonies.
-5. **Not yet built:** saving ceremonies to My collection. Members cannot save them yet.
+5. **Not yet built:** saving ceremonies to My collection.
