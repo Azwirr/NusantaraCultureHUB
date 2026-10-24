@@ -8,7 +8,7 @@ import { ContentCard } from "@/components/content-card";
 import { SaveSlot } from "@/components/save-slot";
 import { SectionHeading } from "@/components/section-heading";
 import { DetailHeader } from "@/components/views/detail-header";
-import { getRegion, type PublicType } from "@/lib/content";
+import { getRegion, type LibraryType } from "@/lib/content";
 import { fill } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 
@@ -36,7 +36,7 @@ export default async function RegionPage({ params }: PageProps<"/[lang]/regions/
   );
 }
 
-const SECTIONS: PublicType[] = ["story", "recipe", "costume"];
+const SECTIONS: LibraryType[] = ["story", "recipe", "costume", "ceremony"];
 
 async function Region({ params }: Pick<PageProps<"/[lang]/regions/[slug]">, "params">) {
   const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
@@ -72,8 +72,11 @@ async function Region({ params }: Pick<PageProps<"/[lang]/regions/[slug]">, "par
                         card={{ ...card, region: null }}
                         typeLabel={common.types[type]}
                         minutesLabel={common.minutes}
+                        // Ceremonies cannot be saved yet.
                         action={
-                          <SaveSlot type={card.type} id={card.id} title={card.title} nextPath={`/regions/${region.slug}`} copy={dict.save} />
+                          card.type === "ceremony" ? null : (
+                            <SaveSlot type={card.type} id={card.id} title={card.title} nextPath={`/regions/${region.slug}`} copy={dict.save} />
+                          )
                         }
                       />
                     </li>

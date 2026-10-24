@@ -86,6 +86,15 @@ export const REVIEW_FIELDS: Record<ReviewEntityType, { pairs: FieldPair[]; singl
     ],
     singles: [{ key: "referenceImageUrl", column: "reference_image_url", kind: "url" }],
   },
+  ceremony: {
+    pairs: [
+      { key: "name", id: "name_id", en: "name_en", multiline: false, max: 160 },
+      { key: "timing", id: "timing_id", en: "timing_en", multiline: false, max: 500 },
+      { key: "summary", id: "summary_id", en: "summary_en", multiline: true, max: 2000 },
+      { key: "body", id: "body_id", en: "body_en", multiline: true, max: 8000 },
+    ],
+    singles: [],
+  },
 };
 
 /** Columns that must not be blank in Indonesian (the database requires them). */

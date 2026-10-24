@@ -11,6 +11,7 @@ export const REVIEW_ENTITIES = {
   chapter: "story_chapters",
   recipe: "recipes",
   costume: "costumes",
+  ceremony: "ceremonies",
 } as const;
 
 export type ReviewEntityType = keyof typeof REVIEW_ENTITIES;
@@ -26,6 +27,7 @@ export const CITATION_TYPES: Record<ReviewEntityType, string> = {
   chapter: "story_chapter",
   recipe: "recipe",
   costume: "costume",
+  ceremony: "ceremony",
 };
 
 export function isReviewEntityType(value: unknown): value is ReviewEntityType {

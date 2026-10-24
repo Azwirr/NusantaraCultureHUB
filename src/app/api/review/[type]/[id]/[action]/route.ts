@@ -11,7 +11,7 @@ import { createClient } from "@/lib/supabase/server";
 const bodySchema = z.strictObject({ reason: z.string().max(1000).optional() });
 
 /**
- * POST /api/review/{region|story|chapter|recipe|costume}/{id}/{approve|reject|unpublish}
+ * POST /api/review/{region|story|chapter|recipe|costume|ceremony}/{id}/{approve|reject|unpublish}
  * Body: { "reason": "..." } (required for reject and unpublish).
  *
  * The role check here gives clear 401/403 answers; the database decides for

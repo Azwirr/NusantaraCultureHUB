@@ -179,6 +179,71 @@ export type Database = {
         }
         Relationships: []
       }
+      ceremonies: {
+        Row: {
+          body_en: string | null
+          body_id: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          name_en: string | null
+          name_id: string
+          region_id: string | null
+          review_status: string
+          slug: string
+          summary_en: string | null
+          summary_id: string | null
+          timing_en: string | null
+          timing_id: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          body_en?: string | null
+          body_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name_en?: string | null
+          name_id: string
+          region_id?: string | null
+          review_status?: string
+          slug: string
+          summary_en?: string | null
+          summary_id?: string | null
+          timing_en?: string | null
+          timing_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          body_en?: string | null
+          body_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name_en?: string | null
+          name_id?: string
+          region_id?: string | null
+          review_status?: string
+          slug?: string
+          summary_en?: string | null
+          summary_id?: string | null
+          timing_en?: string | null
+          timing_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ceremonies_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_media: {
         Row: {
           alt_en: string

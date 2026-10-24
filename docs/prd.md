@@ -45,8 +45,8 @@ Seventeen requirements make up the MVP: ten are must-haves and seven are should-
 | ID | Area | Requirement | Priority |
 | --- | --- | --- | --- |
 | FR-01 | Landing | Show the three pillars with links into the library. One mode only. | Must |
-| FR-02 | Library | Browse approved stories, recipes, and costumes. Search by title and filter by region and type. | Must |
-| FR-03 | Region pages | One page per region, listing its story, recipe, and costume. | Should |
+| FR-02 | Library | Browse approved stories, recipes, costumes, and ceremonies (adat). Search by title and filter by region and type. Ceremonies are not saved yet. | Must |
+| FR-03 | Region pages | One page per region, listing its story, recipe, costume, and ceremony. | Should |
 | FR-04 | Story player | Play chapters in order. Each chapter shows its text, its illustration with alt text, and its audio description before the audio. Controls follow the player spec in the diagrams. | Must |
 | FR-05 | Story audio | Generate audio per chapter with TTS. Reuse cached audio when the text and voice are unchanged. Fall back to Web Speech if TTS fails. | Must |
 | FR-06 | Illustrations | One fixed art style per story. The reviewer accepts an image or requests a new one. | Must |
@@ -57,7 +57,7 @@ Seventeen requirements make up the MVP: ten are must-haves and seven are should-
 | FR-11 | Review queue | List drafts by type and status. Edit fields. Approve, reject with a reason, or unpublish. | Must |
 | FR-12 | AI jobs | Start a job, see its status, and reuse cached output. Jobs run on the server only. | Must |
 | FR-13 | Audit log | Record every approval, rejection, unpublish, and role change with the actor, time, and reason. | Must |
-| FR-14 | Search | Search approved stories, recipes, costumes, and regions from the header (Ctrl+K) and from `/search?q=`. Results are grouped by type, in the visitor's language, and tolerate typos. Drafts are never returned, to anyone. The search term is shown as plain text. | Must |
+| FR-14 | Search | Search approved stories, recipes, costumes, ceremonies, and regions from the header (Ctrl+K) and from `/search?q=`. Results are grouped by type, in the visitor's language, and tolerate typos. Drafts are never returned, to anyone. The search term is shown as plain text. | Must |
 | FR-15 | Grounded assistant "Tanya Nusantara" | Members ask a question about Indonesian culture. The answer is built only from approved, sourced content found by FR-14, cites each item it used with a link and its sources, and politely declines anything outside the archive. A daily limit per member keeps costs safe. No question text is stored. This is not free-form chat. | Should |
 | FR-16 | Region map | `/regions` shows a keyboard-accessible map (Natural Earth, public domain) grouped into seven labelled islands. Each island opens `/regions/island/[island]` with its approved regions and their stories, recipes and dress, and the region list stays below as the fallback. It is for navigation only, with no game mechanics. | Should |
 | FR-17 | Story requests | Members ask for a new story, recipe or dress on `/requests` (title and short note, 5 a day). Everyone sees visible requests with the nickname only; staff plan, close or hide them. Requests never become content by themselves. | Should |
@@ -85,6 +85,7 @@ The schema has 16 tables, plus two member tables added in Phase 2 (bookmarks and
 | recipe\_ingredients | Ingredient list in order | recipe\_id, position, name\_id, name\_en, amount, unit |
 | recipe\_steps | Cooking steps in order | recipe\_id, step\_no, text\_id, text\_en, timer\_seconds |
 | costumes | Try-on asset and its info card | region\_id, name\_id, info\_en, layers, anchor\_points, reference\_image\_url |
+| ceremonies | Customary ceremony or rite (adat): what it is, when it is held, and its info card | region\_id, slug, name\_id, name\_en, summary\_id, summary\_en, timing\_id, timing\_en, body\_id, body\_en, review\_status |
 | sources | Citation for any content | title, url, license, credit |
 | content\_sources | Links sources to content of any type | content\_type, content\_id, source\_id |
 | badges | Badge definitions | code, name\_en, rule\_key |

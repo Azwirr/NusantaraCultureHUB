@@ -53,6 +53,7 @@ export const en = {
       story: "Story",
       recipe: "Recipe",
       costume: "Traditional dress",
+      ceremony: "Ceremony",
     },
     minutes: "{n} min",
     sourcesHeading: "Sources",
@@ -75,6 +76,7 @@ export const en = {
       story: "stories",
       recipe: "recipes",
       costume: "traditional dress",
+      ceremony: "ceremonies",
       region: "regions",
     },
     statsPending:
@@ -140,7 +142,7 @@ export const en = {
     noMatch: "Nothing matches these filters.",
     emptyTitle: "Nothing is published yet",
     emptyBody:
-      "Stories, recipes and traditional dress appear here once they are checked against their sources and published.",
+      "Stories, recipes, traditional dress and ceremonies appear here once they are checked against their sources and published.",
   },
   regions: {
     kicker: "Regions",
@@ -151,6 +153,7 @@ export const en = {
       story: "{n} stories",
       recipe: "{n} recipes",
       costume: "{n} dress",
+      ceremony: "{n} ceremonies",
     },
     open: "Open the region page",
     emptyTitle: "No regions are published yet",
@@ -175,6 +178,7 @@ export const en = {
       story: "Stories",
       recipe: "Recipes",
       costume: "Traditional dress",
+      ceremony: "Ceremonies",
     },
   },
   storyDetail: {
@@ -208,6 +212,13 @@ export const en = {
     info: "Info card",
     imageAlt: "Reference image: {name}",
     tryOnSoon: "Try this dress on with your camera",
+  },
+  ceremonyDetail: {
+    kicker: "Customary ceremony",
+    title: "Ceremony",
+    summary: "About this ceremony",
+    timing: "When it is held",
+    body: "How it is held",
   },
   tryOn: {
     kicker: "Traditional Dress Try-On",
@@ -320,6 +331,7 @@ export const en = {
       story: "Stories",
       recipe: "Recipes",
       costume: "Traditional dress",
+      ceremony: "Ceremonies",
       region: "Regions",
     },
   },
@@ -420,6 +432,7 @@ export const en = {
       chapter: "Story chapters",
       recipe: "Recipes",
       costume: "Traditional dress",
+      ceremony: "Ceremonies",
     },
     detail: {
       back: "Back to the queue",
@@ -451,6 +464,8 @@ export const en = {
         minutes: "Time (minutes)",
         dietaryTags: "Dietary notes",
         halalStatus: "Halal status",
+        timing: "When it is held",
+        body: "Explanation",
       },
       hints: {
         provinceCodes: "Separate with commas, for example ID-JT, ID-YO.",
@@ -473,7 +488,7 @@ export const en = {
       noUnit: "No unit",
       step: "Step",
       sourcesHeading: "Sources",
-      sourcesNote: "Stories, recipes and dress cards must cite at least one source before approval.",
+      sourcesNote: "Stories, recipes, dress cards and ceremonies must cite at least one source before approval.",
       noSources: "No sources cited yet.",
       sourceTitle: "Source title",
       sourceUrl: "Address (URL)",

@@ -10,7 +10,7 @@ import { EmptyState } from "@/components/empty-state";
 import { SaveSlot } from "@/components/save-slot";
 import { SectionHeading } from "@/components/section-heading";
 import { DetailHeader } from "@/components/views/detail-header";
-import { getLibrary, getRegions, type PublicType } from "@/lib/content";
+import { getLibrary, getRegions, type LibraryType } from "@/lib/content";
 import { fill } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 import { getIsland, ISLANDS, onIsland } from "@/lib/map/islands";
@@ -41,7 +41,7 @@ export default async function IslandPage({ params }: PageProps<"/[lang]/regions/
   );
 }
 
-const SECTIONS: PublicType[] = ["story", "recipe", "costume"];
+const SECTIONS: LibraryType[] = ["story", "recipe", "costume", "ceremony"];
 
 async function IslandView({ params }: Pick<PageProps<"/[lang]/regions/island/[island]">, "params">) {
   const [{ island: slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
@@ -110,8 +110,11 @@ async function IslandView({ params }: Pick<PageProps<"/[lang]/regions/island/[is
                           card={card}
                           typeLabel={common.types[type]}
                           minutesLabel={common.minutes}
+                          // Ceremonies cannot be saved yet.
                           action={
-                            <SaveSlot type={card.type} id={card.id} title={card.title} nextPath={`/regions/island/${island.slug}`} copy={dict.save} />
+                            card.type === "ceremony" ? null : (
+                              <SaveSlot type={card.type} id={card.id} title={card.title} nextPath={`/regions/island/${island.slug}`} copy={dict.save} />
+                            )
                           }
                         />
                       </li>

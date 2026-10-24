@@ -7,7 +7,7 @@ import { contentHref } from "./format";
 import type { Locale } from "./i18n/config";
 import { createPublicClient } from "./supabase/public";
 
-export type SearchType = "story" | "recipe" | "costume" | "region";
+export type SearchType = "story" | "recipe" | "costume" | "ceremony" | "region";
 
 export type SearchHit = {
   type: SearchType;
@@ -19,7 +19,7 @@ export type SearchHit = {
   href: string;
 };
 
-export const SEARCH_GROUPS: SearchType[] = ["story", "recipe", "costume", "region"];
+export const SEARCH_GROUPS: SearchType[] = ["story", "recipe", "costume", "ceremony", "region"];
 
 /** The query as the database will see it: trimmed, single-spaced, at most 100 characters. */
 export function normalizeQuery(value: unknown): string {

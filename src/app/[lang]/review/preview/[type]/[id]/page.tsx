@@ -4,11 +4,12 @@ import { Suspense } from "react";
 import { z } from "zod";
 
 import { PreviewBanner } from "@/components/views/detail-header";
+import { CeremonyView } from "@/components/views/ceremony-view";
 import { CostumeView } from "@/components/views/costume-view";
 import { RecipeView } from "@/components/views/recipe-view";
 import { StoryView } from "@/components/views/story-view";
 import { requireStaff } from "@/lib/auth";
-import { loadCostume, loadRecipe, loadStory } from "@/lib/content";
+import { loadCeremony, loadCostume, loadRecipe, loadStory } from "@/lib/content";
 import { getDictionary, getLocale } from "@/lib/i18n/dictionaries";
 import { createClient } from "@/lib/supabase/server";
 
@@ -39,7 +40,7 @@ export default async function PreviewPage({ params }: PageProps<"/[lang]/review/
   );
 }
 
-const PREVIEW_TYPES = ["story", "recipe", "costume"] as const;
+const PREVIEW_TYPES = ["story", "recipe", "costume", "ceremony"] as const;
 
 async function Preview({ params }: Pick<PageProps<"/[lang]/review/preview/[type]/[id]">, "params">) {
   const [{ type, id }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
@@ -65,6 +66,16 @@ async function Preview({ params }: Pick<PageProps<"/[lang]/review/preview/[type]
       <>
         {banner}
         <RecipeView recipe={recipe} dict={dict} locale={locale} />
+      </>
+    );
+  }
+  if (type === "ceremony") {
+    const ceremony = await loadCeremony(supabase, { id }, locale);
+    if (!ceremony) notFound();
+    return (
+      <>
+        {banner}
+        <CeremonyView ceremony={ceremony} dict={dict} />
       </>
     );
   }

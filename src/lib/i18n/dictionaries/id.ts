@@ -62,6 +62,7 @@ export const id = {
       story: "Cerita",
       recipe: "Resep",
       costume: "Busana adat",
+      ceremony: "Upacara adat",
     },
     minutes: "{n} menit",
     sourcesHeading: "Sumber",
@@ -84,6 +85,7 @@ export const id = {
       story: "cerita",
       recipe: "resep",
       costume: "busana adat",
+      ceremony: "upacara adat",
       region: "wilayah",
     },
     statsPending:
@@ -149,7 +151,7 @@ export const id = {
     noMatch: "Tidak ada item yang cocok dengan saringan ini.",
     emptyTitle: "Belum ada konten yang tayang",
     emptyBody:
-      "Cerita, resep, dan busana adat akan muncul di sini setelah diperiksa terhadap sumbernya dan ditayangkan.",
+      "Cerita, resep, busana adat, dan upacara adat akan muncul di sini setelah diperiksa terhadap sumbernya dan ditayangkan.",
   },
   regions: {
     kicker: "Wilayah",
@@ -160,6 +162,7 @@ export const id = {
       story: "{n} cerita",
       recipe: "{n} resep",
       costume: "{n} busana",
+      ceremony: "{n} upacara",
     },
     open: "Buka halaman wilayah",
     emptyTitle: "Belum ada wilayah yang tayang",
@@ -184,6 +187,7 @@ export const id = {
       story: "Cerita",
       recipe: "Resep",
       costume: "Busana adat",
+      ceremony: "Upacara adat",
     },
   },
   storyDetail: {
@@ -218,6 +222,13 @@ export const id = {
     info: "Kartu info",
     imageAlt: "Gambar rujukan: {name}",
     tryOnSoon: "Coba busana ini di kamera",
+  },
+  ceremonyDetail: {
+    kicker: "Upacara adat",
+    title: "Upacara adat",
+    summary: "Tentang upacara ini",
+    timing: "Waktu pelaksanaan",
+    body: "Pelaksanaan",
   },
   tryOn: {
     kicker: "Baju Adat Try-On",
@@ -331,6 +342,7 @@ export const id = {
       story: "Cerita",
       recipe: "Resep",
       costume: "Busana adat",
+      ceremony: "Upacara adat",
       region: "Wilayah",
     },
   },
@@ -431,6 +443,7 @@ export const id = {
       chapter: "Bab cerita",
       recipe: "Resep",
       costume: "Busana adat",
+      ceremony: "Upacara adat",
     } satisfies Record<ReviewEntityType, string>,
     detail: {
       back: "Kembali ke antrean",
@@ -463,6 +476,8 @@ export const id = {
         minutes: "Waktu (menit)",
         dietaryTags: "Keterangan diet",
         halalStatus: "Status halal",
+        timing: "Waktu pelaksanaan",
+        body: "Penjelasan",
       },
       hints: {
         provinceCodes: "Pisahkan dengan koma, misalnya ID-JT, ID-YO.",
@@ -485,7 +500,7 @@ export const id = {
       noUnit: "Tanpa satuan",
       step: "Langkah",
       sourcesHeading: "Sumber",
-      sourcesNote: "Cerita, resep, dan busana harus mengutip minimal satu sumber sebelum disetujui.",
+      sourcesNote: "Cerita, resep, busana, dan upacara harus mengutip minimal satu sumber sebelum disetujui.",
       noSources: "Belum ada sumber yang dikutip.",
       sourceTitle: "Judul sumber",
       sourceUrl: "Alamat (URL)",

@@ -174,7 +174,8 @@ Source abbreviations used below: **detik** = detik.com, **Kompas** = kompas.com,
 
 ## Next steps
 
-1. **Owner decision on a format.** Ceremonies do not fit the current types (stories, recipes, costumes, regions). Options: add a ceremony type through a migration, or put them in stories. Any new type needs a migration with RLS, as CLAUDE.md requires.
-2. **Bilingual text.** Anything published needs Indonesian and English text, with a source on each item.
-3. **Pictures.** Codex will handle these. Use Wikimedia Commons or other licensed sources with the author and licence recorded.
-4. **Resolve the conflicts** above (spear size for Pasola, spirit-world name for Tiwah, gamelan names for Sekaten, legend names for Kasada) before publishing any of them.
+1. **Built:** the ceremony content type (migration `20261025001800_ceremonies.sql`, pages under `/ceremonies/[slug]`, review queue, search). The nine entries are drafts in `supabase/content/2026-10-24-batch-6-ceremonies.sql`, with the two sources from above on each.
+2. **Owner review.** Each entry is a draft until the owner approves it in `/review`. Four entries still carry a source disagreement (Pasola, Tiwah, Sekaten, Kasada). Their text leaves the disputed details out, but the owner should confirm them before approval.
+3. **Region.** Pasola is on Sumba, which had no region. A draft region `sumba` is added in batch 6 for the owner to approve.
+4. **Pictures.** Codex will handle these. `content_media` already accepts ceremonies.
+5. **Not yet built:** saving ceremonies to My collection. Members cannot save them yet.

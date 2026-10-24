@@ -118,7 +118,7 @@ async function ReviewItem({
             {type === "chapter" ? `${item.parent?.title ?? ""} · ${review.chapter} ${item.row.chapter_no}` : item.title}
           </h1>
           <StatusBadge status={item.status} label={review.statuses[item.status]} />
-          {type === "story" || type === "recipe" || type === "costume" ? (
+          {type === "story" || type === "recipe" || type === "costume" || type === "ceremony" ? (
             <Link
               href={`/review/preview/${type}/${id}`}
               className="inline-flex min-h-12 items-center gap-2 rounded px-3 text-label-md text-primary hover:bg-surface-container"

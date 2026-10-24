@@ -48,7 +48,7 @@ export default async function RegionsPage() {
                   </h3>
                   {region.summary ? <p className="line-clamp-4 text-body-md text-on-surface-variant">{region.summary}</p> : null}
                   <ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 text-body-sm text-on-surface-variant">
-                    {(["story", "recipe", "costume"] as const).map((type) => (
+                    {(["story", "recipe", "costume", "ceremony"] as const).map((type) => (
                       <li key={type}>{fill(copy.counts[type], { n: region.counts[type] })}</li>
                     ))}
                   </ul>

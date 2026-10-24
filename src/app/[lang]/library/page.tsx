@@ -7,7 +7,7 @@ import { ContentCard } from "@/components/content-card";
 import { EmptyState } from "@/components/empty-state";
 import { PageHeader } from "@/components/page-header";
 import { SaveSlot } from "@/components/save-slot";
-import { getLibrary, getRegions, type PublicType } from "@/lib/content";
+import { getLibrary, getRegions, type LibraryType } from "@/lib/content";
 import { fill } from "@/lib/format";
 import type { Locale } from "@/lib/i18n/config";
 import { type Dictionary, getDictionary, getLocale } from "@/lib/i18n/dictionaries";
@@ -17,13 +17,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: library.title, description: library.lead };
 }
 
-const TYPES: PublicType[] = ["story", "recipe", "costume"];
+const TYPES: LibraryType[] = ["story", "recipe", "costume", "ceremony"];
 
-function isType(value: unknown): value is PublicType {
+function isType(value: unknown): value is LibraryType {
   return typeof value === "string" && (TYPES as string[]).includes(value);
 }
 
-function href(type: PublicType | null, region: string | null): string {
+function href(type: LibraryType | null, region: string | null): string {
   const query = new URLSearchParams();
   if (type) query.set("type", type);
   if (region) query.set("region", region);
@@ -153,7 +153,8 @@ async function Results({
                 minutesLabel={common.minutes}
                 headingLevel={2}
                 // After signing in, come back to the same filtered view.
-                action={<SaveSlot type={card.type} id={card.id} title={card.title} nextPath={href(type, region)} copy={dict.save} />}
+                // Ceremonies cannot be saved yet.
+                action={card.type === "ceremony" ? null : <SaveSlot type={card.type} id={card.id} title={card.title} nextPath={href(type, region)} copy={dict.save} />}
               />
             </li>
           ))}

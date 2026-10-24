@@ -7,7 +7,7 @@ import { type KeyboardEvent, type MouseEvent, useCallback, useEffect, useId, use
 
 import type { Locale } from "@/lib/i18n/config";
 
-type Hit = { type: "story" | "recipe" | "costume" | "region"; id: string; title: string; regionName: string | null; href: string };
+type Hit = { type: "story" | "recipe" | "costume" | "ceremony" | "region"; id: string; title: string; regionName: string | null; href: string };
 
 export type CommandSearchCopy = {
   label: string;

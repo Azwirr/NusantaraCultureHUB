@@ -9,6 +9,8 @@ select tables_are(
   array[
     'profiles', 'user_roles', 'regions', 'stories', 'story_chapters', 'recipes',
     'recipe_ingredients', 'recipe_steps', 'costumes', 'sources', 'content_sources',
+    -- Phase 3b: customary ceremonies (adat).
+    'ceremonies',
     'badges', 'user_badges', 'user_progress', 'ai_jobs', 'audit_log',
     -- Phase 2: saves (FR-02, Member role) and the assistant quota (FR-15).
     'bookmarks', 'assistant_usage',
@@ -31,14 +33,14 @@ select is(
 select set_eq(
   $$ select c.relname::text from pg_trigger t join pg_class c on c.oid = t.tgrelid
      where t.tgname = 'guard_approval' and not t.tgisinternal $$,
-  array['regions', 'stories', 'story_chapters', 'recipes', 'costumes'],
+  array['regions', 'stories', 'story_chapters', 'recipes', 'costumes', 'ceremonies'],
   'guard_approval is attached to every content table'
 );
 
 select is(
   (select count(*)::int from information_schema.role_table_grants
    where table_schema = 'public'
-     and table_name in ('regions', 'stories', 'story_chapters', 'recipes', 'costumes', 'sources', 'audit_log', 'user_badges', 'ai_jobs')
+     and table_name in ('regions', 'stories', 'story_chapters', 'recipes', 'costumes', 'ceremonies', 'sources', 'audit_log', 'user_badges', 'ai_jobs')
      and privilege_type = 'DELETE'
      and grantee in ('anon', 'authenticated', 'service_role')),
   0,

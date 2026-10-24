@@ -131,6 +131,22 @@ export function StoryArt({ className }: ArtProps) {
 }
 
 /** Wayang kulit figure in profile, on its central rod: home hero collage. */
+/** A gong on its stand: a customary ceremony with music, offering or procession. */
+export function CeremonyArt({ className }: ArtProps) {
+  return (
+    <svg viewBox="0 0 240 140" aria-hidden="true" focusable="false" className={`line-art ${className ?? ""}`}>
+      <g {...lineProps}>
+        <path d="M46 26 L194 26" />
+        <path d="M70 26 L70 124 M170 26 L170 124" />
+        <circle cx="120" cy="66" r="38" />
+        <circle cx="120" cy="66" r="14" />
+        <path d="M96 110 L144 110" />
+        <path d="M112 50 C116 44 124 44 128 50" />
+      </g>
+    </svg>
+  );
+}
+
 export function WayangArt({ className }: ArtProps) {
   return (
     <svg viewBox="0 0 160 240" aria-hidden="true" focusable="false" className={`line-art ${className ?? ""}`}>

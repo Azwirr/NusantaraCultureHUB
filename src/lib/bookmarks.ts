@@ -7,7 +7,12 @@ import { type ContentCard, getLibrary, type PublicType } from "./content";
 import type { Locale } from "./i18n/config";
 import { createClient } from "./supabase/server";
 
-export type SavedItem = { card: ContentCard; savedAt: string };
+/** Ceremonies cannot be saved yet, so a saved item is always a story, recipe or dress. */
+export type SavedItem = { card: ContentCard & { type: PublicType }; savedAt: string };
+
+function isSavable(card: ContentCard): card is ContentCard & { type: PublicType } {
+  return card.type !== "ceremony";
+}
 
 /** "recipe:<id>" keys of the member's saves, read once per request. RLS: own rows, public content only. */
 export const getSavedKeys = cache(async (): Promise<Set<string> | null> => {
@@ -34,7 +39,7 @@ export async function getSavedItems(locale: Locale): Promise<SavedItem[]> {
   const byKey = new Map(library.map((card) => [`${card.type}:${card.id}`, card]));
   return data.flatMap((row) => {
     const card = byKey.get(`${row.content_type}:${row.content_id}`);
-    return card ? [{ card, savedAt: row.created_at }] : [];
+    return card && isSavable(card) ? [{ card, savedAt: row.created_at }] : [];
   });
 }
 

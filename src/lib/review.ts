@@ -39,7 +39,7 @@ function asStatus(value: string): ReviewStatus {
 /** All content the reviewer can see, newest change first (small MVP tables). */
 export async function getQueue(): Promise<QueueItem[]> {
   const supabase = await createClient();
-  const [regions, stories, chapters, recipes, costumes] = await Promise.all([
+  const [regions, stories, chapters, recipes, costumes, ceremonies] = await Promise.all([
     supabase.from("regions").select("id, name_id, name_en, review_status, updated_at").limit(500),
     supabase
       .from("stories")
@@ -57,8 +57,12 @@ export async function getQueue(): Promise<QueueItem[]> {
       .from("costumes")
       .select("id, name_id, name_en, review_status, updated_at, regions(name_id, name_en)")
       .limit(500),
+    supabase
+      .from("ceremonies")
+      .select("id, name_id, name_en, review_status, updated_at, regions(name_id, name_en)")
+      .limit(500),
   ]);
-  for (const result of [regions, stories, chapters, recipes, costumes]) {
+  for (const result of [regions, stories, chapters, recipes, costumes, ceremonies]) {
     if (result.error) throw new Error(`review queue: ${result.error.message}`);
   }
 
@@ -83,6 +87,10 @@ export async function getQueue(): Promise<QueueItem[]> {
     })),
     ...(costumes.data ?? []).map((row) => ({
       type: "costume" as const, id: row.id, title: row.name_id, titleEn: row.name_en,
+      context: region(row), chapterNo: null, status: asStatus(row.review_status), updatedAt: row.updated_at,
+    })),
+    ...(ceremonies.data ?? []).map((row) => ({
+      type: "ceremony" as const, id: row.id, title: row.name_id, titleEn: row.name_en,
       context: region(row), chapterNo: null, status: asStatus(row.review_status), updatedAt: row.updated_at,
     })),
   ];

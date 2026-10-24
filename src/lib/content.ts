@@ -18,10 +18,14 @@ import { createPublicClient } from "./supabase/public";
 /** The guest client for public pages, or a reviewer session client for previews. */
 export type ContentClient = ReturnType<typeof createPublicClient>;
 
+/** Saveable content types (members can save these). */
 export type PublicType = "story" | "recipe" | "costume";
 
+/** Everything the library, regions and search show. Ceremonies cannot be saved yet. */
+export type LibraryType = PublicType | "ceremony";
+
 export type ContentCard = {
-  type: PublicType;
+  type: LibraryType;
   id: string;
   slug: string;
   title: string;
@@ -38,7 +42,7 @@ export type RegionSummary = {
   name: string;
   summary: string | null;
   provinceCodes: string[];
-  counts: Record<PublicType, number>;
+  counts: Record<LibraryType, number>;
 };
 
 export type SourceItem = { id: string; title: string; url: string | null; credit: string | null; license: string | null };
@@ -60,21 +64,22 @@ function fail(what: string, error: { message: string } | null): never {
   throw new Error(`public content (${what}): ${error?.message ?? "unknown error"}`);
 }
 
-/** Every approved story, recipe and costume as a card, newest first. */
+/** Every approved story, recipe, costume and ceremony as a card, newest first. */
 export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
   "use cache";
   cacheLife("hours");
   cacheTag(CONTENT_TAG);
   const supabase = createPublicClient();
   const region = "regions(slug, name_id, name_en)";
-  const [stories, recipes, costumes, pictures] = await Promise.all([
+  const [stories, recipes, costumes, ceremonies, pictures] = await Promise.all([
     supabase.from("stories").select(`id, slug, title_id, title_en, summary_id, summary_en, updated_at, ${region}`),
     supabase.from("recipes").select(`id, slug, name_id, name_en, minutes, updated_at, ${region}`),
     supabase.from("costumes").select(`id, slug, name_id, name_en, info_id, info_en, updated_at, ${region}`),
+    supabase.from("ceremonies").select(`id, slug, name_id, name_en, summary_id, summary_en, updated_at, ${region}`),
     supabase
       .from("content_media")
       .select("content_type, content_id, url, alt_id, alt_en, sort_order, credit, licence, kind")
-      .in("content_type", ["story", "recipe", "costume"])
+      .in("content_type", ["story", "recipe", "costume", "ceremony"])
       .order("sort_order"),
   ]);
   if (pictures.error) fail("media", pictures.error);
@@ -89,6 +94,7 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
   if (stories.error) fail("stories", stories.error);
   if (recipes.error) fail("recipes", recipes.error);
   if (costumes.error) fail("costumes", costumes.error);
+  if (ceremonies.error) fail("ceremonies", ceremonies.error);
 
   const cards: Array<Omit<ContentCard, "picture"> & { updatedAt: string }> = [
     ...stories.data.map((row) => ({
@@ -107,6 +113,12 @@ export async function getLibrary(locale: Locale): Promise<ContentCard[]> {
       type: "costume" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: null,
       title: pick(locale, { id: row.name_id, en: row.name_en }),
       summary: pick(locale, { id: row.info_id, en: row.info_en }) || null,
+      region: regionRef(locale, row.regions),
+    })),
+    ...ceremonies.data.map((row) => ({
+      type: "ceremony" as const, id: row.id, slug: row.slug, updatedAt: row.updated_at, minutes: null,
+      title: pick(locale, { id: row.name_id, en: row.name_en }),
+      summary: pick(locale, { id: row.summary_id, en: row.summary_en }) || null,
       region: regionRef(locale, row.regions),
     })),
   ];
@@ -133,14 +145,14 @@ export async function getRegions(locale: Locale): Promise<RegionSummary[]> {
   const library = await getLibrary(locale);
   return data.map((row) => {
     const items = library.filter((card) => card.region?.slug === row.slug);
-    const count = (type: PublicType) => items.filter((card) => card.type === type).length;
+    const count = (type: LibraryType) => items.filter((card) => card.type === type).length;
     return {
       id: row.id,
       slug: row.slug,
       name: pick(locale, { id: row.name_id, en: row.name_en }),
       summary: pick(locale, { id: row.summary_id, en: row.summary_en }) || null,
       provinceCodes: row.province_codes,
-      counts: { story: count("story"), recipe: count("recipe"), costume: count("costume") },
+      counts: { story: count("story"), recipe: count("recipe"), costume: count("costume"), ceremony: count("ceremony") },
     };
   });
 }
@@ -249,7 +261,12 @@ export async function loadStory(supabase: ContentClient, key: Key, locale: Local
 export type MediaItem = Cover;
 
 /** The first picture of each item (see supabase/migrations/20261024001600_content_media.sql). */
-async function firstMedia(supabase: ContentClient, type: "recipe" | "costume" | "story_chapter", id: string, locale: Locale): Promise<MediaItem | null> {
+async function firstMedia(
+  supabase: ContentClient,
+  type: "recipe" | "costume" | "story_chapter" | "ceremony",
+  id: string,
+  locale: Locale,
+): Promise<MediaItem | null> {
   const { data, error } = await supabase
     .from("content_media")
     .select("url, alt_id, alt_en, credit, licence, kind")
@@ -377,6 +394,51 @@ export async function loadCostume(supabase: ContentClient, key: Key, locale: Loc
     picture,
     region: regionRef(locale, costume.regions),
     sources: await sourcesFor(supabase, "costume", costume.id),
+  };
+}
+
+export type CeremonyDetail = {
+  id: string;
+  slug: string;
+  title: string;
+  altTitle: string;
+  /** When it is held, as the sources say it. Null when no source gives a time. */
+  timing: string | null;
+  summary: string;
+  body: string;
+  picture: MediaItem | null;
+  region: { slug: string; name: string } | null;
+  sources: SourceItem[];
+};
+
+export async function getCeremony(slug: string, locale: Locale): Promise<CeremonyDetail | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CONTENT_TAG);
+  return loadCeremony(createPublicClient(), { slug }, locale);
+}
+
+/** One ceremony by slug or id, as the given client may see it. */
+export async function loadCeremony(supabase: ContentClient, key: Key, locale: Locale): Promise<CeremonyDetail | null> {
+  const query = supabase
+    .from("ceremonies")
+    .select("id, slug, name_id, name_en, summary_id, summary_en, timing_id, timing_en, body_id, body_en, regions(slug, name_id, name_en)");
+  const { data: ceremony, error } = await ("slug" in key ? query.eq("slug", key.slug) : query.eq("id", key.id)).maybeSingle();
+  if (error) fail("ceremony", error);
+  if (!ceremony) return null;
+  const names = { id: ceremony.name_id, en: ceremony.name_en };
+  const timing = pick(locale, { id: ceremony.timing_id, en: ceremony.timing_en });
+  return {
+    id: ceremony.id,
+    slug: ceremony.slug,
+    title: pick(locale, names),
+    altTitle: pick(locale === "en" ? "id" : "en", names),
+    timing: timing || null,
+    summary: pick(locale, { id: ceremony.summary_id, en: ceremony.summary_en }),
+    body: pick(locale, { id: ceremony.body_id, en: ceremony.body_en }),
+    picture: await firstMedia(supabase, "ceremony", ceremony.id, locale),
+    region: regionRef(locale, ceremony.regions),
+    sources: await sourcesFor(supabase, "ceremony", ceremony.id),
   };
 }
 

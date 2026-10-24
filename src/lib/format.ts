@@ -6,8 +6,8 @@ export function fill(template: string, values: Record<string, string | number>):
 }
 
 /** Public URL path of a content item. */
-export function contentHref(type: "story" | "recipe" | "costume", slug: string): string {
-  const base = type === "story" ? "/stories" : type === "recipe" ? "/recipes" : "/costumes";
+export function contentHref(type: "story" | "recipe" | "costume" | "ceremony", slug: string): string {
+  const base = { story: "/stories", recipe: "/recipes", costume: "/costumes", ceremony: "/ceremonies" }[type];
   return `${base}/${encodeURIComponent(slug)}`;
 }
 

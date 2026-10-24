@@ -5,19 +5,21 @@ import type { ComponentType, ReactNode } from "react";
 import type { ContentCard as Card } from "@/lib/content";
 import { contentHref, fill } from "@/lib/format";
 
-import { CostumeArt, RecipeArt, StoryArt } from "./line-art";
+import { CeremonyArt, CostumeArt, RecipeArt, StoryArt } from "./line-art";
 import { CoverArt } from "./cover-art";
 
 const ART: Record<Card["type"], ComponentType<{ className?: string }>> = {
   story: StoryArt,
   recipe: RecipeArt,
   costume: CostumeArt,
+  ceremony: CeremonyArt,
 };
 
 const TINT: Record<Card["type"], string> = {
   story: "bg-tertiary-container text-on-tertiary-container",
   recipe: "bg-secondary-container text-on-secondary-container",
   costume: "bg-primary-container text-on-primary-container",
+  ceremony: "bg-surface-container text-on-surface",
 };
 
 /**
